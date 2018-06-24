@@ -1,0 +1,36 @@
+/*!
+ * Start Bootstrap - 1 Col Portfolio (https://startbootstrap.com/template-overviews/1-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio/blob/master/LICENSE)
+ */
+
+h1 {
+      font-family: "futura" ;
+      font-size: 50px;
+      color: #bdbdbd;
+      font-weight: bold;
+    }
+
+h3 {
+      font-family: "futura" ;
+      font-size: 40px;
+      color: #bdbdbd;
+      font-weight: bold;
+    }
+
+p {
+      font-family: "futura" ;
+      font-size: 20px;
+      color: #636363;
+    }
+
+.row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }

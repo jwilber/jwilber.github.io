@@ -1,0 +1,276 @@
+artist,genre,artist_total,group,id
+The Beatles,Classic Rock,58,high,1
+The Rolling Stones,Classic Rock,52,high,2
+Black Sabbath,Metal,47,high,3
+Fugazi,Punk,45,high,4
+David Bowie,Metal,40,high,5
+Pink Floyd,Classic Rock,40,high,6
+The Doors,Classic Rock,37,medium,7
+Led Zeppelin,Classic Rock,35,medium,8
+Gang Starr,Hip Hop,34,medium,9
+Devo,Punk,33,medium,10
+Jimi Hendrix,Classic Rock,32,medium,11
+Joy Division,Indie/Alternative,32,medium,12
+Nas,Hip Hop,31,medium,13
+Sonic Youth,Indie/Alternative,31,medium,14
+The Kinks,Classic Rock,30,medium,15
+CKY,Metal,29,medium,16
+Notorious B.I.G.,Hip Hop,28,medium,17
+Iron Maiden,Metal,27,medium,18
+Bob Dylan,Classic Rock,26,medium,19
+The Black Keys,Indie/Alternative,26,medium,20
+The Brian Jonestown Massacre,Indie/Alternative,26,medium,21
+Curtis Mayfield,Jazz/Soul,25,medium,22
+Slayer,Metal,24,medium,23
+Electric Light Orchestra,Classic Rock,23,medium,24
+M83,Indie/Alternative,23,medium,25
+Sol,Other,23,medium,26
+Arcade Fire,Indie/Alternative,22,medium,27
+Beastie Boys,Hip Hop,22,medium,28
+Modest Mouse,Indie/Alternative,22,medium,29
+New Order,Indie/Alternative,22,medium,30
+Pixies,Indie/Alternative,22,medium,31
+RJD2,Hip Hop,22,medium,32
+Creedence Clearwater Revival,Classic Rock,21,medium,33
+Dinosaur Jr.,Indie/Alternative,21,medium,34
+DJ Shadow,Hip Hop,21,medium,35
+Public Enemy,Hip Hop,21,medium,36
+MGMT,Indie/Alternative,20,low,37
+Three 6 Mafia,Hip Hop,20,low,38
+Tommy Guerrero,Jazz/Soul,20,low,39
+Andre Nickatina,Hip Hop,19,low,40
+Bad Brains,Punk,19,low,41
+Mobb Deep,Hip Hop,19,low,42
+Nina Simone,Jazz/Soul,19,low,43
+2Pac,Hip Hop,18,low,44
+AC/DC,Classic Rock,18,low,45
+Bad Religion,Punk,18,low,46
+Bad Shit,Metal,18,low,47
+Ice Cube,Hip Hop,18,low,48
+Iggy Pop,Punk,18,low,49
+Metallica,Metal,18,low,50
+Minor Threat,Punk,18,low,51
+Misfits,Punk,18,low,52
+Odd Nosdam,Electronic,18,low,53
+Belle & Sebastian,Indie/Alternative,17,low,54
+Jefferson Airplane,Classic Rock,17,low,55
+Beck,Indie/Alternative,16,low,56
+Big L,Hip Hop,16,low,57
+De La Soul,Hip Hop,16,low,58
+Radiohead,Indie/Alternative,16,low,59
+The Clash,Punk,16,low,60
+The Go! Team,Indie/Alternative,16,low,61
+The Velvet Underground,Classic Rock,16,low,62
+Vast,Classic Rock,16,low,63
+Bonobo,Electronic,15,low,64
+Dr. Dog,Indie/Alternative,15,low,65
+Janis Joplin,Classic Rock,15,low,66
+Moby,Electronic,15,low,67
+Motorhead,Metal,15,low,68
+Ramones,Punk,15,low,69
+Snoop Dogg,Hip Hop,15,low,70
+The Cure,Indie/Alternative,15,low,71
+The Shins,Indie/Alternative,15,low,72
+Bob Marley,Jazz/Soul,14,low,73
+Broken Social Scene,Indie/Alternative,14,low,74
+DJ Krush,Hip Hop,14,low,75
+Donovan,Indie/Alternative,14,low,76
+James Brown,Jazz/Soul,14,low,77
+John Lennon,Classic Rock,14,low,78
+Neil Young,Classic Rock,14,low,79
+The Faint,Indie/Alternative,14,low,80
+The Smiths,Indie/Alternative,14,low,81
+Yeah Yeah Yeahs,Indie/Alternative,14,low,82
+Al Green,Jazz/Soul,13,low,83
+Animal Collective,Indie/Alternative,13,low,84
+Blondie,Indie/Alternative,13,low,85
+Cam'ron,Hip Hop,13,low,86
+Guns N' Roses,Metal,13,low,87
+Johnny Cash,Classic Rock,13,low,88
+Judas Priest,Metal,13,low,89
+Kanye West,Hip Hop,13,low,90
+Marvin Gaye,Jazz/Soul,13,low,91
+Pentagram,Metal,13,low,92
+Stevie Wonder,Jazz/Soul,13,low,93
+Talking Heads,Indie/Alternative,13,low,94
+The Flaming Lips,Indie/Alternative,13,low,95
+Tortoise,Indie/Alternative,13,low,96
+Van Morrison,Classic Rock,13,low,97
+Wolf Parade,Indie/Alternative,13,low,98
+Atiba,Hip Hop,12,low,99
+Crystal Castles,Electronic,12,low,100
+Devendra Banhart,Indie/Alternative,12,low,101
+GG Allin,Punk,12,low,102
+Ghostface Killah,Hip Hop,12,low,103
+Jamiroquai,Electronic,12,low,104
+Justice,Electronic,12,low,105
+Lynyrd Skynyrd,Classic Rock,12,low,106
+Morrissey,Indie/Alternative,12,low,107
+Mr. Dibbs,Hip Hop,12,low,108
+Patti Smith,Punk,12,low,109
+Queen,Classic Rock,12,low,110
+Ray Barbee,Jazz/Soul,12,low,111
+Smashing Pumpkins,Indie/Alternative,12,low,112
+The Animals,Classic Rock,12,low,113
+The Black Angels,Indie/Alternative,12,low,114
+Trans Am,Indie/Alternative,12,low,115
+Young Jeezy,Hip Hop,12,low,116
+A Tribe Called Quest,Hip Hop,11,low,117
+Cymande,Jazz/Soul,11,low,118
+Interpol,Indie/Alternative,11,low,119
+Monarch Box,Punk,11,low,120
+OutKast,Hip Hop,11,low,121
+Ozzy Osbourne,Metal,11,low,122
+Sly & The Family Stone,Jazz/Soul,11,low,123
+Spoon,Indie/Alternative,11,low,124
+T. Rex,Metal,11,low,125
+The Budos Band,Jazz/Soul,11,low,126
+The Game,Hip Hop,11,low,127
+The Pharcyde,Hip Hop,11,low,128
+The Who,Classic Rock,11,low,129
+The Zombies,Classic Rock,11,low,130
+Three Dog Night,Classic Rock,11,low,131
+TV On The Radio,Indie/Alternative,11,low,132
+Unkle,Electronic,11,low,133
+Baron,Hip Hop,10,low,134
+Billy Idol,Classic Rock,10,low,135
+Black Flag,Punk,10,low,136
+Cat Stevens,Classic Rock,10,low,137
+Common,Hip Hop,10,low,138
+Danzig,Metal,10,low,139
+Explosions In The Sky,Indie/Alternative,10,low,140
+Guru,Hip Hop,10,low,141
+Heart,Rock,10,low,142
+Hightower,Metal,10,low,143
+Jon Kennedy,Electronic,10,low,144
+Juelz Santana,Hip Hop,10,low,145
+Michael Jackson,Jazz/Soul,10,low,146
+Ol' Dirty Bastard,Hip Hop,10,low,147
+Paul Simon,Classic Rock,10,low,148
+Rick Ross,Hip Hop,10,low,149
+Shawn Lee's Ping Pong Orchestra,Jazz/Soul,10,low,150
+Suicidal Tendencies,Punk,10,low,151
+Tame Impala,Indie/Alternative,10,low,152
+The Chemical Brothers,Indie/Alternative,10,low,153
+The Concretes,Indie/Alternative,10,low,154
+The Promise Ring,Punk,10,low,155
+Wolfmother,Metal,10,low,156
+Beirut,Indie/Alternative,9,low,157
+Ben Harper,Jazz/Soul,9,low,158
+Bloc Party,Indie/Alternative,9,low,159
+Brotha Lynch Hung,Hip Hop,9,low,160
+Built To Spill,Indie/Alternative,9,low,161
+Caural,Jazz/Soul,9,low,162
+David Holmes,Electronic,9,low,163
+Death In Vegas,Other,9,low,164
+Drunk Injuns,Punk,9,low,165
+El Michels Affair,Hip Hop,9,low,166
+Elliott Smith,Indie/Alternative,9,low,167
+Ennio Morricone,Other,9,low,168
+Geto Boys,Hip Hop,9,low,169
+Lil Wayne,Hip Hop,9,low,170
+Lou Reed,Classic Rock,9,low,171
+Love,Classic Rock,9,low,172
+Mac Dre,Hip Hop,9,low,173
+No Age,Punk,9,low,174
+Placebo,Indie/Alternative,9,low,175
+Primus,Indie/Alternative,9,low,176
+Roxy Music,Metal,9,low,177
+Shocking Blue,Classic Rock,9,low,178
+Sizzla,Jazz/Soul,9,low,179
+The Greenhornes,Indie/Alternative,9,low,180
+The Spits,Punk,9,low,181
+The White Stripes,Indie/Alternative,9,low,182
+Tom Waits,Indie/Alternative,9,low,183
+Air,Indie/Alternative,8,low,184
+Ariel Pink's Haunted Graffiti,Indie/Alternative,8,low,185
+Brian Jonestown Massacre,Indie/Alternative,8,low,186
+Dead Kennedys,Punk,8,low,187
+Deep Purple,Classic Rock,8,low,188
+DJ Vadim,Electronic,8,low,189
+Elvis Presley,Classic Rock,8,low,190
+Fleetwood Mac,Classic Rock,8,low,191
+Frank Zappa,Indie/Alternative,8,low,192
+Jethro Tull,Classic Rock,8,low,193
+John Maus,Indie/Alternative,8,low,194
+Ladytron,Electronic,8,low,195
+Matt Costa,Indie/Alternative,8,low,196
+NOFX,Punk,8,low,197
+Otis Redding,Jazz/Soul,8,low,198
+Pegboy,Metal,8,low,199
+Queens Of The Stone Age,Metal,8,low,200
+Sebadoh,Indie/Alternative,8,low,201
+Squarepusher,Electronic,8,low,202
+Stereolab,Indie/Alternative,8,low,203
+Steve Miller Band,Classic Rock,8,low,204
+Sufjan Stevens,Indie/Alternative,8,low,205
+Superchunk,Indie/Alternative,8,low,206
+The Adolescents,Punk,8,low,207
+The Damned,Punk,8,low,208
+The Strokes,Rock,8,low,209
+The Sword,Metal,8,low,210
+Turbonegro,Punk,8,low,211
+Ween,Indie/Alternative,8,low,212
+Weird War,Indie/Alternative,8,low,213
+Witch,Metal,8,low,214
+Yann Tiersen,Other,8,low,215
+Beach Fossils,Indie/Alternative,7,low,216
+Black Moth Super Rainbow,Indie/Alternative,7,low,217
+Blonde Redhead,Indie/Alternative,7,low,218
+Blvck Ceiling,Other,7,low,219
+Bruce Springsteen,Rock,7,low,220
+Butthole Surfers,Indie/Alternative,7,low,221
+Cass McCombs,Indie/Alternative,7,low,222
+Chad Muska,Hip Hop,7,low,223
+Coconut Records,Indie/Alternative,7,low,224
+Cream,Classic Rock,7,low,225
+Cypress Hill,Hip Hop,7,low,226
+Dead Moon,Rock,7,low,227
+Del Tha Funkee Homosapien,Hip Hop,7,low,228
+Division Of Laura Lee,Punk,7,low,229
+DJ Egadz,Electronic,7,low,230
+Doves,Indie/Alternative,7,low,231
+Fatboy Slim,Electronic,7,low,232
+Four Tet,Electronic,7,low,233
+Frank Sinatra,Jazz/Soul,7,low,234
+Gang of Four,Indie/Alternative,7,low,235
+Gravediggaz,Hip Hop,7,low,236
+GZA,Hip Hop,7,low,237
+Jedi Mind Tricks,Hip Hop,7,low,238
+Jets To Brazil,Punk,7,low,239
+Kelley Stoltz,Indie/Alternative,7,low,240
+Le Tigre,Electronic,7,low,241
+Metric,Indie/Alternative,7,low,242
+MF Doom,Hip Hop,7,low,243
+Mogwai,Indie/Alternative,7,low,244
+Money Mark,Hip Hop,7,low,245
+Mos Def,Hip Hop,7,low,246
+Motley Crue,Metal,7,low,247
+N.W.A.,Hip Hop,7,low,248
+Nancy Sinatra,Classic Rock,7,low,249
+Neil Diamond,Classic Rock,7,low,250
+Nirvana,Indie/Alternative,7,low,251
+Pavement,Indie/Alternative,7,low,252
+Pedro The Lion,Indie/Alternative,7,low,253
+Phoenix,Indie/Alternative,7,low,254
+Portishead,Electronic,7,low,255
+Radical Face,Indie/Alternative,7,low,256
+Ray Charles,Jazz/Soul,7,low,257
+Red Octopus,Classic Rock,7,low,258
+Rick James,Jazz/Soul,7,low,259
+Sacred Hoop,Hip Hop,7,low,260
+Santana,Classic Rock,7,low,261
+Shed,Punk,7,low,262
+Shyne,Hip Hop,7,low,263
+South,Indie/Alternative,7,low,264
+Status Quo,Classic Rock,7,low,265
+Sub Society,Punk,7,low,266
+Swollen Members,Hip Hop,7,low,267
+T.I.,Hip Hop,7,low,268
+The Chocolate Watchband,Classic Rock,7,low,269
+The Cramps,Punk,7,low,270
+The Guess Who,Classic Rock,7,low,271
+The Warlocks,Indie/Alternative,7,low,272
+Thee Oh Sees,Punk,7,low,273
+UGK,Hip Hop,7,low,274
+Youth Lagoon,Indie/Alternative,7,low,275

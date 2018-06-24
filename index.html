@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <title>Jared Wilber's Website</title>
+    <!-- Custom styles for this template -->
+    <link href="css/index.css" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+    div#container {
+     position: relative;
+      width: 500px;
+      height: 450px;
+      top: 14%;
+      left: 5%;
+      font-family: "futura";
+  }
+
+  div#footer {
+    position: relative;
+    top: 10px;
+    left: 20%;
+    width: 700px;
+    height: 200px;
+  }
+
+  h1 {
+    font-family: "futura" ;
+    font-size: 40px;
+    color: #bdbdbd;
+  }
+
+  p {
+    font-family: "futura" ;
+    font-size: 24px;
+    color: #636363;
+  }
+  </style>
+  </head>
+
+<body>
+  
+    <div id="container">
+    <div id="chart"></div>
+  </div>
+  <div id="footer">
+    <center><h1> Jared Wilber </h1></center>
+    <center><p>This is my blog.<br> I use it for random projects outside of work.
+      <br>Thanks for visiting, and feel free to reach out about whatever!</p></center>
+  </div>
+  
+  <!-- <script src="index.js"></script> -->
+  <script>
+    //Width and height
+    var w = 1200;
+    var h = 600;
+    var damper = 0.102;
+
+    function charge(d) {
+      // return -Math.pow(d.radius, 2.0) / 2;
+      return d.radius * 10;
+    };
+
+    function moveToCenter(alpha) {
+        return function (d) {
+          d.x = d.x + (center.x - d.x) * damper * alpha;
+          d.y = d.y + (center.y - d.y) * damper * alpha;
+        };
+      };
+
+    var colors = d3.scale.quantize()
+          .domain([0,3])
+          .range(['#7f3b08', '#b35806', '#e08214', '#fdb863', '#fee0b6', '#f7f7f7', '#d8daeb', '#b2abd2', '#8073ac']);
+
+    var svg = d3.select('#chart')
+        .append('svg')
+        .attr('width', w)
+        .attr('height', h)
+        .append('g');
+    
+    //Original data
+    var dataset = {
+      nodes: [
+        { name: "ABOUT ME", radius:55, loc: 'https://jwilber.github.io/about.html', col: '#02818a'},
+        { name: "PROJECTS", radius:55, loc: 'https://jwilber.github.io/projects.html', col: '#67a9cf'},
+        { name: "CONTACT", radius:55, loc: 'https://jwilber.github.io/contact.html', col: '#bdc9e1'},
+        // { name: "Project 4", radius: 10}
+
+      ],
+      edges: [
+        { source: 1, target: 0},
+        { source: 0, target: 2 },
+        {source: 2, target: 1},
+      ]
+    };
+
+
+    var center = {x: w/2 - 80, y: h/2.4};
+
+    var force = d3.layout.force()
+            .nodes(dataset.nodes)
+            .links(dataset.edges)
+            .size([w, h])
+            .linkDistance([310])
+            .charge(charge)
+            .friction(.9)
+            .gravity(-.001)
+            .start();
+
+    var edges = svg.selectAll('line')
+          .data(dataset.edges)
+          .enter()
+          .append('line')
+          .style("stroke", "#ccc")
+          .style("stroke-width", 1);
+
+    var nodes = svg.selectAll('circle')
+          .data(dataset.nodes)
+          .enter()
+          .append('circle')
+          .classed('node', true)
+          .attr('r', function(d) {
+            return d.radius;
+          })
+          .style('fill', function(d) { return d.col;})
+          .attr('loc', function(d) {
+            return d.loc;
+          })
+          .call(force.drag);
+
+    var label = svg.selectAll(".mytext")
+                    .data(dataset.nodes)
+                    .enter()
+                    .append("text")
+                    .text(function(d) {
+                      return d.name;
+                    })
+                    .style("text-anchor", "middle")
+                    .style("fill", "#f0f0f0")
+                    .style("font-family", "futura")
+                    .style('font-weight', 'bold')
+                    .style("font-size", 17);
+
+
+
+    force.on('tick', function (e) {
+
+      edges.attr("x1", function(d) { return d.source.x; })
+       .attr("y1", function(d) { return d.source.y; })
+       .attr("x2", function(d) { return d.target.x; })
+       .attr("y2", function(d) { return d.target.y; });
+
+        nodes.each(moveToCenter(e.alpha))
+          .attr('cx', function (d) { return d.x; })
+          .attr('cy', function (d) { return d.y; });
+
+        label.attr("x", function(d){ return d.x - 3; })
+             .attr("y", function (d) {return d.y; });
+      });
+
+
+    d3.selectAll('.node')
+      .on('mouseover', function() {
+        r = parseInt(d3.select(this).attr('r')) + 10;
+        d3.select(this)
+          .attr('r', r);
+      })
+      .on('mouseout', function() {
+        r = parseInt(d3.select(this).attr('r')) - 10;
+        d3.select(this)
+          .attr('r', r);
+      })
+      .on('click', function () {
+          site = d3.select(this).attr('loc');
+                    location.href = site;
+                  });
+                </script>
+
+</body>
+</html>

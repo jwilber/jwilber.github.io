@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84472984-1');
+</script>
+  <meta charset="utf-8">
+  <title>Data-Driven Skate Video Music</title>
+  <meta name="description" content="Jenkem Data-Driven Soundtrack Analysis">
+  <meta name="author" content="Jared Wilber">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/artist_bubble.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/paper/bootstrap.min.css" media="screen" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="container">
+  <h1>Writing Efficient Base-R Code</h1>
+        <p class="text-uppercase">by <a href="http://jwilber.github.io" target="_self">Jared Wilber</a> &middot; June 2016</p>
+
+<p>
+<i> Note - this post is about optimizing base R code, and I originally wrote it sometime ago. Wenever possible, avoid base R and use the tidyverse stack of libraries</i>.
+<br>
+<br>
+R is a programming language primarily used for data science and statistical analysis. 
+While R is complimented by many when it comes to data analysis, it's definitely not praised for its efficiency (specifically, it's speed or memory management). That's not to say that R isn't very efficient; for the vast majority of cases, it will get the job done and do it well. However, it is true that R is not as efficient as it can be. This stems from two primary reasons: </p>
+
+<ol>
+<li> R is very, very dynamic. Although this dynamism gives us more flexibility, when coupled with lexical scoping it results in slower code.</li>
+<li> The current most popular implementation of R (gnu-R, this is what you have if you don't know which implementatin of R you have) is far from peak-optimization with regards to the current implementation.</li>
+</ol>
+
+<p>That said, the point of this post isn't discussing R's current implementation, it's to help you write better R code. I
+</p>
+
+<p>Here is an outline of what I will cover:</p>
+
+<ul>
+<li> Time your code</li>
+  <ol>
+    <li> <code>system.time()</code> </li>
+    <li> <code>microbenchmark()</code> </li>
+    <li> <code>proc.time()</code> </li>
+  </ol>
+
+<li>Memory</li>
+  <ol>
+    <li> Memory Preallocation </li>
+    <li>  Memoisation and Caching Variables </li>
+    <li> Compiling Code </li>
+    <li> Analysing Memory in Use </li>
+  </ol>
+</ul>
+
+<hr> 
+
+<h2>Timing Your Code</h2>
+
+<p> In order to write more efficient code, we need some way by which to facilitate comparison. An obvious choice in measuring speed is timing our code. Below I list three methods we'll use, as well as when to use them.
+</p>
+
+<ul>
+  <li> <code>system.time()</code>: Analyze individual function calls </li>
+  <li> <code>microbenchmark()</code>: Compare the speed of multiple function calls </li>
+  <li> <code>proc.time()</code>: Analyze the speed of chunkcs of our code </li>
+</ul>
+
+<h4><code>system.time()</code></h4>
+
+<p>The <code>system.time()</code> function handles a single R expression as its argument. We use <code>system.time()</code> when we want to analyze expressions one at a time.</p>
+
+<p>For example, we can analyze the time it takes to loop through 1000 calculations of calling the mean function on a random sample of points:</p>
+
+
+        <div class="panel-body">
+          <pre><code id="code-ex-1">
+            # system.time() Example
+            system.time(for(i in 1:1000) mean(sample(1:1000, 100)))
+          </code></pre>
+        <div class="container" id="container-1">
+       </div>
+     </div>
+
+  <table style="width:30%">
+    <tr>
+      <th>user </th>
+      <th>system</th>
+      <th>elapsed</th>
+    </tr>
+    <tr>
+      <th>0.020</th>
+      <th>0.016</th>
+      <th>0.059</th>
+    </tr>
+  </table>
+
+<p>The above expression analyzes the input expression and returns its time in seconds. The important column to pay attention to is the _elapsed_ column, as this reveals the total elapsed time required to evaluate our provided expression.</p>
+
+<h4> <code>microbenchmark()</code> </h4>
+<p>The <code>microbenchmark()</code> function is easily the most useful timing function currently in R. If you're going to remember one method to time your code, this is the one. <code>microbenchmark()</code> facilitates comparing runtime between multiple function calls. It takes in multiple functions as arguments and outputs summary runtime statistics. By default, it runs each function 100 times and averages the results. You can change this option, as well as the unit of time to be measured via the <code>times</code> and <code>unit</code> arguments, respectively.</p>
+
+<p>To give an example, we'll compare the runtimes for several different implementations of the standard deviation function for a group of numbers.
+</p>
+
+<p>Recall the formula for standard deviation is as follows:
+
+$$ s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2} $$
+
+<p>
+
+        <div class="panel-body">
+          <pre><code id="code-ex-1">
+            # microbenchmark example
+            library(microbenchmark)
+            set.seed(100)
+            x   <- rnorm(10000)
+            sd1 <- sd(x)
+            sd2 <- sqrt( var(x) )
+            sd3 <- var(x) ^ (1/2)
+            sd4 <- '^'(var(x), .5)
+            sd5 <- sqrt( sum( (x - mean(x))^2) / (length(x) - 1) )
+            microbenchmark( sd1, sd2, sd3, sd4, sd5, times=10000)
+          </code></pre>
+        <div class="container" id="container-1">
+       </div>
+     </div>
+
+  <table style="width:75%">
+    <tr>
+      <th>expre</th>
+      <th>min</th>
+      <th>lq</th>
+      <th>mean</th>
+      <th>median</th>
+      <th>uq</th>
+      <th>max</th>
+      <th>neval</th>
+    </tr>
+    <tr>
+      <th><code>sd1</code></th>
+      <th>33 </th>
+      <th>45</th>
+      <th>52.8414</th>
+      <th>45</th>
+      <th>48</th>
+      <th>11362</th>
+      <th>10000</th>
+    </tr>
+    <tr>
+      <th><code>sd2</code></th>
+      <th>334</th>
+      <th>48</th>
+      <th>71.0916 </th>
+      <th>47</th>
+      <th>50</th>
+      <th>63875</th>
+      <th>10000</th>
+    </tr>
+    <tr>
+      <th><code>sd3</code></th>
+      <th>34 </th>
+      <th>46</th>
+      <th>55.5363</th>
+      <th>45</th>
+      <th>48</th>
+      <th>10846</th>
+      <th>10000</th>
+    </tr>
+    <tr>
+      <th><code>sd4</code></th>
+      <th>39 </th>
+      <th>51</th>
+      <th>61.8710 </th>
+      <th>48</th>
+      <th>51</th>
+      <th>14515</th>
+      <th>10000</th>
+    </tr>
+    <tr>
+      <th><code>sd5</code></th>
+      <th>39 </th>
+      <th>49</th>
+      <th>54.1965</th>
+      <th>46</th>
+      <th>48</th>
+      <th>11362</th>
+      <th>11086</th>
+    </tr>
+  </table>
+
+<p>When comparing the output from microbenchmark, look to the median output. You can also compare the lower quartile,<code>lq</code>, and the upper quartile, <code>uq</code>, to get a sense of the variance of the timings. From the above example, <code>sd3 <- var(x) ^ (1/2)</code> was our fastest implementation, but only slightly.</p>
+
+<h4> <code>proc.time()</code> </h4>
+<p>If we want to measure the speed of arbitrary chunks of our code (including the whole script itself), we use the <code>proc.time()</code> function. </p>
+
+<p><code>proc.time()</code> works as follows:</p>
+
+* Preface the chunk of code you wish to time with <code>time_start <- proc.time()</code>. This initializes the timer.
+* Add <code>proc.time() - time_start</code> to the line just after the end of the chunk of code you'd like to time.
+<p>In this manner, we can think of <code>proc.time()</code> as a sort of stop watch: we initialize a timer at the beginning of the code, time the code's duration, then initialize another timer at the end of the code and take the difference between our new timer and our old timer. The total duration of code is output under the <code>elapsed</code> column.</p>
+
+        <div class="panel-body">
+          <pre><code id="code-ex-1">
+# proc.time() example
+time_start <- proc.time()
+x <- runif(100)
+y <- rnorm(200)
+z <- rpois(400, lambda=2)
+r <- sum(x,y,z)
+proc.time() - time_start
+     </code></pre>
+        <div class="container" id="container-1">
+       </div>
+     </div>
+
+  <table style="width:30%">
+    <tr>
+      <th>user </th>
+      <th>system</th>
+      <th>elapsed</th>
+    </tr>
+    <tr>
+      <th>0.004</th>
+      <th>0.014</th>
+      <th>0.045</th>
+    </tr>
+  </table>
+
+<p>A quick note - the above three functions are all related in the following ways:</p>
+
+* <code>system.time</code> calls <code>proc.time()</code> before and after the input expression.
+* <code>microbenchmark</code> takes and compares the average number of <code>system.time()</code> calls. In our case, that's equivalent to calling <code>system.time(for (i in 1:100) sd(x)) / 100)</code>.
+
+<p>Timing functions is very important and an essential part of any efficient workflow, and the above functions should be sufficient for any time measurement needs that you'll encounter. </p>
+  
+<hr>
+
+<h2>Memory Pre-allocation</h2>
+<p>One of the most important aspects of memory management in R is pre-allocating your memory. An important application of this is when dealing with vectors or any multi-dimensional objects. It's always much more efficient to initialize an object of the desired size than to grow it iteratively. Let's see this for ourselves:</p>
+
+        <div class="panel-body">
+          <pre><code id="code-ex-1">
+# Memory Pre-Allocation Example
+cum_prod_grow <- function(x) {
+  obj      <- c(x[1])
+  for( i in 2:length(x)) {
+    obj[i] <- x[i] + obj[i-1]
+  }
+  obj
+}
+
+cum_prod_init <- function(x) {
+  obj      <- vector(mode="numeric", length=length(x))
+  obj[1]   <- x[1]
+  for( i in 2:length(x)) {
+    obj[i] <- x[i] + obj[i-1]
+  }
+  obj
+}
+
+microbenchmark(cum_prod_init(c(1:10000)), cum_prod_grow(c(1:10000)), times=100)
+     </code></pre>
+        <div class="container" id="container-1">
+       </div>
+     </div>
+
+  <table style="width:60%">
+    <tr>
+      <th>expre</th>
+      <th>min</th>
+      <th>lq</th>
+      <th>mean</th>
+      <th>median</th>
+      <th>uq</th>
+      <th>max</th>
+      <th>neval</th>
+    </tr>
+    <tr>
+      <th><code>cum_prod_init(c(1:10000))</code></th>
+      <th>8.99947 </th>
+      <th>9.19716</th>
+      <th>11.46031 </th>
+      <th>9.581028</th>
+      <th>11.51252</th>
+      <th>26.54054 </th>
+      <th>100</th>
+    </tr>
+    <tr>
+      <th><code>cum_prod_grow(c(1:10000))</code> </th>
+      <th>96.828066 </th>
+      <th>110.18554</th>
+      <th>128.99623</th>
+      <th>114.860681</th>
+      <th>130.11597</th>
+      <th>221.84280</th>
+      <th>100</th>
+    </tr>
+  </table>
+
+<p>Thus, initializing an object of the correct size is eleven times faster. This disparity only grows as the number of dimensions of our object increases.</p>
+
+<hr>
+
+<h2>Memoisation and Caching Variables</h2>
+
+<p>Another important aspect in memory management is caching variables. Caching variables refers to storing the value of a variable for future use. This storage shaves off time incrementally, but can have a big effect when used in conjunction with apply statements or loops.</p>
+
+<p>Memoizaton is a popular optimization technique in caching and refers to the technique of storing the results of function calls and returning the cached result when the same inputs occur again. This is very easy to implement in R thanks to the <code>memoise</code> package.</p>
+
+
+<p>Below I compare three functions: one with no variable caching, one where we cache our variables, and one that is fully memoised.</p>
+
+        <div class="panel-body">
+          <pre><code id="code-ex-1">
+# Cache Variable Example
+no_cache  <- function(x) {
+  vec      <- vector(length = length(x))
+  for(i in seq_along(x)) {
+    vec[i] <- sum(max(x), log(x), min(x), mean(x), i)
+    vec[i] <- vec[i] / length(x)
+  }
+  vec
+}
+
+si_cache <- function(x) {
+  mx       <- max(x)
+  mn       <- min(x)
+  lx       <- log(x)
+  ux       <- mean(x)
+  n        <- length(x)
+  vec      <- vector(length = n)
+  for(i in seq_along(x)) {
+    vec[i] <- sum(mx, mn, lx, ux, 1)
+    vec[i] <- vec[i] / n
+  }
+  vec
+}
+
+library(memoise)
+mem_cache  <- memoise(no_cache)
+microbenchmark(no_cache(c(1:1000)), si_cache(c(1:1000)), mem_cache(c(1:1000)))
+     </code></pre>
+        <div class="container" id="container-1">
+       </div>
+     </div>
+
+
+  <table style="width:75%">
+    <tr>
+      <th>expr</th>
+      <th>min</th>
+      <th>lq</th>
+      <th>mean</th>
+      <th>median</th>
+      <th>uq</th>
+      <th>max</th>
+      <th>neval</th>
+    </tr>
+    <tr>
+      <th><code>no_cache(c(1:1000))</code></th>
+      <th>17361.978 </th>
+      <th>20183.470 </th>
+      <th>22221.3387</th>
+      <th>21419.49</th>
+      <th>22253.241</th>
+      <th>110095.342</th>
+      <th>100</th>
+    </tr>
+    <tr>
+      <th><code>si_cache(c(1:1000))</code> </th>
+      <th>2631.881 </th>
+      <th>2683.565</th>
+      <th>2785.6216 </th>
+      <th>2738.47  </th>
+      <th>2806.6720</th>
+      <th>3510.548 </th>
+      <th>100</th>
+    </tr>
+    <tr>
+      <th><code>mem_cache(c(1:1000))</code> </th>
+      <th>67.733  </th>
+      <th>80.592</th>
+      <th>116.8227 </th>
+      <th>130.80</th>
+      <th>138.5335</th>
+      <th>177.456</th>
+      <th>100</th>
+    </tr>
+  </table>
+
+<p>We can see the difference each method makes: caching variables is almost ten times faster, while memoising is almost 200 times faster. Thus, when writing time-consuming code, it's important to consider whether or not the opportunity for caching or memoisation exists. If you can find any examples of the same value being called over-and-over again, you probably have a case for either option.</p>
+
+<hr>
+
+<h4> Compile Code </h4>
+
+<p>In R, compiling our code is a quick, easy way to have it run more efficiently. To achieve this, we'll use the <code>compiler</code> package, which compiles an expression into a byte code object What does this mean, and why is it effective? Byte code is simply machine code for a virtual machine. In general, lower level languages (e.g. C), compile their source code to machine code. Other languages, such as Python, compile their code to byte code.
+<br>
+In standard R, expressions are parsed into a parse tree, which is then interpreted upon evaluation. With the <code>compiler</code> package, we can convert R's expressions into byte code, to be evalutaed via a stack-based virtual machine architecture. In the vast majority of cases this greatly improves runtime.
+</p>
+
+
+<hr>
+
+<h3> Memory In Use</h3>
+
+<p>To get pertinent information regarding memory used in session, you can use the <code>pryr</code> package. The <code>pryr</code> package contains multiple useful functions that yield memory usage information. Some examples are below:
+</p>
+
+<ul>
+  <li> <code>mem_change</code>: Returns change in memory (megabytes) before and after running the code.</li>
+  <li> <code>mem_used</code>: Returns total megabytes of ram used by R. </li>
+  <li> <code>object_size</code>: Returns an estimate of the size of the object (bytes)</li>
+</ul>
+
+<h2>Useful Memory Facts</h2>
+
+<p> 1. R counts the number of names that point to each object in our workspace, and deleted objects that no longer have names pointing to them. In this way, R automatically relases memory from objects that are no longer being used. This is known as _garbage colection_, and while in some languages it's required to call this on your own, R does it automatically.</p>
+
+<p> 2. Every argument in a function slows down the function call by about 20 nanoseconds. Why is this the case? Every argument creates a promise object that creates an expression required to carry out the result as well as the environment in which to carray out the expression. For this reason, it's good practice to limit the number of function arguments when applicable.</p>
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>While the above list certainly wasn't exhaustive, I hope that you learned something new. Each of the above topics can be used to your benefit when incorporated into your R workflow. Thanks for reading, and if you have an questions or comments please let me know!</p>
+
+</div>
+</body>
+</html>

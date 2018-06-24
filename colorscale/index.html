@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84472984-1');
+</script>
+
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/paper/bootstrap.min.css" media="screen" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://d3js.org/d3.v3.js"></script>
+  <style type="text/css" media="screen"></style>
+  <style>
+      #tooltip2 {
+       position: absolute;
+       width: 70px;
+       height: auto;
+       padding: 4px;
+       background-color: white;
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+       border-radius: 10px;
+       /*-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+       /*-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+       /*box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+       pointer-events: none;
+      }
+      #tooltip2.hidden {
+       display: none;
+      }
+      #tooltip2 p {
+       margin: 0;
+       font-size: 14px;
+       line-height: 13px;
+      }
+
+</style>
+</head>
+<body>
+  <div class="container">
+  <h3>Color Picker</h3>
+<!-- <h5> USING HCL INTERPOLATION</h5> -->
+<p class="text-uppercase">by <a href="http://jwilber.github.io" target="_self">Jared Wilber</a> &middot; October 2017<br></p>
+<p> Looking for that special color for your visualization, but not sure what to pick?</p>
+<p> If so, this tool may be of service, especially if you have an idea of the range of colors you'd like to select from.<p>
+<p> Simply select two colors, and intermediate color-values will be interpolated between the two. Clicking on a color will decrease its opacity. Hovering over a color will yield its hexidecimal representation.</p>
+ 
+ <div id="header">
+   <form name="form1" onSubmit="return handleClick()">
+          <input name="Submit"  type="submit" value="Color One" >
+          <input type="text" id="val1" placeholder="Choose a color&hellip;">
+          <input name="Submit2"  type="submit" value="Color Two" >
+          <input type="text" id="val2" placeholder="Choose a color&hellip;">
+  </form>
+
+ </div>
+  <div id="chart"></div>
+  <p> Here are some other wonderful aids to color selection: </p>
+  <ul>
+  <li><a href="https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3">ColorBrewer2</a></li>
+  <li><a href="https://www.w3schools.com/colors/colors_picker.asp">HTML Color Picker</a></li>
+  <li><a href="https://coolors.co/">coolors</a></li>
+  <li><a href="https://tristen.ca/hcl-picker/#/hlc/6/1/15534C/E2E062">Colorpicker for data</a></li>
+</ul>
+
+<div id="tooltip2" class="hidden">
+ <p><strong>Color</strong></p>
+ <p><span id="value">100</span></p>
+</div>
+  
+  
+  <script type="text/javascript">
+
+    // idea: make numCells a parameter, then figure out the width/height required to fit all cells
+    // in the svg
+    var color_arr = ['skyblue', 'coral'];
+    function handleClick(event){
+                val1 = document.getElementById("val1").value;
+                val2 = document.getElementById("val2").value;
+                if (val1 != '') {
+                  color_arr.splice(0, 1, val1);
+                };
+                if (val2 != '') {
+                  color_arr.splice(1, 1, val2);
+                };
+                drawOne(color_arr);
+                
+                return false;
+            };
+
+
+    function drawOne(color_arr){
+
+        var numRows = 15,
+          numCols = 30,
+          numCells = numRows * numCols,
+          width = 30,
+          height = 30,
+          colorOne = color_arr[0],
+          colorTwo = color_arr[1];
+
+
+      function gridData() {
+          var data = new Array();
+          var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
+          var ypos = 1;
+
+          // iterate for rows 
+          for (var row = 0; row < numRows; row++) {
+              data.push( new Array() );
+
+              // iterate for cells/columns inside rows
+              for (var column = 0; column < numCols; column++) {
+                  data[row].push({
+                      x: xpos,
+                      y: ypos,
+                      width: width,
+                      height: height,
+                      val: row *numCols +column
+                  })
+                  // increment the x position. I.e. move it over by 50 (width variable)
+                  xpos += width;
+              }
+              // reset the x position after a row is complete
+              xpos = 1;
+              // increment the y position for the next row. Move it down 50 (height variable)
+              ypos += height; 
+          }
+          return data;
+  };
+
+    var data = gridData();
+
+    var row = svg.selectAll('.row')
+              .data(data)
+              .enter()
+              .append('g')
+              .attr('class', 'row');
+
+    var col = row.selectAll('.square')
+              .data(function(d) {return d;})
+              .enter()
+              .append('rect')
+              .attr('class', 'square')
+              .attr('id', function(d) {
+                return 'square' + JSON.stringify(d.val);
+              })
+              .attr('x', function(d) { return d.x;})
+              .attr('y', function(d) { return d.y;})
+              .attr('width', function(d) { return d.width;})
+              .attr('height', function(d) { return d.height;})
+              .attr("fill", "#fff")
+              .attr("stroke", "white")
+              .attr("stroke-width", 4)
+              .attr("opacity", 1)
+              .on('mouseover', function() {
+                // if (d3.select(this).attr("opacity") == 1) {
+                //   d3.select(this).attr("opacity", 1);
+                //   // d3.select(this).attr("fill", 'black');
+
+                // } else {
+                //   // d3.select(this).attr("opacity", 1)
+                // };
+                  d3.select(this).attr('stroke-width', .001);
+                  console.log(d3.select(this).attr('fill'));
+
+                  // .attr("opacity", 1);
+              })
+              .on('mouseout', function() {
+                d3.select(this)
+                  .attr('stroke-width', 5)
+                  // .attr('opacity', 0.5);
+              })
+              .on('click', function() {
+                opac = d3.select(this).attr('opacity');
+                if (opac <= .4) {
+                  opac = 1.1;
+                };
+                d3.select(this)
+                  .attr('opacity', opac-.1);
+              });
+
+
+
+    var color = d3.scale.linear()
+                  .domain([1, numCells])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb(colorOne), d3.rgb(colorTwo)]);
+
+    for (var i = 0; i < numCells; i++) {
+      d3.select('#square' + JSON.stringify(i))
+          .attr('fill', function() {
+            return color(i);})
+          .attr('col', color(i));
+    };
+
+
+
+
+
+
+
+            };
+
+      var numRows = 15,
+          numCols = 30,
+          numCells = numRows * numCols,
+          width = 30,
+          height = 30,
+          colorOne = color_arr[0],
+          colorTwo = color_arr[1];
+
+
+      function gridData() {
+          var data = new Array();
+          var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
+          var ypos = 1;
+
+          // iterate for rows 
+          for (var row = 0; row < numRows; row++) {
+              data.push( new Array() );
+
+              // iterate for cells/columns inside rows
+              for (var column = 0; column < numCols; column++) {
+                  data[row].push({
+                      x: xpos,
+                      y: ypos,
+                      width: width,
+                      height: height,
+                      val: row *numCols +column
+                  })
+                  // increment the x position. I.e. move it over by 50 (width variable)
+                  xpos += width;
+              }
+              // reset the x position after a row is complete
+              xpos = 1;
+              // increment the y position for the next row. Move it down 50 (height variable)
+              ypos += height; 
+          }
+          return data;
+  };
+
+    var data = gridData();
+
+    var svg = d3.select('#chart')
+              .append('svg')
+              .attr('width', 900)
+              .attr('height', 500);
+
+    var row = svg.selectAll('.row')
+              .data(data)
+              .enter()
+              .append('g')
+              .attr('class', 'row');
+
+    var col = row.selectAll('.square')
+              .data(function(d) {return d;})
+              .enter()
+              .append('rect')
+              .attr('class', 'square')
+              .attr('id', function(d) {
+                return 'square' + JSON.stringify(d.val);
+              })
+              .attr('x', function(d) { return d.x;})
+              .attr('y', function(d) { return d.y;})
+              .attr('width', function(d) { return d.width;})
+              .attr('height', function(d) { return d.height;})
+              .attr("fill", "#fff")
+              .attr("stroke", "white")
+              .attr("stroke-width", 4)
+              .attr("opacity", 1)
+              .on('mouseover', function() {
+                  d3.select(this).attr('stroke-width', .0001);
+                  console.log(d3.select(this).attr('fill'));
+              })
+              .on('mouseout', function() {
+                d3.select(this)
+                  .attr('stroke-width', 4)
+              })
+              .on('click', function() {
+                opac = d3.select(this).attr('opacity');
+                if (opac <= .4) {
+                  opac = 1.1;
+                };
+                d3.select(this)
+                  .attr('opacity', opac-.1);
+              });
+
+
+
+    var color = d3.scale.linear()
+                  .domain([1, numCells])
+                  .interpolate(d3.interpolateHcl)
+                  .range([d3.rgb(colorOne), d3.rgb(colorTwo)]);
+
+    for (var i = 0; i < numCells; i++) {
+      d3.select('#square' + JSON.stringify(i))
+          .attr('fill', function() {
+            return color(i);})
+          .attr('col', color(i));
+    };
+
+    // CLEAR BUTTON
+    d3.selectAll('.square')
+    .on("mouseover", function(d) {
+            var fillValue = d3.select(this).attr("fill");
+            //Get this bar's x/y values, then augment for the tooltip
+            var xPosition = parseFloat(d3.select(this).attr("x")) + 10;
+            var yPosition = parseFloat(d3.select(this).attr("y")) + 300;
+            //Update the tooltip position and value
+            d3.select("#tooltip2")
+             .style("left", xPosition + "px")
+             .style("top", yPosition + "px")
+             .select("#value")
+             .text(fillValue)
+            //Show the tooltip
+            d3.select("#tooltip2").classed("hidden", false);
+        })
+
+    d3.selectAll('.square')
+        .on('mouseout', function() {
+            d3.select("#tooltip2").classed("hidden", true);            
+        });
+
+  </script>
+</div>
+</body>
+</div>
+</html>

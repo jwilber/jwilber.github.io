@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84472984-1');
+</script>
+  <meta charset="utf-8">
+  <title>Closures: JavaScript vs Python</title>
+  <meta name="description" content="Closures: Javascript vs Python">
+  <meta name="author" content="Jared Wilber">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/paper/bootstrap.min.css" media="screen" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<body>
+  <div class="container">
+  <h1>Closures: JavaScript vs Python</h1>
+        <p class="text-uppercase">by <a href="http://jwilber.github.io" target="_self">Jared Wilber</a> &middot; June 2017</p>
+
+<p>
+While I've been programming in Python for years, my interest into data visualization has me dabbling in JavaScript more and more. Transitioning from Python to JavaScript is, in general, pretty straightforward, with a few exceptions. One such exception involves <i>closures</i>, which behave slightly differently between the two languages. While this is a pretty minor exception, I figured that I'd make a blog post to a). help myself understand it better and b). help others transitioning from Python to JavaScript.
+
+<p> We define a closure is defined as follows:
+  <blockquote>A function defined inside some outer function that uses variables declared in the outer function's (but not global) scope that are kept alive after the function is returned.</blockquote>
+
+  Essentially, a closure is a function declaration nested within another function. When this nested function gets returned, it maintains access to the variables in the outer function's scope.
+</p>
+<p> <i>Note -- Closures are a rich topic and I'm barely scratching the surface. If you want to learn more about closures, there are a ton of very good articles/blog-posts online.</i></p>
+
+</p>
+
+<h2> Closures in JavaScript</h2>
+
+<p> As a rolling example, we'll consider a function for counting incrementally. That is, each call of the function should keep track of some count, and increment it accordingly. This is a classic example of a closure, as our counting function, the closure, will be defined in some outer function and must keep track of the count, a variable defined in the outer functions scope.</p>
+
+<p> In JavaScript, such a function may look something along the following lines: 
+
+   <div class="panel-body">
+    <pre><code id="code-ex-1">
+      function Counter(inc) {
+        // variable defined in scope of outer function, Counter
+        var count = 0;
+        // closure function,
+        var add = function(inc) {
+          count += inc;
+          console.log('Count: ' + count);
+        }
+
+        // Return closure function, which will maintain access to outer scope variable, count
+        return add;
+      }
+    </code></pre>
+  </div>
+
+In the above function, <code>count</code> is defined in the scope of the outer function, but it will be accessed by our closure, <code>add</code>, each time it gets called.</p>
+
+
+<p>Closures are a fundamental concept in JavaScript, and have all sorts of uses in the language. One very popular use in JavaScript is to maintain an API.</p>
+<p> Many JavaScript modules/libraries utilize closures as means of creating an API; a closure makes it easy to allow selected public methods to be exposed, while keeping private methods and variables hidden.</p>
+
+<p> For example, we can extend the previously defined <code>Counter</code> class as follows:
+
+  <div class="panel-body">
+    <pre><code id="code-ex-1">
+      function Counter(inc) {
+        var count = 0;
+        var api = {};
+        api.add = function() {
+          count += inc;
+          console.log('Count: ' + count);
+        }
+        api.subtract = function() {
+          count -= inc;
+          console.log('Count: ' + count);
+        }
+
+        return api; 
+      }
+    </code></pre>
+  </div>
+
+In this manner, private variables, such as <code>count</code> are hidden, while selected methods, namely <code>add</code> and <code>subtract</code>, are exposed publically. </p>
+<br>  
+<p>
+This type of pattern is very common in JavaScript. In data visualization, this pattern emerges with charts that adhere to Mike Bostock's <a href="https://bost.ocks.org/mike/chart/">Reusable Chart API</a>.</p>
+
+<h2>Closures in Python</h2>
+
+<p> Closures are use much less frequently in Python than they are in JavaScript. They're clunkier to work with, as well.</p>
+
+<p>Definine a <code>counter</code> in the following way actually fails in Python:</p>
+
+  <div class="panel-body">
+    <pre><code id="code-ex-1">
+      def counter(inc):
+          count = 0
+          def increment:
+              count += inc
+              print "Count: {}".format(str(count))
+          return increment
+    </code></pre>
+  </div>
+
+<p> Attempting to call our Python<code>counter</code> yields <code>UnboundLocalError: local variable 'count' referenced before assignment</code>, because in Python, assigning a value to a variable assumes that said variable is local in scope.</p>
+<p> That said, there are hacky ways to get around this behavoir. In particular, one could define <code>count</code> to be a key in some dictionary, and reference it's value instead: </p>
+
+ <div class="panel-body">
+    <pre><code id="code-ex-1">
+      def counter(inc):
+          dic = {'count': 0}
+          def increment:
+              dic['count'] += inc
+              print "Count: {}".format(str(dic['count']))
+          return increment
+    </code></pre>
+  </div>
+
+<p>This works because, instead of assigning a variable, we're mutating an existing container.
+
+<p> In Python, closures are pretty much just used in <i>decorators</i>, which are function wrappers that extend some function's utility without altering the function itself.
+</p>
+
+<h2> Conclusion</h2>
+
+Defining and using closures is different between JavaScript and Python. Closures are a key element of JavaScript, and are thus featured much more ubiquously in the language. While closures do exist in Python, they're somewhat clunky to use and are somewhat limited in use, often only showing up in Python Decorators. <br> Thanks for reading this brief post, and I hope it helped! </p>
+
+
+</div>
+</body>
+</html>
