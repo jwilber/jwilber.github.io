@@ -1,13 +1,16 @@
+// define data
 const dotDataPre = [6, 25, 17, 30, 45, 23, 46, 2, 15];  
 const dotData = dotDataPre.map(d => (Math.random() * d) + d/2);
 const dotDataBelow = dotData.map((d) => d * (1 / 2) + (Math.random() * 3));
 const dotDataAbove = dotData.map((d) => d * 1.5 + (Math.random() * 2.5));
 
+// chart settings
 const margin = {top: 0, right: 2, bottom: 5, left: 2};
-let parentDiv = document.getElementById("vis");
+const parentDiv = document.getElementById("vis");
 const width = parentDiv.clientWidth;
 const height = parentDiv.clientHeight;
  
+// svg
 const svg = d3.select('#vis').append('svg')
   .attr('width', width + margin.right + margin.left)
   .attr('height', height + margin.top + margin.bottom)
@@ -66,7 +69,7 @@ const totalLength = path.node().getTotalLength();
 
 path.attr("stroke-dasharray", totalLength + " " + totalLength)
     .attr("stroke-dashoffset", totalLength)
-      .transition()
-			.delay(1000)
-      .duration(4500)
-      .attr("stroke-dashoffset", 0);
+    .transition()
+    .delay(1000)
+    .duration(4500)
+    .attr("stroke-dashoffset", 0);
