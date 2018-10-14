@@ -23,10 +23,19 @@ body {
   padding: 1rem;
 }
 
+.aboutLink {
+    font-weight: 600;
+}
+
 
 .about a {
-  font-weight: 400%;
-  color: grey;
+  font-weight: bold;
+  color: rgb(141, 211, 199);
+  font-size: 1.1rem;
+}
+
+.about a:hover {
+    color: coral;
 }
 
 code {
@@ -42,7 +51,7 @@ h1 {
 .about {
   max-width: 60%;
   font-family: Arial;
-  font-size: 1.6rem;
+  font-size: 1.1rem;
 }
 
 .all {
@@ -71,6 +80,7 @@ h1 {
     text-align: center;
     padding: 0 0 0 0;
 }
+
 
 .jared {
   /*margin-bottom: .1rem;*/
@@ -759,6 +769,8 @@ h1.jared {
   font-weight: normal;
 }
 
-
-
-
+.llamaGif {
+    width: 75;
+    height: 75;
+    border-radius: 30px;
+}
