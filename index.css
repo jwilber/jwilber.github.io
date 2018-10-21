@@ -7,27 +7,6 @@ body {
   font-size: 1.1rem;
 }
 
-.buttonHolders {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.pt-4 {
-  margin-top: 1rem;
-}
-
-.p-4 {
-  padding: 1rem;
-}
-
-.aboutLink {
-    font-weight: 600;
-}
-
-
 .about a {
   font-weight: bold;
   color: rgb(141, 211, 199);
@@ -36,10 +15,6 @@ body {
 
 .about a:hover {
     color: coral;
-}
-
-code {
-  color: #7396e4;
 }
 
 h1 {
@@ -57,10 +32,6 @@ h1 {
 .all {
   margin: auto;
   max-width: 100%;
-}
-
-.smalltext {
-  font-size: .75rem;
 }
 
 .hr_width {
@@ -82,9 +53,6 @@ h1 {
 }
 
 
-.jared {
-  /*margin-bottom: .1rem;*/
-}
 .inner {
     display: inline-block;
     text-transform: !important;
@@ -106,10 +74,6 @@ h1 {
     color: coral;
 }
 
-.svggg {
-  fill: #67c7d3;
-}
-
 .card:hover  {
   opacity: 0.9;
   /*border: 1px solid pink;*/
@@ -118,54 +82,6 @@ h1 {
 /* ==========================================================================
    GENERAL
    ========================================================================== */
-
-@font-face {
-    font-family: 'Karla';
-    src: url('fonts/karla-regular-webfont.eot');
-    src: url('fonts/karla-regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('fonts/karla-regular-webfont.woff2') format('woff2'),
-    url('fonts/karla-regular-webfont.woff') format('woff'),
-    url('fonts/karla-regular-webfont.ttf') format('truetype'),
-    url('fonts/karla-regular-webfont.svg#karlaregular') format('svg');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Karla';
-    src: url('fonts/karla-italic-webfont.eot');
-    src: url('fonts/karla-italic-webfont.eot?#iefix') format('embedded-opentype'),
-    url('fonts/karla-italic-webfont.woff2') format('woff2'),
-    url('fonts/karla-italic-webfont.woff') format('woff'),
-    url('fonts/karla-italic-webfont.ttf') format('truetype'),
-    url('fonts/karla-italic-webfont.svg#karlaitalic') format('svg');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Karla';
-    src: url('fonts/karla-bold-webfont.eot');
-    src: url('fonts/karla-bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('fonts/karla-bold-webfont.woff2') format('woff2'),
-    url('fonts/karla-bold-webfont.woff') format('woff'),
-    url('fonts/karla-bold-webfont.ttf') format('truetype'),
-    url('fonts/karla-bold-webfont.svg#karlabold') format('svg');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Karla';
-    src: url('fonts/karla-bolditalic-webfont.eot');
-    src: url('fonts/karla-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-    url('fonts/karla-bolditalic-webfont.woff2') format('woff2'),
-    url('fonts/karla-bolditalic-webfont.woff') format('woff'),
-    url('fonts/karla-bolditalic-webfont.ttf') format('truetype'),
-    url('fonts/karla-bolditalic-webfont.svg#karlabolditalic') format('svg');
-    font-weight: 700;
-    font-style: italic;
-}
 
 @font-face {
     font-family: 'EB Garamond';
