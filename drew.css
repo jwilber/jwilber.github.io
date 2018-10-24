@@ -106,7 +106,7 @@ html, body, div, section, h1, h2, h3, h4, p{
 ul {
     margin-top: 0.25em;
     margin-left: 0;
-    padding-left: 20px;
+    padding-left: 0;
 }
 
 section {
@@ -289,7 +289,7 @@ ul.project-grid {
     width: -webkit-calc(100% - 200px);
     width: -moz-calc(100% - 200px);
     width: calc(100% - 200px);
-    margin-left: 10%;
+    margin-left: 0%;
 }
 
 .project-title {
@@ -388,7 +388,7 @@ li .project-description {
             width: -webkit-calc(100% - 215px);
             width: -moz-calc(100% - 215px);
             width: calc(100% - 215px);
-            margin-left: 215px;
+            margin-left: 0;
         }
     }
 
@@ -416,7 +416,7 @@ li .project-description {
             width: -webkit-calc(100% - 200px);
             width: -moz-calc(100% - 200px);
             width: calc(100% - 200px);
-            margin-left: 200px;
+            margin-left: 0;
         }
 
         .show {
@@ -488,7 +488,7 @@ li .project-description {
             padding: 24px 30px;
             height: 100%;
             z-index: 90;
-            top: 0; right: 0; bottom: 0;
+            top: 0; right: 0; bottom: 0; left: 0;
             -webkit-transform: translateX(100%);
             transform: translateX(100%);
             overflow-y: auto;
@@ -517,7 +517,7 @@ li .project-description {
 
         #sidebar nav > ul {
             position: absolute;
-            top: 0; left: 30px;
+            top: 0; left: 0;
             bottom: 30px; right: 0;
             padding-top: 50px;
             padding-bottom: 40px; /* helps make sure the last item doesn't get lost */
@@ -572,7 +572,7 @@ li .project-description {
         #sidebar .menu-open:before {
             content: '';
             position: absolute;
-            top: 13px; left: 10px;
+            top: 13px; left: 0;
             width: 23px;
             height: 3px;
             border-top: 9px double #222222;
