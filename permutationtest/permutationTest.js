@@ -52,7 +52,7 @@ const nodeTreatmentWidth = (d) => {
     if (width > mobileWidth) {
       return trtCenter
     } else {
-      return trtCenter
+      return trtCenter/2
     }
   } else {
     if (width > mobileWidth) {
