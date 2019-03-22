@@ -301,7 +301,7 @@ hr {
 	}
 	.chart {
 		position: absolute;
-		right: 1rem;
+		right: 0rem;
 		top: 50%;
 		-moz-transform: translateY(-50%);
 		-webkit-transform: translateY(-50%);
