@@ -19,7 +19,7 @@ function loop() {
       window.setTimeout(function() {
           args[i]();
           chain(i + 1);
-      }, width > mobileWidth ? 300 : 500);
+      }, 300);
   })(0);
 } 
 
@@ -824,7 +824,7 @@ function transitionEightDown() {
     .attr('font-size', finalTextSize)
 
     svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 2.9) : (width / 3.2))
+    .attr('x', width > mobileWidth ? (width / 2.9) : (width / 4))
     .attr('y', (finalTextY + 20))
     .text('P-Value: 16/200 = 0.08')
     .attr('class', 'finalText')
