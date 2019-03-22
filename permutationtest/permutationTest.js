@@ -386,7 +386,7 @@ let controlTitle = svgD3.append('text')
   // stuff for distribution
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
-  let dotDistHeight = width > mobileWidth ? height : height;
+  let dotDistHeight = width > mobileWidth ? height : (height + 200);
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))
