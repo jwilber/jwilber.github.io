@@ -119,7 +119,7 @@ const nodeInitialYPlacement = (d) => {
     if (width > mobileWidth) {
       return (height / 3)
     } else {
-      return (height / 2.5)
+      return (height / 2)
     }
     } else if (d.nodeGroup === 'resp') {
       return (height / 1.1)
@@ -469,7 +469,7 @@ function dotDistribution(){
       })
       .transition()
         .attr("cx", 0) //g element already at correct x pos
-        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/4)) // control height here
+        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/2)) // control height here
         .attr("r", 0)
         .transition()
           .duration(800)
