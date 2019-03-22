@@ -109,7 +109,7 @@ const nodeInitialXPlacement = (d) => {
       if (width > mobileWidth) {
         return (width / 2)
       } else {
-        return width
+        return width / 4
       }
     } else if (d.nodeGroup === 'resp') {
       return (width / 5)
@@ -390,7 +390,7 @@ let controlTitle = svgD3.append('text')
   // stuff for distribution
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
-  let dotDistHeight = width > mobileWidth ? height : (height + (height/4));
+  let dotDistHeight = width > mobileWidth ? height : (height + (height/1.5));
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))

@@ -329,7 +329,7 @@ hr {
 	}
 	.step {
 		margin: 30rem auto;
-		border: 1px dotted tan;
+		border: 2px solid tan;
 	}
 
 
@@ -394,7 +394,7 @@ hr {
 	}
 
 	svg {
-		border: 2px dotted red;
+		/*border: 2px dotted red;*/
 	}
 }
 
