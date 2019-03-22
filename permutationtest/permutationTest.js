@@ -390,7 +390,7 @@ let controlTitle = svgD3.append('text')
   // stuff for distribution
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
-  let dotDistHeight = width > mobileWidth ? height : (height + (height/1.15));
+  let dotDistHeight = width > mobileWidth ? height : (height + (height/1.05));
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))
@@ -806,18 +806,18 @@ function transitionEightDown() {
     .attr('class', 'finalText')
     .style('font-family', 'Gaegu')
     .attr('font-size', 0)
-    .attr('font-weight', 'bold')
+    .attr('font-weight', '500')
     .transition()
     .duration(1500)
     .attr('font-size', finalTextSize)
 
   svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 1.55) : (width / 1.4))
+    .attr('x', width > mobileWidth ? (width / 1.55) : (width / 1.25))
     .attr('y', finalTextY)
     .text('n = 16')
     .attr('class', 'finalText')
     .style('font-family', 'Gaegu')
-    .style('font-weight', 'bold')
+    .style('font-weight', '500')
     .attr('font-size', 0)
     .transition()
     .duration(1500)
