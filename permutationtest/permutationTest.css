@@ -329,7 +329,7 @@ hr {
 	}
 	.step {
 		margin: 30rem auto;
-		border: 2px solid tan;
+		border-left: 1px solid tan;
 	}
 
 
@@ -347,7 +347,7 @@ hr {
 @media (max-width: 600px) {
 
 	.intro__bod {
-		font-size: 1rem;
+		font-size: .95rem;
 	}
 
 	#scroll {

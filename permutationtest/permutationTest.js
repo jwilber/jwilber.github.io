@@ -123,7 +123,7 @@ const nodeInitialYPlacement = (d) => {
     if (width > mobileWidth) {
       return (height / 3)
     } else {
-      return (height / 2)
+      return (height)
     }
     } else if (d.nodeGroup === 'resp') {
       return (height / 1.1)
@@ -793,7 +793,7 @@ function transitionSevenUp() {
 }
 
 let finalTextSize = width > mobileWidth ? 20 : 14;
-let finalTextY = width > mobileWidth ? (height / 1.105) : (dotDistHeight/1.12);
+let finalTextY = width > mobileWidth ? (height / 1.105) : (dotDistHeight/1.02);
 let finalTitleSize = width > mobileWidth ? 28 : 16;
 let finalTitleY = width > mobileWidth ? (margin * 4) : (height / 1.45);
 
@@ -825,7 +825,7 @@ function transitionEightDown() {
 
     svgD3.append('text')
     .attr('x', width > mobileWidth ? (width / 2.9) : (width / 3.2))
-    .attr('y', finalTitleY)
+    .attr('y', (finalTextY + 30))
     .text('P-Value: 16/200 = 0.08')
     .attr('class', 'finalText')
     .style('font-family', 'Gaegu')
