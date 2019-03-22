@@ -116,7 +116,11 @@ const nodeInitialXPlacement = (d) => {
 
 const nodeInitialYPlacement = (d) => {
   if (d.nodeGroup === 'llama') {
+    if (width > mobileWidth) {
       return (height / 3)
+    } else {
+      return (height / 2.5)
+    }
     } else if (d.nodeGroup === 'resp') {
       return (height / 1.1)
     } else { // dsn
@@ -365,7 +369,7 @@ const controlTitleCenter =   cntrlCenter
 let treatmentTitle = svgD3.append('text')
   .html('TREATMENT')
   .attr('x', width > mobileWidth ? trtCenter - 10 : trtCenter - 30)
-  .attr('y', width > mobileWidth ? margin : (margin * 4))
+  .attr('y', width > mobileWidth ? margin : (margin * 6))
   .attr('class', 'groupTitle')
   .style('fill', 'black')
   .attr('text-align', 'right')
@@ -373,7 +377,7 @@ let treatmentTitle = svgD3.append('text')
 let controlTitle = svgD3.append('text')
   .html('CONTROL')
   .attr('x', controlTitleCenter)
-  .attr('y', width > mobileWidth ? margin : (margin * 4))
+  .attr('y', width > mobileWidth ? margin : (margin * 5))
   .attr('class', 'groupTitle')
   .style('fill', 'black')
   .attr('visibility', 'hidden')
@@ -382,7 +386,7 @@ let controlTitle = svgD3.append('text')
   // stuff for distribution
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
-  let dotDistHeight = width > mobileWidth ? height : height/1.5;
+  let dotDistHeight = width > mobileWidth ? height : height/2;
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))
