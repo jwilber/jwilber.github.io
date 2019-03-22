@@ -106,7 +106,11 @@ const nodeGroupMoveForceCollideUp = (d) => {
 
 const nodeInitialXPlacement = (d) => {
     if (d.nodeGroup === 'llama') {
-      return (width / 2)
+      if (width > mobileWidth) {
+        return (width / 2)
+      } else {
+        return width
+      }
     } else if (d.nodeGroup === 'resp') {
       return (width / 5)
     } else { // dsn
@@ -386,7 +390,7 @@ let controlTitle = svgD3.append('text')
   // stuff for distribution
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
-  let dotDistHeight = width > mobileWidth ? height : (height + 200);
+  let dotDistHeight = width > mobileWidth ? height : (height + (height/4));
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))
@@ -789,14 +793,14 @@ function transitionSevenUp() {
 }
 
 let finalTextSize = width > mobileWidth ? 20 : 14;
-let finalTextY = width > mobileWidth ? (height / 1.105) : (height / 1.605);
+let finalTextY = width > mobileWidth ? (height / 1.105) : (dotDistHeight/1.12);
 let finalTitleSize = width > mobileWidth ? 28 : 16;
 let finalTitleY = width > mobileWidth ? (margin * 4) : (height / 1.45);
 
 function transitionEightDown() {
 
   svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 3.1) : (width / 4))
+    .attr('x', width > mobileWidth ? (width / 3.1) : (width / 4.2))
     .attr('y', finalTextY)
     .text('n = 200')
     .attr('class', 'finalText')
@@ -836,7 +840,7 @@ function transitionEightDown() {
   d3.select('.axis--x').remove();
 
   // split dot distribution into two
-  let splitValue = width > mobileWidth ? 75 : 35;
+  let splitValue = width > mobileWidth ? 75 : 20;
 
   d3.selectAll('circle.notExtreme')
     .transition()

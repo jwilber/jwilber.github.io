@@ -329,9 +329,9 @@ hr {
 	}
 	.step {
 		margin: 30rem auto;
+		border: 1px dotted tan;
 	}
-	.step.is-active {
-	}
+
 
 	.step.is-active p {
 		font-size: 0.9rem;
@@ -340,14 +340,14 @@ hr {
 	.step p {
 		text-align: center;
 		padding: .1rem;
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 }
 
 @media (max-width: 600px) {
 
 	.intro__bod {
-		font-size: 1.2rem;
+		font-size: 1rem;
 	}
 
 	#scroll {
