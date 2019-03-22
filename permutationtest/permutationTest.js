@@ -369,7 +369,7 @@ const controlTitleCenter =   cntrlCenter
 let treatmentTitle = svgD3.append('text')
   .html('TREATMENT')
   .attr('x', width > mobileWidth ? trtCenter - 10 : trtCenter - 30)
-  .attr('y', width > mobileWidth ? margin : (margin * 6.2))
+  .attr('y', width > mobileWidth ? margin : (margin * 6.05))
   .attr('class', 'groupTitle')
   .style('fill', 'black')
   .attr('text-align', 'right')
@@ -377,7 +377,7 @@ let treatmentTitle = svgD3.append('text')
 let controlTitle = svgD3.append('text')
   .html('CONTROL')
   .attr('x', controlTitleCenter)
-  .attr('y', width > mobileWidth ? margin : (margin * 6.1))
+  .attr('y', width > mobileWidth ? margin : (margin * 6.05))
   .attr('class', 'groupTitle')
   .style('fill', 'black')
   .attr('visibility', 'hidden')
@@ -469,7 +469,7 @@ function dotDistribution(){
       })
       .transition()
         .attr("cx", 0) //g element already at correct x pos
-        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)) // control height here
+        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/4)) // control height here
         .attr("r", 0)
         .transition()
           .duration(800)
