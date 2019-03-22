@@ -469,7 +469,7 @@ function dotDistribution(){
       })
       .transition()
         .attr("cx", 0) //g element already at correct x pos
-        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/2)) // control height here
+        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)) // control height here
         .attr("r", 0)
         .transition()
           .duration(800)
