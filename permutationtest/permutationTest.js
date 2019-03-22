@@ -19,7 +19,7 @@ function loop() {
       window.setTimeout(function() {
           args[i]();
           chain(i + 1);
-      }, 300);
+      }, width > mobileWidth ? 300 : 500);
   })(0);
 } 
 
@@ -845,12 +845,12 @@ function transitionEightDown() {
   d3.selectAll('circle.notExtreme')
     .transition()
     .duration(1500)
-    .attr('transform', `translate(-${splitValue},0)`)
+    .attr('transform', `translate(-${splitValue + 5},0)`)
 
   d3.selectAll('circle.extreme')
     .transition()
     .duration(1500)
-    .attr('transform', `translate(${splitValue + 5},0)`)
+    .attr('transform', `translate(${splitValue + 2},0)`)
       
 }
 
