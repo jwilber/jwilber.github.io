@@ -1,20 +1,19 @@
-
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 body {
   background-color: white ;
   color: lightgray;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Comfortaa",
     "Roboto", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1rem;
 }
 
-.about a {
-  font-weight: bold;
+a.about {
   color: rgb(141, 211, 199);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-.about a:hover {
-    color: coral;
+.about:hover {
+    border-bottom: 1px solid currentColor;
 }
 
 h1 {
@@ -25,7 +24,7 @@ h1 {
 
 .about {
   max-width: 60%;
-  font-family: Arial;
+  font-family: 'Comfortaa';
   font-size: 1.1rem;
 }
 
@@ -83,7 +82,7 @@ h1 {
    GENERAL
    ========================================================================== */
 
-@font-face {
+/*@font-face {
     font-family: 'EB Garamond';
     src: url('fonts/ebgaramond-regular-webfont.eot');
     src: url('fonts/ebgaramond-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -93,7 +92,7 @@ h1 {
     url('fonts/ebgaramond-regular-webfont.svg#eb_garamondregular') format('svg');
     font-weight: 400;
     font-style: normal;
-}
+}*/
 
 html, body, div, section, h1, h2, h3, h4, p{
     margin: 0;
@@ -124,7 +123,7 @@ html {
 }
 
 body {
-    font-family: "Karla", Arial, sans-serif;
+    font-family: "Comfortaa", Arial, sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #444;
@@ -138,8 +137,8 @@ body {
 }
 
 h1, h2, h3, h6 {
-    font-family: "Arial", "Cambria", serif; 
-    font-weight: 10;
+    font-family: "Comfortaa", "Cambria", serif; 
+    font-weight: 50;
 }
 
 h2 {
@@ -224,7 +223,7 @@ a {
 }
 
 .uppercase {
-    font-family: "Karla", Arial, sans-serif;
+    font-family: "Comfortaa", Arial, sans-serif;
     text-transform: uppercase;
     color: #aaa;
     letter-spacing: 1px;
@@ -294,21 +293,21 @@ ul.project-grid {
 
 .project-title {
     font-size: 16px;
-    font-family: 'EB Garamond';
+    font-family: 'Comfortaa';
     font-weight: normal;
     display: table-row;
     line-height: 1.6;
 }
 
 .project-description {
-    font-family: Karla;
+    font-family: "Comfortaa";
     font-size: 14px;
     font-weight: 400;
     color: #aaa;
 }
 
 li:hover .project-description:not(.no-hover) {
-    color: royalblue;
+    color: black;
 }
 
 li img {
@@ -542,7 +541,7 @@ li .project-description {
             top: 15px;
             right: 24px;
             padding: 20px 10px 24px;
-            font-family: "Verdana", sans-serif;
+            font-family: "Comfortaa", sans-serif;
             font-weight: 300;
             font-size: 32px;
             line-height: 0;
@@ -680,9 +679,9 @@ path.domain {
 }
 
 h1.jared {
-  font-family: Arial;
+  font-family: 'Comfortaa';
   font-size: 25px;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .llamaGif {
@@ -690,3 +689,5 @@ h1.jared {
     height: 75;
     border-radius: 30px;
 }
+
+
