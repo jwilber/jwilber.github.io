@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Tidy Machine Learning</title>
+</head>
+<body>
+  <center>
+    <p style='font-size:.8rem;'> <a href="http://www.jwilber.me/">
+      Jared Wilber</a> <span style='opacity: .8;'>|</span> 11 March, 2019
+    </p>
+    <h1>Keep It Together</h1>
+    <h3> Using the tidyverse for machine learning.</h3>
+  </center>
+  <p>
+   This post summarises a new approach I've recently discovered for doing data analysis in R. In one sentence, the approach can be summarised easily: <br><center> <span style='color: grey; font-weight:600'> Nest all related things together into a single data-frame.</span></center></p><p>It's a simple idea, but quite powerful for the following reasons:
+  <div style="margin-left: 5rem;">
+  <ul>
+    <li>• It facilitates an easy mental model for working with data.</li>
+    <li>• It ensures that all related objects are stored together.</li>
+    <li>• It reduces code and environment clutter (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>).</li>
+    <li>• Every step propagates a <a href="">tidy</a> data structure, allowing for further analysis with ease.</li>
+  </ul>
+</div></p>
+<p>
+  To present the idea, I'll use a common machine-learning workflow as a running example: trying out different preprocessing + model combinations. This workflow (discussed further in <a href='#references'>[5] & [6]</a>) comprises multiple steps and lends itself well as an example for nesting multiple objects into the same dataframe.
+<br><br>
+  This idea is not my own. Rather, what I'm presenting is a combination of things I've read online, in books, and from my own experimentation. Check out the <a href="#references">Referenes & Related Work</a> section at the bottom for more.
+	<br><br>
+<!--   The <a href="#">tidyverse</a> is a coherent set of R packages designed to work with tidy data. 
+Tons of awesome articles exist that describe how to use the tidyverse for EDA, data-wrangling, and general statistical inference tasks. However, there's not a lot online that points to how to use the stack for general machine learning workflows [what relevant resources I've found are linked at the bottom resources below for related content]. This is a shame, because the tidyverse can be used to inform machine learning analyses in a fairly elegant way.
+</p>
+<p> I'm going to come right out and say it - I used to hate R. As a programming language, I thought it was w
+<p>
+The goal of this blog post is to present a tidy workflow for machine-learning.
+In parituclar, I'll show how tidy data structures (list-columns) and functions (mostly of the <code class='func'>purrr:map</code> variety) can be combined to help solve a popular machine learning task: iterating through data preprocessing + machine learning algorithm combinations. <br><br>To keep this post brief, I'm assuming intermediate familiarity with both the R programming language and machine learning concepts. The output of our analysis will itself be a dataframe:
+</p>
+<p>
+This is especially powerful, because not only are all related objects stored together, but they are stored in a tidy manner, allowing us to employ t tidyverse functionality in any additional analysis of our results.
+</p> -->
+
+<hr>
+<h2>Tidy Data</h2>
+
+<p>As a quick recap, tidy data refers to a consistent data structure as follows:</p>
+<center><img src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png"></center>
+<p>
+<br><br>
+Structuring our data in a tidy format provides us an intuitive mental model for analysis, keeps both code *and* data objects organized, and allows us to work with tidyverse functions. <a href="#references">[1]</a>
+<br><br>
+[perhaps here I can add a brief intro into the tools we'll be using (i.e. list-columns, <code class='func'>purrr</code>, and <code class='func'>caret</code>)]
+<br><br>
+As a running example, we'll look at data from the US McDonald's menu to see if we can predict an item's category (e.g. `Breakfast`, `Desserts`, `Snacks & Sides`) from its nutritional content (e.g. `Calories`, `Total Fat`, `Sodium`) <a href="#references">[2]</a>:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># load libraries</span>
+<span style='color:coral;'>library</span>(caret)
+<span style='color:coral;'>library</span>(tidyverse)
+
+<span style='color:#969896'># load data, removing non-nutritional columns</span>
+menu <- read_csv(<span style='color:coral;'>'menu.csv'</span>) %>%
+  select(-Item, -`Serving Size`) 
+menu
+<span style='color:#969896'>
+# A tibble: 260 x 22
+   Category Calories `Calories from ~ `Total Fat` `Total Fat (% D~ `Saturated Fat` `Saturated Fat ~ `Trans Fat` Cholesterol
+   &lt;chr&gt;       &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Breakfa~      300              120          13               20               5               25           0         260
+ 2 Breakfa~      250               70           8               12               3               15           0          25
+ 3 Breakfa~      370              200          23               35               8               42           0          45
+ 4 Breakfa~      450              250          28               43              10               52           0         285
+ 5 Breakfa~      400              210          23               35               8               42           0          50
+ 6 Breakfa~      430              210          23               36               9               46           1         300
+ 7 Breakfa~      460              230          26               40              13               65           0         250
+ 8 Breakfa~      520              270          30               47              14               68           0         250
+ 9 Breakfa~      410              180          20               32              11               56           0          35
+10 Breakfa~      470              220          25               38              12               59           0          35
+# ... with 250 more rows, and 13 more variables: `Cholesterol (% Daily Value)` &lt;dbl&gt;, Sodium &lt;dbl&gt;, `Sodium (% Daily
+#   Value)` &lt;dbl&gt;, Carbohydrates &lt;dbl&gt;, `Carbohydrates (% Daily Value)` &lt;dbl&gt;, `Dietary Fiber` &lt;dbl&gt;, `Dietary Fiber (% Daily
+#   Value)` &lt;dbl&gt;, Sugars &lt;dbl&gt;, Protein &lt;dbl&gt;, `Vitamin A (% Daily Value)` &lt;dbl&gt;, `Vitamin C (% Daily Value)` &lt;dbl&gt;, `Calcium
+#   (% Daily Value)` &lt;dbl&gt;, `Iron (% Daily Value)` &lt;dbl&gt;</span>
+</pre></code>
+
+
+<p>
+	Throughout our analysis, we'll be making heavy use of a (relatively) new tidy data structure: the <i>list-column</i>. Whereas typical dataframes are populated with atomic vectors, list-columns allow us to nest any R object inside our dataframe. To begin, we'll use <code class='func'>tidyr:enframe</code> to nest our data with an accompanying index column:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># nest original data</span>
+menu <- rep(list(menu), <code style='color:coral'>4</code>) %>% 
+  enframe(name = <span style='color:coral;'>'index'</span>, value = <span style='color:coral;'>'data'</span>)
+menu
+<span style='color:#969896'>
+# A tibble: 4 x 2
+  index data               
+  &lt;int&gt; &lt;list&gt;             
+  1     1 &lt;tibble [260 x 22]&gt;
+  2     2 &lt;tibble [260 x 22]&gt;
+  3     3 &lt;tibble [260 x 22]&gt;
+  4     4 &lt;tibble [260 x 22]&gt;
+</span>
+</pre></code>
+<p>
+<!-- 	I'll start with a visual overview, showing the workflow visually. Then, I'll show a concrete example with code, detailing how you may implement such a workflow for yourself.
+
+[1] First, we'll take our initial dataframe and nest it, so we more easily apply transformations to it.
+[2] Then, we apply some number of transformations to our data, adding columns for both the transformations and the new data. We also extract out response variable into it's own column.
+[3] Next, we select, create, and apply our desired machine learning models separately to each transformed dataset.
+[4] Finally, we solve the models, resulting in a tidy dataset that's organized, __, and ready to feed into further tidy functions.
+
+To achieve the above workflow using R, we require only the following: -->
+</p>
+<hr>
+<h2>Feature Transformation</h2>
+<p>
+Feature transformation is an important step of any machine learning workflow.  <code class='func'>purrr</code> in R exposes functional tools for iteration. We'll make heavy use of these to grow our dataframe and aid in our analysis. 
+
+For presentation, we'll create our own function for feature transformation. Our function will allow us to apply a basic power transformation<a href="#references">[3]</a> to all numeric features in our dataframe:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># function to apply a given power-transform to numerical columns</span>
+power_transform <- <span style='color:coral;'>function</span>(df, pow) {
+  df %>%
+    mutate_if(~ is.numeric(.x),
+              ~ `^`(.x, pow)) %>%
+    select(-Category)
+}
+</pre></code>
+
+<p>
+Once we've created our UDF, we can use purrr, R's fp package, to easily create a new list column, applying our function to our data wit multiple parameters. We want to apply and keep track of a number of different power transformations, so we'll create two new columns:
+
+`power`: A list of powers for our power transformations.
+`trns_data`: Our dataframe with applied power transformations.
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># add 3 columns to data: power, transformed_data, and label</span>
+menu <- menu %>% 
+  mutate(
+    power = c(<span style='color:coral;'>0.5</span>, <span style='color:coral;'>1</span>, <span style='color:coral;'>2</span>, <span style='color:coral;'>3</span>),
+    transformed_data = purrr::map2(data, power, ~ power_transform(.x, .y)),
+    label = purrr::map(data, <span style='color:coral;'>'Category'</span>)
+  )
+menu
+<span style='color:#969896'>
+  # A tibble: 4 x 5
+  index data                power trns_data           label      
+  &lt;int&gt; &lt;list&gt;              &lt;dbl&gt; &lt;list&gt;              &lt;list&gt;     
+1     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt;
+2     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt;
+3     3 &lt;tibble [260 x 22]&gt;   2   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt;
+4     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt;
+</pre></code>
+<p>
+Our dataframe now has three additional columns: 1, 2,& 3. `transformed_data` uses <code class='func'>purrr::map2</code> to apply our user-defined function to two arguments in a row-wise manner: the `data` column and the `power` column. `label` uses <code class='func'>purrr</code>'s handy name shortcut<a href="#references">[4]</a> functionality to grab our respone variable, `Category`.
+
+<hr>
+<h2> Machine Learning </h2>
+We'll add list-columns for ml algorithms along the same lines as earlier, using UDF's and <code class='func'>purrr</code>. To create our ml algorithms, we'll use <code class='func'>caret</code>, a package that wraps different ml packages in R with a uniform API.
+
+I take advantage of the consistent syntax provided by caret and create a function factory to output functions for each of our desired models:
+
+To easily create a function for each of our desired ml algorithms, I create a function factory. Thanks to the consistent syntax provided by <code class='func'>caret</code>, this is a breeze:
+
+Using this function factory, we create a list of our desired algorithms with ease:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># machine learning model function factory</span>
+mlFuncFact <- <span style='color:coral;'>function</span>(ml_method) {
+  <span style='color:coral;'>function</span>(data, label) {
+   caret::train(
+      x = data,
+      y = label,
+      method = ml_method
+    )
+  }
+}
+
+<span style='color:#969896'># create list of models</span>
+model_list <- list(
+  decision_tree = mlFuncFact(<span style='color:coral;'>'rpart2'</span>),
+  random_forest = mlFuncFact(<span style='color:coral;'>'ranger'</span>),
+  boosted_log_reg = mlFuncFact(<span style='color:coral;'>'LogitBoost'</span>),
+  knn = mlFuncFact(<span style='color:coral;'>'knn'</span>),
+  svm = mlFuncFact(<span style='color:coral;'>'svmLinear3'</span>),
+  naive_bayes = mlFuncFact(<span style='color:coral;'>'naive_bayes'</span>),
+  partial_least_squared = mlFuncFact(<span style='color:coral;'>'pls'</span>),
+  linear_disc_analysis = mlFuncFact(<span style='color:coral;'>'lda'</span>)
+  ) %>%
+  enframe(name = <span style='color:coral;'>'model'</span>, value = <span style='color:coral;'>'model_func'</span>)
+model_list
+<span style='color:#969896'>
+  # A tibble: 6 x 2
+  model           model_func
+  &lt;chr&gt;           &lt;list&gt;    
+1 decision_tree   &lt;fn&gt;      
+2 random_forest   &lt;fn&gt;      
+3 boosted_log_reg &lt;fn&gt;      
+4 knn             &lt;fn&gt;      
+5 svm             &lt;fn&gt;      
+6 lda             &lt;fn&gt;
+</pre></code>
+
+<p>
+Next, we combine our models and our transformed data into a single data-frame. Recall we want to run each model + data-transformation combination. We can do this by creating a cartesian product (also known as a cross-join) of the two desired columns. Luckily for us, <code class='func'>tidyr</code> provides this functionality via the <code class='func'>crossing()</code> function:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># cross-join original data with models</span>
+menu <- menu %>% 
+  crossing(model_list) %>% 
+  arrange(model, power)
+menu
+<span style='color:#969896'>
+  # A tibble: 24 x 7
+   index data                power trns_data           label       model           model_func
+   &lt;int&gt; &lt;list&gt;              &lt;dbl&gt; &lt;list&gt;              &lt;list&gt;      &lt;chr&gt;           &lt;list&gt;    
+ 1     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;      
+ 2     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;      
+ 3     3 &lt;tibble [260 x 22]&gt;   2   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;      
+ 4     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;      
+ 5     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; decision_tree   &lt;fn&gt;      
+ 6     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; decision_tree   &lt;fn&gt;      
+ 7     3 &lt;tibble [260 x 22]&gt;   2   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; decision_tree   &lt;fn&gt;      
+ 8     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; decision_tree   &lt;fn&gt;      
+ 9     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; knn             &lt;fn&gt;      
+10     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; knn             &lt;fn&gt;      
+# ... with 14 more row
+</pre></code>
+
+
+	<h2>All Together Now</h2>
+
+	<p>
+Now that we've created all unique model + data-transformation combinations, we can solve the models.
+To do so, we'll once again take advantage of <code class='func'>purrr</code>'s map capailities. In this case, we'd like to create a new nest column by invoking a function, so we'll use <code class='func'>invoke_map</:
+</p>
+
+<pre><code class='block'>
+<span style='color:#969896'># evaluate models</span>
+menu <- menu %>% 
+  mutate(
+    params = map2(transformed_data, label, ~ list(data = .x, label = .y)),
+    model_fit = invoke_map(model_func, params)
+  ) 
+menu
+<span style='color:#969896'>
+  # A tibble: 24 x 9
+   index data                power trns_data           label       model           model_func params     modelFits  
+   &lt;int&gt; &lt;list&gt;              &lt;dbl&gt; &lt;list&gt;              &lt;list&gt;      &lt;chr&gt;           &lt;list&gt;     &lt;list&gt;     &lt;list&gt;     
+ 1     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; svm             &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 2     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; random_forest   &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 3     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 4     1 &lt;tibble [260 x 22]&gt;   0.5 &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; random_forest   &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 5     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 6     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 7     3 &lt;tibble [260 x 22]&gt;   2   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; boosted_log_reg &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 8     3 &lt;tibble [260 x 22]&gt;   2   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; random_forest   &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+ 9     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; random_forest   &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+10     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; svm             &lt;fn&gt;       &lt;list [2]&gt; &lt;S3: train&gt;
+# ... with 14 more rows
+</pre></code>
+
+<p>
+Great, so now we have our data all together, and we've fit our models. We have everything that we need to easily identify the best models, now we just need to extract the results. Once again, we take advantage of caret's consistent API and map a simple function across our model_list:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># extract results for each model</span>
+trained_models <- menu %>% 
+  mutate(
+    accuracy = map_dbl(model_fit, ~max(.x$results$Accuracy)),
+    accuracySD = map_dbl(model_fit, ~max(.x$results$AccuracySD)),
+  ) %>% 
+  arrange(desc(accuracy))
+
+trained_models %>% 
+  select(power, model, accuracy)
+<span style='color:#969896'>
+  # A tibble: 24 x 11
+   index data              power trns_data          label       model         model_func params    modelFits  accuracy accuracySD
+   &lt;int&gt; &lt;list&gt;            &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;      &lt;chr&gt;         &lt;list&gt;     &lt;list&gt;    &lt;list&gt;        &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1 &lt;tibble [260 x 2~   0.5 &lt;tibble [260 x 21~ &lt;chr [260]&gt; svm           &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.828     0.0545
+ 2     2 &lt;tibble [260 x 2~   1   &lt;tibble [260 x 21~ &lt;chr [260]&gt; random_forest &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.822     0.0506
+ 3     1 &lt;tibble [260 x 2~   0.5 &lt;tibble [260 x 21~ &lt;chr [260]&gt; boosted_log_~ &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.821     0.0544
+ 4     1 &lt;tibble [260 x 2~   0.5 &lt;tibble [260 x 21~ &lt;chr [260]&gt; random_forest &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.820     0.0376
+ 5     4 &lt;tibble [260 x 2~   3   &lt;tibble [260 x 21~ &lt;chr [260]&gt; boosted_log_~ &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.816     0.0534
+ 6     2 &lt;tibble [260 x 2~   1   &lt;tibble [260 x 21~ &lt;chr [260]&gt; boosted_log_~ &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.815     0.0437
+ 7     3 &lt;tibble [260 x 2~   2   &lt;tibble [260 x 21~ &lt;chr [260]&gt; boosted_log_~ &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.815     0.0490
+ 8     3 &lt;tibble [260 x 2~   2   &lt;tibble [260 x 21~ &lt;chr [260]&gt; random_forest &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.813     0.0486
+ 9     4 &lt;tibble [260 x 2~   3   &lt;tibble [260 x 21~ &lt;chr [260]&gt; random_forest &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.805     0.0393
+10     2 &lt;tibble [260 x 2~   1   &lt;tibble [260 x 21~ &lt;chr [260]&gt; svm           &lt;fn&gt;       &lt;list [2~ &lt;S3: trai~    0.766     0.112 
+# ... with 14 more rows
+</pre></code>
+<p>
+So our best model is ____. One added benefit to our analysis is that, not only is everything organized (i.e. all related items stored together), but it's organized in a tidy format. This allows us to do further analysis on our data using tidy functions. For example, we can easily pipe our results into ggplot to visually compare our results:
+</p>
+<pre><code class='block'>
+<span style='color:#969896'># plot model accuracies</span>
+trained_models %>% 
+  ggplot(aes(x = as.factor(power), colour = model)) +
+  geom_point(aes(y = accuracy), size = <span style='color:coral;'>2</span>) +
+  geom_errorbar(aes(ymin = accuracy - accuracySD,
+                    ymax = accuracy + accuracySD)) +
+  theme_classic() +
+  facet_wrap(~model)
+</pre></code>
+<center>
+  <img src="model_plots.png" alt="Model Results Plot" style="width:35rem;height:25rem;">
+</center>
+<p>
+So our best model is ____. One added benefit to our analysis is that, not only is everything organized (i.e. all related items stored together), but it's organized in a tidy format. This allows us to do further analysis on our data using tidy functions. For example, we can easily pipe our results into ggplot to visually compare our results:
+</p>
+<hr>
+
+<center>
+  <div>
+<h2 id="references" style='color:black;'>References & Related Work</h2>
+<p>
+  <ul>
+    <li><a href="https://vita.had.co.nz/papers/tidy-data.pdf">[1] Tidy Data, Hadley Wickham</a></li>
+    <li><a href="https://www.kaggle.com/mcdonalds/nutrition-facts/version/1">[2] Nutrition Facts Dataset</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Power_transform">[3] Power Transformations</a></li>
+    <li><a href="https://jennybc.github.io/purrr-tutorial/ls01_map-name-position-shortcuts.html#name_and_position_shortcuts">[4] purrr tutorial, Jennifer Bryan</a></li>
+    <li><a href="https://rsangole.netlify.com/post/pur-r-ify-your-carets/">[5] Pur(r)ify Your Carets, Rahul Sangole</a></li>
+    <li><a href="http://appliedpredictivemodeling.com/">[6] Applied Predictive Modeling,  Kjell Johnson and Max Kuhn</a></li>
+  </ul>
+</p>
+</div>
+</center>
+</body>
+</html>
