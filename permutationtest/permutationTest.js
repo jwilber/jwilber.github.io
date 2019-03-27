@@ -794,8 +794,6 @@ function transitionSevenUp() {
 
 let finalTextSize = width > mobileWidth ? 20 : 14;
 let finalTextY = width > mobileWidth ? (height / 1.105) : (dotDistHeight/1.095);
-let finalTitleSize = width > mobileWidth ? 28 : 16;
-let finalTitleY = width > mobileWidth ? (margin * 4) : (height / 1.45);
 
 function transitionEightDown() {
 
@@ -822,19 +820,6 @@ function transitionEightDown() {
     .transition()
     .duration(1500)
     .attr('font-size', finalTextSize)
-
-    svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 2.9) : (width / 4))
-    .attr('y', (finalTextY + 20))
-    .text('P-Value: 16/200 = 0.08')
-    .attr('class', 'finalText')
-    .style('font-family', 'Gaegu')
-    .style('font-weight', width > mobileWidth ? 'bold' : '500')
-    .attr('font-size', 0)
-    .transition()
-    .delay(500)
-    .duration(1500)
-    .attr('font-size', finalTitleSize)
 
   // remove axis
   d3.select('.axis--x').remove();
