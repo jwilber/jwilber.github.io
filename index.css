@@ -690,4 +690,21 @@ h1.jared {
     border-radius: 30px;
 }
 
+@media (max-width: 600px) {
+     body {
+        font-size: 1.5rem
+     }
+    .inner {
+        font-size: 1.55rem;
+        font-weight: 600!important;
+    }
+
+    h1.jared {
+      font-size: 2.1rem;
+    }
+
+    .about {
+        font-size: 1.7rem;
+    }
+}
 
