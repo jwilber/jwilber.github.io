@@ -706,5 +706,9 @@ h1.jared {
     .about {
         font-size: 1.7rem;
     }
+
+    #sidebar {
+            width: 0px;
+        }
 }
 
