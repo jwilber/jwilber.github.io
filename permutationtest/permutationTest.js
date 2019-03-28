@@ -438,6 +438,31 @@ function dotDistribution(){
                 }
         }))
       .enter()
+      .append('g')
+      .attr('class', 'distributionCircleG')
+      .attr('', function(d, i) {
+        if (i < 1 && d.dataIndex == 20) {
+          d3.select(this).classed('response1', true)
+        } else if (i < 1 && d.dataIndex == 9) {
+          d3.select(this).classed('response2', true)
+        } else if (i < 1 && d.dataIndex == 5) {
+          d3.select(this).classed('response3', true)
+        } else if (i < 1 && d.dataIndex == 11) {
+          d3.select(this).classed('response4', true)
+        } else if (i < 1 && d.dataIndex == 7) {
+          d3.select(this).classed('response5', true)
+        } else if (i < 1 && d.dataIndex == 6) {
+          d3.select(this).classed('response6', true)
+        } else if (i < 1 && d.dataIndex == 13) {
+          d3.select(this).classed('response7', true)
+        } else if (i < 1 && d.dataIndex == 8) {
+          d3.select(this).classed('response8', true)
+        } else if (i < 1 && d.dataIndex == 2) {
+          d3.select(this).classed('response9', true)
+        } else {
+          d3.select(this).classed('histogramNode', true)
+        }
+      })
       .append("circle")
       .attr('class', 'histCirc')
       .attr('testStatValue', d => d.permDsn)
@@ -643,14 +668,14 @@ function transitionThreeDown() {
     .transition()
     .attr('r', d => d.radius / 1.05)
 
-  d3.select('circle.histCirc.response1.extreme')
-    .append('g')
-    .attr('class', 'fuck')
-    .append('text')
-    .html('FUCK')
-    .attr('font-size', '10.95rem')
-    .attr('x', width / 3.1)
-    .attr('y', height / 1.105)
+  d3.select('.distributionCircleG.response1')
+    .append("text")
+    .text('1.65')
+    .style('font-size', '0.8rem')
+    .style('font-family', 'Gaegu')
+    .style("stroke", "1")
+    .attr('dx', '-1em')
+    .attr('dy', '-50px');
 
 }
 
@@ -676,6 +701,16 @@ function transitionFourDown() {
     .attr('r', d => d.radius / 0.8 )
     .transition()
     .attr('r', d => d.radius / 1.05)
+
+  d3.select('.distributionCircleG.response2')
+    .append("text")
+    .text('-0.65')
+    .style('font-size', '0.85rem')
+    .style('font-family', 'Gaegu')
+    .style("stroke","3")
+    .attr('dx', '-1.5em')
+    .attr('dy', '-50px')
+
 }
 
 function transitionFiveUp() {
