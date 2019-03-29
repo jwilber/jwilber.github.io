@@ -668,15 +668,10 @@ function transitionThreeDown() {
     .transition()
     .attr('r', d => d.radius / 1.05)
 
-  d3.select('.distributionCircleG.response1')
-    .append("text")
-    .text('1.65')
-    .style('font-size', '0.8rem')
-    .style('font-family', 'Gaegu')
-    .style("stroke", "1")
-    .attr('dx', '-1em')
-    .attr('dy', '-50px');
-
+  svgD3.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", "translate(0," + (dotDistHeight/1.12) + ")")
+  .call(d3.axisBottom(x));
 }
 
 function transitionFourUp() {
@@ -701,15 +696,6 @@ function transitionFourDown() {
     .attr('r', d => d.radius / 0.8 )
     .transition()
     .attr('r', d => d.radius / 1.05)
-
-  d3.select('.distributionCircleG.response2')
-    .append("text")
-    .text('-0.65')
-    .style('font-size', '0.85rem')
-    .style('font-family', 'Gaegu')
-    .style("stroke","3")
-    .attr('dx', '-1.5em')
-    .attr('dy', '-50px')
 
 }
 
@@ -787,10 +773,6 @@ function transitionSixDown() {
       return i === 200 ? small_node_size_force : d.radius / 1.05;
     })
 
-  svgD3.append("g")
-  .attr("class", "axis axis--x")
-  .attr("transform", "translate(0," + (dotDistHeight/1.12) + ")")
-  .call(d3.axisBottom(x));
 }
 
 function transitionSevenDown() {
