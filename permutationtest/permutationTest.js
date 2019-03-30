@@ -589,7 +589,6 @@ function transitionTwoUp() {
 let responseTextSize = width > mobileWidth ? '0.95rem' : '0.5rem';
   let responseTextX = width > mobileWidth ? 8.8 : 1;
   let responseTextY = width > mobileWidth ? 52.2 : 24;
-  let responseTextStrokWidth = width > mobileWidth ? 0.45 : 0.25;
 
 function transitionTwoDown() {
       
@@ -615,7 +614,7 @@ function transitionTwoDown() {
     .attr('fill', 'rgba(0, 0, 0, .3)')
     .attr('font-size', responseTextSize)
     .attr('stroke', 'black')
-    .attr('stroke-width', responseTextStrokWidth)
+    .attr('stroke-width', 0.25)
     .attr('x', responseTextX)
     .attr('y', responseTextY)
     .style('font-family', 'Gaegu')
