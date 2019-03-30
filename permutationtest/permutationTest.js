@@ -626,7 +626,7 @@ function transitionTwoDown() {
         return d.dotValue
       }
     })
-    .attr('fill', 'white')
+    .attr('fill', 'rgba(0, 0, 0, .3)')
     .attr('font-size', responseTextSize)
     .attr('stroke', 'black')
     .attr('stroke-width', responseTextStrokWidth)
