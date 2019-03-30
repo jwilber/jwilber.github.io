@@ -514,21 +514,7 @@ function dotDistribution(){
                   value: p.Value,
                   radius: (x(d.x1)-x(d.x0))/2
                 }
-        }))
-
-    //ENTER new elements present in new data.
-    dots.enter()
-      .append("circle")
-        .attr("class", "enter")
-        .attr("cx", 0) //g element already at correct x pos
-        .attr("cy", function(d) {
-          return - d.idx * 2 * d.radius - d.radius; })
-        .attr("r", 0)
-      .merge(dots)
-        .transition()
-          .duration(500)
-          .attr("r", d => d.radius )
-
+        }))   
 
 
 };//update
