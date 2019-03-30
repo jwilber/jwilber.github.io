@@ -500,14 +500,9 @@ function dotDistribution(){
         .attr("cx", 0) //g element already at correct x pos
         .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)) // control height here
         .attr("r", 0)
-        .transition()
-          .duration(800)
-          .attr('r', d => 0)
-          .style('opacity', 1)
-          .attr('fill' ,'pink')
-          .transition()
-          .attr('stroke-width', 0.2)
-          .attr('stroke', 'black')
+        .attr('fill', 'pink')
+        .attr('stroke-width', 0.2)
+        .attr('stroke', 'black')
 
     binContainerEnter.merge(binContainer)
         .attr("transform", d => `translate(${x(d.x0)}, ${dotDistHeight})`)
@@ -600,6 +595,9 @@ function transitionTwoUp() {
   d3.selectAll('circle.response1')
     .transition()
     .attr('r', d => 0)
+
+   // remove axis
+  d3.select('.axis--x').remove();
 }
 
 let responseTextSize = width > mobileWidth ? '0.95rem' : '0.5rem';
@@ -711,9 +709,6 @@ function transitionFiveUp() {
     .transition()
     .duration(800)
     .attr('r', 0)
-
-  // remove axis
-  d3.select('.axis--x').remove();
 
 
   force.force('center', null)
