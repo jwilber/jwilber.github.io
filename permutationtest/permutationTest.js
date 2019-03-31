@@ -27,6 +27,8 @@ function loop() {
 /////// constants ////////
 //////////////////////////
 
+let madeNodes = 0;
+
 const svgD3 = d3.select('svg');
 const width = svgD3.node().getBoundingClientRect().width;
 const height = svgD3.node().getBoundingClientRect().height;
@@ -34,8 +36,7 @@ const margin = 20;
 const mobileWidth = 390;
 console.log(width)
 console.log(height)
-// const roundPath = "M251.249,127.907c17.7,0,32.781-6.232,45.254-18.7c12.467-12.467,18.699-27.554,18.699-45.253 c0-17.705-6.232-32.783-18.699-45.255C284.029,6.233,268.948,0,251.249,0c-17.705,0-32.79,6.23-45.254,18.699 c-12.465,12.469-18.699,27.55-18.699,45.255c0,17.703,6.23,32.789,18.699,45.253C218.462,121.671,233.549,127.907,251.249,127.907 z";
-
+const roundPath = "M251.249,127.907c17.7,0,32.781-6.232,45.254-18.7c12.467-12.467,18.699-27.554,18.699-45.253 c0-17.705-6.232-32.783-18.699-45.255C284.029,6.233,268.948,0,251.249,0c-17.705,0-32.79,6.23-45.254,18.699 c-12.465,12.469-18.699,27.55-18.699,45.255c0,17.703,6.23,32.789,18.699,45.253C218.462,121.671,233.549,127.907,251.249,127.907 z";
 const trtCenter = width / 5;
 const cntrlCenter = width / 1.5;
 const heightMuCenter = height / 1.8;
@@ -293,13 +294,7 @@ function nodeRandomPosition(d) {
 
 function shuffleTestStat(nodePositions, responseNode) {
   randomizeNodes(nodePositions)
-  // select chosen class and move it
-  d3.selectAll(responseNode)
-    .transition()
-    .attr('r', d => d.radius / 0.8)
-    .transition()
-    .duration(800)
-    .attr('r', d => d.radius / 1.05)
+  showTestStatisticNode(responseNode);
 }
 
 
@@ -368,7 +363,6 @@ function moveToCenter() {
 
 // group titles (transition 1 -> beyond)
 const treatmentTitleCenter = trtCenter;
-// const treatmentTitleCenter = width > mobileWidth ? trtCenter : (width / 2);
 const controlTitleCenter =   cntrlCenter
 let treatmentTitle = svgD3.append('text')
   .html('TREATMENT')
@@ -391,6 +385,10 @@ let controlTitle = svgD3.append('text')
   let dotDistRangeStart = width > mobileWidth ? (width / 4) : (width / 8);
   let dotDistRangeEnd = width > mobileWidth ? (width / 1.5) : (width / 1.15);
   let dotDistHeight = width > mobileWidth ? height : (height + (height/1.05));
+  if ((700 > width) && (width > mobileWidth) && (height > 550)) {
+    dotDistRangeStart = (width / 8);
+    dotDistRangeEnd = (width / 1.15);
+  }
   //x scales
 const x = d3.scaleLinear()
     .domain(d3.extent(sampleData.filter(d => d.nodeGroup === 'dsn'), d => +d.permDsn))
@@ -406,6 +404,7 @@ function assignResponseNodes(d,i) {
 }
 
 function dotDistribution(){
+
 
     let data = sampleData.filter(d => d.nodeGroup === 'dsn')
 
@@ -463,32 +462,6 @@ function dotDistribution(){
           d3.select(this).classed('histogramNode', true)
         }
       })
-      .append("circle")
-      .attr('class', 'histCirc')
-      .attr('testStatValue', d => d.permDsn)
-      .attr('', function(d, i) {
-        if (i < 1 && d.dataIndex == 20) {
-          d3.select(this).classed('response1', true)
-        } else if (i < 1 && d.dataIndex == 9) {
-          d3.select(this).classed('response2', true)
-        } else if (i < 1 && d.dataIndex == 5) {
-          d3.select(this).classed('response3', true)
-        } else if (i < 1 && d.dataIndex == 11) {
-          d3.select(this).classed('response4', true)
-        } else if (i < 1 && d.dataIndex == 7) {
-          d3.select(this).classed('response5', true)
-        } else if (i < 1 && d.dataIndex == 6) {
-          d3.select(this).classed('response6', true)
-        } else if (i < 1 && d.dataIndex == 13) {
-          d3.select(this).classed('response7', true)
-        } else if (i < 1 && d.dataIndex == 8) {
-          d3.select(this).classed('response8', true)
-        } else if (i < 1 && d.dataIndex == 2) {
-          d3.select(this).classed('response9', true)
-        } else {
-          d3.select(this).classed('histogramNode', true)
-        }
-      })
       .attr('', function(d) {
         if (d.dataIndex > 19) { // determine which test-stat nodes to highlight
           d3.select(this).classed('extreme', true)
@@ -496,33 +469,34 @@ function dotDistribution(){
           d3.select(this).classed('notExtreme', true)
         }
       })
-      .transition()
-        .attr("cx", 0) //g element already at correct x pos
-        .attr("cy", d => - d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)) // control height here
-        .attr("r", 0)
-        .attr('fill', 'pink')
-        .attr('stroke-width', 0.2)
-        .attr('stroke', 'black')
-
-    binContainerEnter.merge(binContainer)
-        .attr("transform", d => `translate(${x(d.x0)}, ${dotDistHeight})`)
-
-    //enter/update/exit for circles, inside each container
-    let dots = binContainer.selectAll("circle")
-        .data(d => d.map((p, i) => {
-          return {idx: i,
-                  value: p.Value,
-                  radius: (x(d.x1)-x(d.x0))/2
-                }
-        }))   
-
+      .attr('transform', d => `translate(-20, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
 
 };//update
+
+dotDistribution()
 
 
 //////////////////////////////////////////////////
 ////////// Transition Functions /////////////////
 //////////////////////////////////////////////////
+
+function initRoughDistribution() {
+    d3.selectAll('.distributionCircleG').each(function(d,i) {
+        d3.select(this).node().appendChild( rc.path(roundPath, {
+        stroke: 'black',
+        fillStyle: 'hachure',
+        strokeWidth: 2.25,
+        fill: 'pink',
+        roughness: 5.05,
+          })
+        )
+      })
+    d3.selectAll('.distributionCircleG').selectAll('path').attr("transform", "scale(0.0,0.0)")
+    d3.selectAll('.distributionCircleG')
+      .selectAll('path')
+      .style('fill', 'pink')
+      .style('opacity', 1)
+  }
 
 function transitionZeroUp() {
   // initial position for dots
@@ -565,8 +539,6 @@ function transitionOneDown() {
     d3.select(this).transition().delay(800).attr('visibility', 'visible')
   })
 
-  dotDistribution();
-
 }
 
 function transitionTwoUp() {
@@ -581,6 +553,12 @@ function transitionTwoUp() {
   d3.selectAll('circle.response1')
     .transition()
     .attr('r', d => 0)
+
+  d3.selectAll('.distributionCircleG.response1')
+    .selectAll('path')
+    .transition()
+    .duration(500)
+    .attr('transform', 'scale(0, 0)')
 
    // remove axis
   d3.select('.axis--x').remove();
@@ -631,6 +609,10 @@ function transitionTwoDown() {
     .transition()
     .attr('font-size', `${responseTextSize}`);
 
+  // place test-statistic nodes for later reveal (one-by-one)
+  initRoughDistribution()
+  
+
 }
 
 function transitionThreeUp() {
@@ -640,16 +622,27 @@ function transitionThreeUp() {
   d3.selectAll('circle.response2')
     .transition()
     .attr('r', d => 0)
+
+  d3.selectAll('.distributionCircleG.response2')
+    .transition()
+    .attr('transform', 'scale(0, 0)');
+}
+
+function showTestStatisticNode(response) {
+  d3.selectAll(`.distributionCircleG${response}`)
+    .selectAll('path')
+    .transition()
+    .duration(500)
+    .attr('transform', 'scale(0.15, 0.15)')
+    .transition()
+    .duration(500)
+    .attr('transform', 'scale(0.125, 0.125)');
 }
 
 function transitionThreeDown() {
 
-  d3.selectAll('circle.response1')
-    .transition()
-    .attr('r', d => d.radius / .5)
-    .attr('fill', 'coral')
-    .transition()
-    .attr('r', d => d.radius / 1.05)
+  // reveal response1 test-statistic
+  showTestStatisticNode('.response1')
 
   svgD3.append("g")
   .attr("class", "axis axis--x")
@@ -664,7 +657,7 @@ function transitionFourUp() {
       d3.selectAll(responseNode)
         .transition()
         .duration(700)
-        .attr('r', 0)
+        .attr('transform', 'scale(0, 0)')
   });
 
 }
@@ -672,14 +665,7 @@ function transitionFourUp() {
 function transitionFourDown() {
   // shuffle ('permute') nodes
   randomizeNodes(nodeRandomPos)
-
-  // HIST ENTER
-  d3.selectAll('circle.response2')
-    .transition()
-    .attr('r', d => d.radius / 0.8 )
-    .transition()
-    .attr('r', d => d.radius / 1.05)
-
+  showTestStatisticNode('.response2')
 }
 
 function transitionFiveUp() {
@@ -689,12 +675,11 @@ function transitionFiveUp() {
   // re-add group titles
   d3.selectAll('.groupTitle').transition().delay(1400).attr('visibility', 'visible')
 
-  // remove histogram nodes
-  d3.selectAll('circle.histogramNode')
+  d3.selectAll('.distributionCircleG.histogramNode')
+    .selectAll('path')
     .transition()
-    .duration(800)
-    .attr('r', 0)
-
+    .duration(500)
+    .attr('transform', 'scale(0, 0)');
 
   force.force('center', null)
     .force('collision', d3.forceCollide(d => 33))
@@ -710,12 +695,6 @@ shuffleTestStat(nodeRandomPosFive, '.response6')
 
 
 function transitionFiveDown() {
-
-  // move test statistic1 back to it's original position
-  d3.selectAll('.testStat2')
-    .transition()
-    .duration(700)
-    .attr('transform', `translate(0, 0)`)
 
   // permute llama groupings multiple times
   loop(
@@ -733,6 +712,10 @@ function transitionSixUp() {
   d3.selectAll('circle.extreme')
     .attr('fill', 'pink')
     .attr('stroke-width', 0.2)
+
+  d3.selectAll('.distributionCircleG.extreme')
+    .selectAll('path')
+    .style('fill', 'pink');
 }
 
 // hacky way to ensure smallest node keeps relative size (idk why this is a problem, but this solves it!)
@@ -744,27 +727,27 @@ function transitionSixDown() {
   d3.selectAll('.responseText').transition().duration(2000).attr('y', -2000) 
   d3.selectAll('.groupTitle').transition().delay(700).attr('visibility', 'hidden')
 
-  // move nodes to distribution
-  d3.selectAll('circle.histogramNode')
+  d3.selectAll(`.distributionCircleG.histogramNode`)
+    .selectAll('path')
     .transition()
-    .duration(1400)
-    .attr('r', (d,i) => {
-      if (i === 190) small_node_size_force = d.radius / 1.05;
-      return i === 200 ? small_node_size_force : d.radius / 1.05;
-    })
-
+    .duration(800)
+    .attr('transform', 'scale(0.14, 0.14)')
+    .transition()
+    .duration(500)
+    .attr('transform', 'scale(0.125, 0.125)');
 }
 
 function transitionSevenDown() {
-  d3.selectAll('circle.extreme')
+
+  d3.selectAll('.distributionCircleG.extreme')
+    .selectAll('path')
+    .style('fill', 'coral')
     .transition()
     .duration(500)
-    .attr('r', (d,i) => i === 15 ? small_node_size_force + 2 : 2 + d.radius / 1.05)
-    .attr('stroke-width', .5)
-    .attr('fill', 'coral')
+    .attr('transform', 'scale(0.15, 0.15)')
     .transition()
-    .attr('r', (d,i) => i === 15 ? small_node_size_force : d.radius / 1.05)
-    .attr('stroke-width', 0.2)
+    .duration(250)
+    .attr('transform', 'scale(0.125, 0.125)');
 }
 
 function transitionSevenUp() {
@@ -784,36 +767,45 @@ function transitionSevenUp() {
     .duration(1000)
     .attr('transform', 'translate(0, 0)')
 
+    d3.selectAll('.distributionCircleG.notExtreme')
+    .transition()
+    .duration(1500)
+    .attr('transform', d => `translate(0, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
+
+  d3.selectAll('.distributionCircleG.extreme')
+    .transition()
+    .duration(1500)
+    .attr('transform', d => `translate(0, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
+
   d3.selectAll('.finalText').remove()
-
-
 }
 
 let finalTextSize = width > mobileWidth ? 20 : 14;
-let finalTextY = width > mobileWidth ? (height / 1.105) : (dotDistHeight/1.095);
+// let finalTextY = width > mobileWidth ? (height / 1.09) : (dotDistHeight/1.095);
 
 function transitionEightDown() {
-
-  svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 3.1) : (width / 4.2))
-    .attr('y', finalTextY)
-    .text('n = 200')
+    d3.selectAll('.distributionCircleG.response2')
+    .append('text')
     .attr('class', 'finalText')
-    .style('font-family', 'Gaegu')
+    .text('n = 200')
+    .attr('font-family', 'Gaegu')
     .attr('font-size', 0)
-    .attr('font-weight', '500')
+    .attr('font-weight', '300')
+    .attr('dx', '1.5em')
+    .attr('dy', '2em')
     .transition()
     .duration(1500)
     .attr('font-size', finalTextSize)
 
-  svgD3.append('text')
-    .attr('x', width > mobileWidth ? (width / 1.55) : (width / 1.35))
-    .attr('y', finalTextY)
-    .text('n = 16')
+  d3.selectAll('.distributionCircleG.response1')
+    .append('text')
     .attr('class', 'finalText')
-    .style('font-family', 'Gaegu')
-    .style('font-weight', '500')
+    .text('n = 16')
+    .attr('font-family', 'Gaegu')
     .attr('font-size', 0)
+    .attr('font-weight', '300')
+    .attr('dx', '1.5em')
+    .attr('dy', '2em')
     .transition()
     .duration(1500)
     .attr('font-size', finalTextSize)
@@ -824,16 +816,16 @@ function transitionEightDown() {
   // split dot distribution into two
   let splitValue = width > mobileWidth ? 75 : 20;
 
-  d3.selectAll('circle.notExtreme')
+  d3.selectAll('.distributionCircleG.notExtreme')
     .transition()
     .duration(1500)
-    .attr('transform', `translate(-${splitValue + 5},0)`)
+    // .attr('transform', `translate(-${splitValue + 5}, 100%)`)
+    .attr('transform', d => `translate(${-splitValue}, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
 
-  d3.selectAll('circle.extreme')
+  d3.selectAll('.distributionCircleG.extreme')
     .transition()
     .duration(1500)
-    .attr('transform', `translate(${splitValue + 2},0)`)
-      
+    .attr('transform', d => `translate(${splitValue}, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)     
 }
 
 function transitionEightUp() {
