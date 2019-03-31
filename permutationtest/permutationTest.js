@@ -183,7 +183,7 @@ const nodeInitialYPlacement = (d) => {
         gParent.appendChild( rc.path(d3.select(this).node().getAttribute('d'), {
         stroke: 'black',
         fillStyle: 'hachure',
-        strokeWidth: 0.25,
+        strokeWidth: 0.35,
         fill: 'rgba(131,131,131, .15)',
         roughness: 0.54,
           })
@@ -487,7 +487,7 @@ function initRoughDistribution() {
         fillStyle: 'hachure',
         strokeWidth: 2.25,
         fill: 'pink',
-        roughness: 5.05,
+        roughness: 5.85,
           })
         )
       })
@@ -529,7 +529,7 @@ function transitionOneDown() {
   // color based on eatment assignment
   d3.selectAll('.dot').select('path')
     .transition()
-    .style('fill', (d,i) => d.index % 2 == 0 ? 'rgba(248,131,121, .15)' : 'rgba(131, 238, 248, .2)')
+    .style('fill', (d,i) => d.index % 2 == 0 ? 'rgba(248,131,121, .3)' : 'rgba(131, 238, 248, .3)')
 
   // position llamas in treatment groups
     moveNodes()
@@ -788,7 +788,8 @@ function transitionEightDown() {
     .text('n = 200')
     .attr('font-family', 'Gaegu')
     .attr('font-size', 0)
-    .attr('font-weight', '300')
+    .attr('font-weight', '100')
+    .style('opacity', .7)
     .attr('dx', '1.5em')
     .attr('dy', '2em')
     .transition()
@@ -801,7 +802,8 @@ function transitionEightDown() {
     .text('n = 16')
     .attr('font-family', 'Gaegu')
     .attr('font-size', 0)
-    .attr('font-weight', '300')
+    .attr('font-weight', '100')
+    .style('opacity', .7)
     .attr('dx', '1.5em')
     .attr('dy', '2em')
     .transition()

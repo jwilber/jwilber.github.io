@@ -43,7 +43,7 @@ a:hover {
 	text-align: center;
 }
 .intro__overline {
-	font-size: .8rem;
+	font-size: .85rem;
 }
 .intro__hed {
 	font-size: 2.8rem;
@@ -152,9 +152,10 @@ a:hover {
 }
 
 .axis {
-	font-family: Arial;
-	font-weight: 10;
-	opacity: .55
+	font-family: Gaegu;
+	font-size: .85rem;
+	/*font-weight: 900;*/
+	opacity: .65
 }
 
 g.tick line {
