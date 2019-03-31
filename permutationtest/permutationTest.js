@@ -619,11 +619,8 @@ function transitionThreeUp() {
   // move llamas back to original group
   moveNodes()
 
-  d3.selectAll('circle.response2')
-    .transition()
-    .attr('r', d => 0)
-
   d3.selectAll('.distributionCircleG.response2')
+    .selectAll('path')
     .transition()
     .attr('transform', 'scale(0, 0)');
 }
@@ -655,6 +652,7 @@ function transitionFourUp() {
   shuffleTestStat(nodeRandomPosTwo, '.response3')
   Array.from(Array(10).keys()).slice(3,10).map(i => '.response'.concat(i)).map( responseNode => {
       d3.selectAll(responseNode)
+        .selectAll('path')
         .transition()
         .duration(700)
         .attr('transform', 'scale(0, 0)')
