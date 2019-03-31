@@ -625,6 +625,8 @@ function transitionThreeUp() {
     .attr('transform', 'scale(0, 0)');
 }
 
+let distributionDotScale = width < mobileWidth ? 0.09 : 0.125;
+
 function showTestStatisticNode(response) {
   d3.selectAll(`.distributionCircleG${response}`)
     .selectAll('path')
@@ -633,7 +635,7 @@ function showTestStatisticNode(response) {
     .attr('transform', 'scale(0.15, 0.15)')
     .transition()
     .duration(500)
-    .attr('transform', 'scale(0.125, 0.125)');
+    .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
 }
 
 function transitionThreeDown() {
