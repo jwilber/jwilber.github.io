@@ -566,7 +566,7 @@ function transitionTwoUp() {
 
 let responseTextSize = width > mobileWidth ? '0.95rem' : '0.5rem';
 let responseTextX = width > mobileWidth ? 8.8 : 1;
-hlet responseTextY = width > mobileWidth ? 52.2 : 24;
+let responseTextY = width > mobileWidth ? 52.2 : 24;
 
 function transitionTwoDown() {
       
