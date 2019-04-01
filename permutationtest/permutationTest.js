@@ -565,8 +565,8 @@ function transitionTwoUp() {
 }
 
 let responseTextSize = width > mobileWidth ? '0.95rem' : '0.5rem';
-  let responseTextX = width > mobileWidth ? 8.8 : 1;
-  let responseTextY = width > mobileWidth ? 52.2 : 24;
+let responseTextX = width > mobileWidth ? 8.8 : 1;
+hlet responseTextY = width > mobileWidth ? 52.2 : 24;
 
 function transitionTwoDown() {
       
@@ -734,7 +734,7 @@ function transitionSixDown() {
     .attr('transform', 'scale(0.14, 0.14)')
     .transition()
     .duration(500)
-    .attr('transform', 'scale(0.125, 0.125)');
+    .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
 }
 
 function transitionSevenDown() {
