@@ -625,14 +625,14 @@ function transitionThreeUp() {
     .attr('transform', 'scale(0, 0)');
 }
 
-let distributionDotScale = width < mobileWidth ? 0.055 : 0.125;
+let distributionDotScale = width < mobileWidth ? 0.055 : 0.1;
 
 function showTestStatisticNode(response) {
   d3.selectAll(`.distributionCircleG${response}`)
     .selectAll('path')
     .transition()
     .duration(500)
-    .attr('transform', 'scale(0.15, 0.15)')
+    .attr('transform', 'scale(0.125, 0.125)')
     .transition()
     .duration(500)
     .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
@@ -731,7 +731,7 @@ function transitionSixDown() {
     .selectAll('path')
     .transition()
     .duration(800)
-    .attr('transform', 'scale(0.14, 0.14)')
+    .attr('transform', 'scale(0.125, 0.125)')
     .transition()
     .duration(500)
     .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
@@ -744,10 +744,10 @@ function transitionSevenDown() {
     .style('fill', 'coral')
     .transition()
     .duration(500)
-    .attr('transform', 'scale(0.15, 0.15)')
+    .attr('transform', 'scale(0.125, 0.125)')
     .transition()
     .duration(250)
-    .attr('transform', 'scale(0.125, 0.125)');
+    .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
 }
 
 function transitionSevenUp() {
@@ -757,46 +757,17 @@ function transitionSevenUp() {
   .attr("transform", "translate(0," + (dotDistHeight/1.12) + ")")
   .call(d3.axisBottom(x));
 
-  d3.selectAll('circle.notExtreme')
-    .transition()
-    .duration(1000)
-    .attr('transform', 'translate(0, 0)')
-
-  d3.selectAll('circle.extreme')
-    .transition()
-    .duration(1000)
-    .attr('transform', 'translate(0, 0)')
-
-    d3.selectAll('.distributionCircleG.notExtreme')
-    .transition()
-    .duration(1500)
-    .attr('transform', d => `translate(0, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
-
   d3.selectAll('.distributionCircleG.extreme')
     .transition()
     .duration(1500)
-    .attr('transform', d => `translate(0, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
+    .attr('transform', d => `translate(-20, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
 
   d3.selectAll('.finalText').remove()
 }
 
 let finalTextSize = width > mobileWidth ? 20 : 14;
-// let finalTextY = width > mobileWidth ? (height / 1.09) : (dotDistHeight/1.095);
 
 function transitionEightDown() {
-    d3.selectAll('.distributionCircleG.response2')
-    .append('text')
-    .attr('class', 'finalText')
-    .text('n = 200')
-    .attr('font-family', 'Gaegu')
-    .attr('font-size', 0)
-    .attr('font-weight', '100')
-    .style('opacity', .7)
-    .attr('dx', '1.5em')
-    .attr('dy', '2em')
-    .transition()
-    .duration(1500)
-    .attr('font-size', finalTextSize)
 
   d3.selectAll('.distributionCircleG.response1')
     .append('text')
@@ -807,7 +778,7 @@ function transitionEightDown() {
     .attr('font-weight', '100')
     .style('opacity', .7)
     .attr('dx', '1.5em')
-    .attr('dy', '2em')
+    .attr('dy', '2.4rem')
     .transition()
     .duration(1500)
     .attr('font-size', finalTextSize)
@@ -818,12 +789,6 @@ function transitionEightDown() {
   // split dot distribution into two
   let splitValue = width > mobileWidth ? 75 : 20;
 
-  d3.selectAll('.distributionCircleG.notExtreme')
-    .transition()
-    .duration(1500)
-    // .attr('transform', `translate(-${splitValue + 5}, 100%)`)
-    .attr('transform', d => `translate(${-splitValue}, ${-d.idx * 2 * d.radius - d.radius - (dotDistHeight/8)})`)
-
   d3.selectAll('.distributionCircleG.extreme')
     .transition()
     .duration(1500)
@@ -831,10 +796,7 @@ function transitionEightDown() {
 }
 
 function transitionEightUp() {
-  d3.selectAll('circle')
-    .transition()
-    .duration(1000)
-    .attr('r', d => d.radius / 1.05)
+
 }
 
 
