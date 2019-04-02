@@ -40,7 +40,7 @@ const roundPath = "M251.249,127.907c17.7,0,32.781-6.232,45.254-18.7c12.467-12.46
 const trtCenter = width / 5;
 const cntrlCenter = width / 1.5;
 const heightMuCenter = height / 1.8;
-let scaleWidth = width > mobileWidth ? 0.75 : 0.35;
+let scaleWidth = width > mobileWidth ? 0.6 : 0.35;
 
 //////////////////////////
 ///// node functions /////
@@ -565,8 +565,8 @@ function transitionTwoUp() {
 }
 
 let responseTextSize = width > mobileWidth ? '0.95rem' : '0.5rem';
-let responseTextX = width > mobileWidth ? 8.8 : 1;
-let responseTextY = width > mobileWidth ? 52.2 : 24;
+let responseTextX = width > mobileWidth ? 1.8 : 1;
+let responseTextY = width > mobileWidth ? 45.2 : 24;
 
 function transitionTwoDown() {
       
