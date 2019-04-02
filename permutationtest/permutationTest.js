@@ -365,7 +365,7 @@ const treatmentTitleCenter = trtCenter;
 const controlTitleCenter =   cntrlCenter
 let treatmentTitle = svgD3.append('text')
   .html('TREATMENT')
-  .attr('x', width > mobileWidth ? trtCenter - 10 : trtCenter - 30)
+  .attr('x', trtCenter - 30)
   .attr('y', width > mobileWidth ? margin : (margin * 6.05))
   .attr('class', 'groupTitle')
   .style('fill', 'black')
@@ -624,7 +624,7 @@ function transitionThreeUp() {
     .attr('transform', 'scale(0, 0)');
 }
 
-let distributionDotScale = width < mobileWidth ? 0.055 : 0.1;
+let distributionDotScale = width > mobileWidth ? 0.11 : 0.055;
 
 function showTestStatisticNode(response) {
   d3.selectAll(`.distributionCircleG${response}`)
@@ -730,7 +730,7 @@ function transitionSixDown() {
     .selectAll('path')
     .transition()
     .duration(800)
-    .attr('transform', 'scale(0.125, 0.125)')
+    .attr('transform', 'scale(0.12, 0.12)')
     .transition()
     .duration(500)
     .attr('transform', `scale(${distributionDotScale}, ${distributionDotScale})`);
