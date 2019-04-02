@@ -87,7 +87,7 @@ const nodeGroupInitialForceCollide = (d) => {
 
 const nodeGroupMoveForceCollide = (d) => {
   if (d.nodeGroup === 'llama' & width > mobileWidth) {
-    return 37
+    return 29
   } else if (d.nodeGroup === 'llama') {
     return 14
   } else {
@@ -301,7 +301,6 @@ function shuffleTestStat(nodePositions, responseNode) {
 function moveNodes() {
   // move nodes to treatment groups
   force.force('center', null)
-  .force('collision', d3.forceCollide(d => 33))
   .alphaDecay(.0005)
   .velocityDecay(0.5)
   force.force('x', d3.forceX().strength(1).x(nodeTreatmentWidth))
