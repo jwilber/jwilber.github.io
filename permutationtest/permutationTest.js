@@ -677,7 +677,7 @@ function transitionFiveUp() {
   d3.selectAll('.distributionCircleG.histogramNode')
     .selectAll('path')
     .transition()
-    .duration(500)
+    .duration(1000)
     .attr('transform', 'scale(0, 0)');
 
   force.force('center', null)
