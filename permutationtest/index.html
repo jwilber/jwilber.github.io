@@ -57,7 +57,8 @@
 				&Eta;<sub>A</sub>: &mu;<sub>treatment</sub> >  &mu;<sub>control</sub>
 
 				<br><br>
-				Our null hypothesis claims that the new shampoo does <i>not</i> increase wool quality. The alternative hypothesis claims the opposite; new shampoo yields superior wool quality.<br><br>
+				Our null hypothesis claims that the new shampoo does <i>not</i> increase wool quality. The alternative hypothesis claims the opposite; new shampoo yields superior wool quality.
+				<br><br>
 			</p>
 				
 			</div>
@@ -99,7 +100,7 @@
 			<div class='step' data-step='5'>
 				<h2 class='subheader'>The 'P' in  'Permutation'</h2>
 				<p>
-					This is likely the most important step of the permutation test, and for sure its namesake.<span class='tooltip'>*<span class="tooltiptext">Although it's also called the 'randomization test'</span></span>
+					This is the most important step of the permutation test, and the reason for its name.<span class='tooltip'>*<span class="tooltiptext">It's also called the 'randomization test'</span></span>
 					<br><br>
 					While keeping the same response values we received earlier, we permute (shuffle) the treatment assignments of our alpaca, and re-calculate our test statistic.
 					<br><br>
@@ -133,12 +134,11 @@
 			<div class='step' data-step='8'>
 				<h2 class='subheader'>The P-Value</h2>
 				<p>
-					A p-value represents the probability of observing the values you did, assuming the null hypothesis is true. For us, it's the probability of obtaining the differences in wool quality we did, assuming the new shampoo did <i>not</i> increase wool quality. 
+					A p-value represents the probability of obtaining the observed values, assuming the null hypothesis is true. For us, it's the probability of obtaining the differences in wool quality we did, <i>assuming the new shampoo did not increase wool quality</i>. 
 					<br><br>
-
-					For example, a high p-value indicates that seeing the difference in wool quality we did has a high probability of occuring, <i>when the new shampoo does not increase wool quality</i> (our null hypothesis). 
-					A low p-value indicates the opposite: the difference in wool quality we obtained is rare if we assume the null hypothesis, thus providing evidence against it.
-					<br><br>
+					 To determine the outcome of our test, we compare our p-value to a <a>significance level</a>. This should be determined a prioir, but we'll just say ours is 10%.
+					 If the p-value is less than or equal to the significance level, we reject the null hypothesis; the outcome is said to be statistically significant.
+					 <br><br>
 					To calculate the p-value for a permutation test, we simply count the number of test-statistics <i> as or more extreme</i> than our initial test statistic, and divide that number by the total number of test-statistics we calculated.
 				</p>
 			</div>
@@ -146,12 +146,14 @@
 				<h2 class='subheader'>Our Results</h2>
 				<p> 
 					<br><br>
-					Only nine out of our two-hundred test statistics were more extreme than our initial test statistic. 
+					Only sixteen out of our two-hundred test statistics were as or more extreme than our initial test statistic. 
 					<br><br> Thus, our p-value is: 
 					<br><br> P-Value = 16 / 200
 					<br><br> &nbsp;&nbsp;&nbsp;&nbsp;= 0.8
+					<br><br> &nbsp;&nbsp;&nbsp;&nbsp;= 8%
 					<br><br>
-					In other words, if it's truly the case that the new shampoo doesn't improve wool quality, then obtaining the initial difference in wool quality we did occurs with a probability of only 4%. That's an awfully low probability. So much so, in fact, that we reject our null hypothesis and accept our alternative: the new shampoo does appear to be increasing wool quality. Time to buy some more!
+					In other words, if it's truly the case that the new shampoo doesn't improve wool quality, then obtaining the initial difference in wool quality we did occurs with a probability of only 8%. 
+					<br><br>That's a fairly low probability. In fact, at our 10% level of significance, we reject our null hypothesis and accept our alternative: the new shampoo does appear to be increasing wool quality. Time to buy some more!
 				</p>
 			</div>
 			<div class='step finalStep' data-step='10'>
