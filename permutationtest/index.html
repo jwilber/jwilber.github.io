@@ -76,37 +76,37 @@
 				<p>
 					After giving each alpaca its designated shampoo, we determine if the new shampoo has any effect on wool quality.
 					<br><br>
-					In statistics jargon, every experimental unit receives a response value. 
-					For us, each alpaca is an experimental unit. Each alpaca's measure of wool quality is its response value. 
+					In statistics jargon, every experimental unit has a <i>response</i> value. 
+					For us, each alpaca is an experimental unit, and its measure of wool quality after taking its shampoo is its response value. 
 					<br><br>
-					While we can eyeball these values and determine any perceived differences between the two shampoos, we'll need a more rigourous method to determine if any differences are <a href="https://www.statpac.com/surveys/statistical-significance.htm">statistically significant</a>.
+					We can eyeball these values ourselves and get a feel for any perceived differences between the two shampoos. However, , we'll need a more rigourous method to determine if the differences are <a href="https://www.statpac.com/surveys/statistical-significance.htm">statistically significant</a>.
 				 </p>
 			</div>
 			<div class='step' data-step='4'>
 				<h2 class='subheader'>Test Statistic</h2>
 				<p>
-				To determine whether or not the new shampoo is effective, we need a way to quantify the difference between our null and alternative hypotheses. 
+				To determine whether or not the new shampoo really is effective, we need a way to quantify the difference between our null and alternative hypotheses. 
 				<br><br>
 				Luckily for us, such a numerical summary exists: the <a href="https://en.wikipedia.org/wiki/Test_statistic">test statistic</a>.
 				<br><br>
-				A benefit of the permutation test is that it allows us to use any numerical value that we want for our test statistic.<span class='tooltip'>*<span class="tooltiptext">many tests require complex, specificc test statistics</span></span> Because our analysis is fairly straightforward, we'll simply use the difference in mean response values between the two shampoos:
+				A benefit of the permutation test is that it allows us to use any numerical value that we want for our test statistic.<span class='tooltip'>*<span class="tooltiptext">many other tests require complex, specificc test statistics</span></span> Because our analysis is fairly straightforward, we'll simply use the difference in mean response values between the two shampoos:
 				<br><br>
 				<i>Test Statistic</i> = &mu;<sub>Treatment</sub> - &mu;<sub>Control</sub>
 					<br>
 				<br>
-				To obtain our initial test statistic, we simply subtract the mean wool quality of the alpacas that used the new shampoo (treatment group) from the mean wool quality of the alpacas that did not use the new shampoo (control group).
+				To obtain our initial test statistic, we simply subtract the mean wool quality of the alpacas that used the new shampoo (<i>treatment group</i>) from the mean wool quality of the alpacas that did not use the new shampoo (<i>control group</i>).
 				 </p>
 			</div>
 			<div class='step' data-step='5'>
 				<h2 class='subheader'>The 'P' in  'Permutation'</h2>
 				<p>
-					This is the most important step of the permutation test, and the reason for its name.<span class='tooltip'>*<span class="tooltiptext">It's also called the 'randomization test'</span></span>
+					Enter the most important step of the permutation test, as well as its namesake.<span class='tooltip'>*<span class="tooltiptext">It's also called the 'randomization test'</span></span>
 					<br><br>
 					While keeping the same response values we received earlier, we permute (shuffle) the treatment assignments of our alpaca, and re-calculate our test statistic.
 					<br><br>
 					We do this because we analyze the results of our experiment relative to the null hypothesis, which posits the new shampoo as having no benefit on wool quality. 
 					<br><br>
-					Thus, if the new shampoo truly doesn't improve wool quality, shuffling the shampoo label of our alpaca and recalculating our test statistic  won't matter - we'll obtain similar wool quality values for both groups.
+					While this may seem a bit odd, the logic is quite simple: if the new shampoo truly doesn't improve wool quality, shuffling the shampoo label of our alpaca and recalculating our test statistic  won't matter - we'll obtain similar wool quality values for both groups.
 					<br>
 				</p>
 			</div>
@@ -115,18 +115,18 @@
 				<p>
 					We repeat this process, permuting our data over and over again, and recalculate a test statistic at each iteration.
 					<br><br>
-				Ideally, we'd calculate a test statistic for <i>every</i> possible permutation of shampoo assignment among our alpaca - doing so would create an exact distribution of all possible test statistics under our null hypothesis.
+				Ideally, we'd calculate a test statistic for <i>every</i> possible permutation of shampoo assignment among our alpaca. This would create an exact distribution of all possible test statistics under our null hypothesis.
 					<br><br>
-					Unfortunatley, this number is often <a href="https://en.wikipedia.org/wiki/Factorial">far too large</a> for practicality, so instead we resample enough permutations to build an approximation to our distribution. 
+					Unfortunatley, calculating every permutation is often <a href="https://en.wikipedia.org/wiki/Factorial">far too large</a> for practicality. No worries! Instead we'll resample enough permutations to build an approximation to our distribution, as that'll work just as well.
 					<br><br>
 				</p>
 			</div>
 			<div class='step' data-step='7'>
 				<h2 class='subheader'>Test Statistic Distribution</h2>
 				<p>
-					Eventually, after a sufficient number of permutations, we create an approximate test statistic distribution.
+					Eventually, after some sufficient number of permutations, we create the approximate test statistic distribution.
 					<br><br>
-					This distribution approximates all possible test statistic values we could have seen <i>under the null hypothesis</i>. We can then use this distribution to obtain probabilities associated with different mean-difference values<span class='tooltip'>*<span class="tooltiptext">Or whatever calculation you used for your test statistic</span></span> , where we assume that wool quality does not increase with the new shampoo.
+					This distribution approximates all possible test statistic values we could have seen <i>under the null hypothesis</i>. We can then use this distribution to obtain probabilities associated with different mean-difference values<span class='tooltip'>*<span class="tooltiptext">Or whatever calculation you used for your test statistic</span></span> , where we assume that wool quality does not increase with the new shampoo. 
 					<br><br>
 					By observing where our initial test statistic falls within this distribution, we obtain the final piece for our test: The magical <a href="#">p-value</a>.
 				</p>
@@ -138,6 +138,8 @@
 					<br><br>
 					 To determine the outcome of our test, we compare our p-value to a <a href="https://statisticsbyjim.com/glossary/significance-level/">significance level</a>. This should be determined a prioir, but we'll just say ours is 10%.
 					 If the p-value is less than or equal to the significance level, we reject the null hypothesis; the outcome is said to be statistically significant.
+					 <br><br>
+					 For us, a low p-value signals that, assuming the null hypothesis is true, the probability of obtaining our initial differences in wool quality occurs with a low probability. A high p-value signals the opposite, such an outcome is likely under the null hypothesis.
 					 <br><br>
 					To calculate the p-value for a permutation test, we simply count the number of test-statistics <i> as or more extreme</i> than our initial test statistic, and divide that number by the total number of test-statistics we calculated.
 				</p>
