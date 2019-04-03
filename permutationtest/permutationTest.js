@@ -776,7 +776,7 @@ function transitionEightDown() {
     .text('n = 16')
     .attr('font-family', 'Gaegu')
     .attr('font-size', 0)
-    .attr('font-weight', '100')
+    .attr('font-weight', 'bold')
     .style('opacity', .7)
     .transition()
     .duration(1500)
