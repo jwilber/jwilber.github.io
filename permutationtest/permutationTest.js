@@ -770,7 +770,7 @@ function transitionEightDown() {
 
   d3.selectAll('.distributionCircleG.response1')
     .append('text')
-    .attr('x', 25)
+    .attr('x', width > mobileWidth ? 25 : 15)
     .attr('y', width > mobileWidth ? 35 : 20)
     .attr('class', 'finalText')
     .text('n = 16')
