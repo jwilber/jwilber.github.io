@@ -227,7 +227,6 @@
 			var chartMargin = bodyWidth > 350 ? 32 : 10;
 			var textWidth = text.node().offsetWidth;
 			var chartWidth = graphic.node().offsetWidth - textWidth - chartMargin;
-			console.log('chartwidth:', chartWidth)
 			chart
 				.style('width', chartWidth + 'px')
 				.style('height', Math.floor(window.innerHeight / 1.2) + 'px');
@@ -242,65 +241,44 @@
 				return i === response.index;
 			})
 
-			// console.log('response index:' + response.index)
-
 			if (response.index == 0 & response.direction == 'down') {
-				console.log('0 down')
 				transitionZeroDown()
 			} else if (response.index == 0 & response.direction == 'up') {
-				console.log('0 up')
 				transitionZeroUp()
 			}else if (response.index == 1 & response.direction == 'down') {
-				console.log('1 down')
 				transitionOneDown()
 			} else if (response.index == 1 & response.direction == 'up') {
-				console.log('1 up')
 				transitionOneUp()
 			} else if (response.index == 2 & response.direction == 'up') {
-				console.log('2 up')
                 transitionTwoUp()
            } else if (response.index == 2 & response.direction == 'down') {
-           	    console.log('2 down')
                 transitionTwoDown()
 		   } else if (response.index == 3 & response.direction == 'up'){
-			   	console.log('3 up')
 			   	transitionThreeUp()
 			   	moveNodes()
 		   } else if (response.index == 3 & response.direction == 'down'){
-		   		console.log('3 down')
 		   		transitionThreeDown()
 		   } else if (response.index == 4 & response.direction == 'up'){
-			   	console.log('4 up')
 			   	transitionFourUp()
 		   } else if (response.index == 4 & response.direction == 'down'){
-			   	console.log('4 down')
 		   		transitionFourDown()
 		   } else if (response.index == 5 & response.direction == 'up'){
-			   	console.log('5 up')
 			   	transitionFiveUp()
 		   } else if (response.index == 5 & response.direction == 'down'){
-			   	console.log('5 down')
 			   	transitionFiveDown()
 		   } else if (response.index == 6 & response.direction == 'up'){
-			   	console.log('6 up')
 			   	transitionSixUp()
 		   } else if (response.index == 6 & response.direction == 'down'){
-			   	console.log('6 down')
 			   	transitionSixDown()
 		   } else if (response.index == 7 & response.direction == 'up'){
-			   	console.log('7 up')
 			   	transitionSevenUp()
 		   } else if (response.index == 7 & response.direction == 'down'){
-			   	console.log('7 down')
 			   	transitionSevenDown()
 		   } else if (response.index == 8 & response.direction == 'up'){
-			   	console.log('8 up')
 			   	transitionEightUp()
 		   } else if (response.index == 8 & response.direction == 'down'){
-			   	console.log('8 down')
 			   	transitionEightDown()
 		   } else {
-		   	console.log('else case, response index: ', response.index)
 		   }
 		 } 
 
@@ -311,9 +289,6 @@
 		function handleContainerExit(response) {
 			graphic.classed('is-fixed', false);
 			graphic.classed('is-bottom', response.direction === 'down');
-			if (response.direction === 'down') {
-				transitionExit()
-			}
 		}
 
 		function init() {
