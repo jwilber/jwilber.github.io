@@ -10,22 +10,24 @@
       Jared Wilber</a> <span style='opacity: .8;'>|</span> 11 March, 2019
     </p>
     <h1>Keep It Together</h1>
-    <h3> Using the tidyverse for machine learning.</h3>
+    <h3> Nested Workflows for Machine Learning with R.</h3>
   </center>
   <p>
-  I've recently discovered a new approach for doing data analysis in R. In one sentence, the approach can be summarised easily: <br><center> <span style='color: grey; font-weight:600'> Nest all related things together into a single data-frame.</span></center></p><p>It's a simple idea, but quite powerful for the following reasons:
-  <div style="margin-left: 5rem;">
+    Thanks to recent<i>ish</i> developments in the tidyverse (namely the tidyr and purrr packages), one can easily create effecictive machine-learning workflows via nested data structures.
+<!--    This post summarises an approach I've recently incorporated into my doing data analysis workflow in the R programming language. The approach can be summarised easily: <br><center> <span style='color: grey; font-weight:600'> Nest all related objects into the same data-frame.</span></center></p><p>I'm with you - the idea seems super simple - but it's quite powerful for the following reasons:
+ -->  <div style="margin-left: 5rem;">
   <ul>
-    <li>• It facilitates an easy mental model for working with data.</li>
+    <li>• It provides an easy mental model for working with data.</li>
+    <li>• It reduces the number of objects in your global environment.</li>
     <li>• It ensures that all related objects are stored together.</li>
-    <li>• It reduces code and environment clutter (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>).</li>
+    <li>• It reduces the amount code written (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>).</li>
     <li>• Every step propagates a <a href="">tidy</a> data structure, allowing for further analysis with ease.</li>
   </ul>
 </div></p>
 <p>
-  To present the idea, I'll use a common machine-learning workflow as a running example: trying out different preprocessing + model combinations. This workflow (discussed further in <a href='#references'>[5] & [6]</a>) comprises multiple steps and lends itself well as an example for nesting multiple objects into the same dataframe.
+  To present the idea, we'll work through a common machine-learning workflow: experimenting with different data preprocessing + machine learning model combinations. Such a workflow (discussed further in <a href='#references'>[5] & [6]</a>) comprises multiple steps and lends itself well as an example for nesting multiple objects into the same dataframe. Each step of this workflow outputs a new data object, and thus the overall example provides a nice guide for nesting data in R.
 <br><br>
-  This idea is not my own. Rather, what I'm presenting is a combination of things I've read online, in books, and from my own experimentation. Check out the <a href="#references">Referenes & Related Work</a> section at the bottom for more.
+  This idea is not my own. Rather, what I'm presenting is a combination of things I've read online, in books, and from my own experimentation. Definitely givethe <a href="#references">Referenes & Related Work</a> section at the bottom a viewing to learn about cool related stuff in R.
 	<br><br>
 <!--   The <a href="#">tidyverse</a> is a coherent set of R packages designed to work with tidy data. 
 Tons of awesome articles exist that describe how to use the tidyverse for EDA, data-wrangling, and general statistical inference tasks. However, there's not a lot online that points to how to use the stack for general machine learning workflows [what relevant resources I've found are linked at the bottom resources below for related content]. This is a shame, because the tidyverse can be used to inform machine learning analyses in a fairly elegant way.
@@ -42,13 +44,14 @@ This is especially powerful, because not only are all related objects stored tog
 <hr>
 <h2>Tidy Data</h2>
 
-<p>As a quick recap, tidy data refers to a consistent data structure as follows:</p>
+<p>The foundation of our method relies on the concept of <i>tidy data</i>[reference]. Recall that tidy data refers to a consistent data structure as follows:</p>
 <center><img src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png"></center>
 <p>
-<br><br>
+<br><br> This is probably how you structure your data already, so formalizing it may seem like overkill. However, z
 Structuring our data in a tidy format provides us an intuitive mental model for analysis, keeps both code *and* data objects organized, and allows us to work with tidyverse functions. <a href="#references">[1]</a>
+However, structuring our data in a tidy format not only provides us with an intuitive mental model for data analysis, but it allows us to seamlessly work with tidyverse functions. Our nested dataframe will itself be tidy, 
 <br><br>
-[perhaps here I can add a brief intro into the tools we'll be using (i.e. list-columns, <code class='func'>purrr</code>, and <code class='func'>caret</code>)]
+<!-- [perhaps here I can add a brief intro into the tools we'll be using (i.e. list-columns, <code class='func'>purrr</code>, and <code class='func'>caret</code>)] -->
 <br><br>
 As a running example, we'll look at data from the US McDonald's menu to see if we can predict an item's category (e.g. `Breakfast`, `Desserts`, `Snacks & Sides`) from its nutritional content (e.g. `Calories`, `Total Fat`, `Sodium`) <a href="#references">[2]</a>:
 </p>
@@ -83,7 +86,7 @@ menu
 
 
 <p>
-	Throughout our analysis, we'll be making heavy use of a (relatively) new tidy data structure: the <i>list-column</i>. Whereas typical dataframes are populated with atomic vectors, list-columns allow us to nest any R object inside our dataframe. To begin, we'll use <code class='func'>tidyr:enframe</code> to nest our data with an accompanying index column:
+	Throughout our analysis, we'll be making heavy use of a (relatively) new tidy data structure: the <i>list-column</i>. Whereas typical dataframes are populated with atomic vectors, list-columns allow us to nest any R object inside our dataframe. We'll use list-columns to nest entire dataframes, model objects, and other data types into our dataframe.<br><br>To begin, we'll use <code class='func'>tidyr:enframe</code> to nest our data with an accompanying index column:
 </p>
 <pre><code class='block'>
 <span style='color:#969896'># nest original data</span>
@@ -113,9 +116,9 @@ To achieve the above workflow using R, we require only the following: -->
 <hr>
 <h2>Feature Transformation</h2>
 <p>
-Feature transformation is an important step of any machine learning workflow.  <code class='func'>purrr</code> in R exposes functional tools for iteration. We'll make heavy use of these to grow our dataframe and aid in our analysis. 
-
-For presentation, we'll create our own function for feature transformation. Our function will allow us to apply a basic power transformation<a href="#references">[3]</a> to all numeric features in our dataframe:
+In order to work with nested data, we need a way to apply a function to each nested element. We achieve this in R via <code class='func'>purrr</code>, a library that exposes functional tools for iteration. Our workflow for using <code class='func'>purrr</code> is straightforward. First, define a function to be applied to a single data-frame. Then, use <code class='func'>purrr</code>'s <code class='func'>map</code>' suite of functions to apply the function over every row in the dataframe. This function will be applied inside a <code class='func'>dplyr::mutate</code> call, nesting our output via a list-column.
+<br><br>
+For presentation purposes, we'll create our own function for feature transformation. This function applies a basic power transformation<a href="#references">[3]</a> to all numeric features in our dataframe:
 </p>
 <pre><code class='block'>
 <span style='color:#969896'># function to apply a given power-transform to numerical columns</span>
@@ -128,11 +131,13 @@ power_transform <- <span style='color:coral;'>function</span>(df, pow) {
 </pre></code>
 
 <p>
-Once we've created our UDF, we can use purrr, R's fp package, to easily create a new list column, applying our function to our data wit multiple parameters. We want to apply and keep track of a number of different power transformations, so we'll create two new columns:
+Then, we carry out the <code class='func'>purrr::map</code> + <code class='func'>dplyr::mutate</code> workflow described above, furthering the development of our nested dataframe:
+<!-- Once we've created our function, to easily create a new list column, applying our function to our data wit multiple parameters. We want to apply and keep track of a number of different power transformations, so we'll create two new columns:
 
 `power`: A list of powers for our power transformations.
 `trns_data`: Our dataframe with applied power transformations.
-</p>
+As stated,  we use <code class='func'>purrr</code> map functions inside a 
+ --></p>
 <pre><code class='block'>
 <span style='color:#969896'># add 3 columns to data: power, transformed_data, and label</span>
 menu <- menu %>% 
@@ -152,17 +157,20 @@ menu
 4     4 &lt;tibble [260 x 22]&gt;   3   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt;
 </pre></code>
 <p>
-Our dataframe now has three additional columns: 1, 2,& 3. `transformed_data` uses <code class='func'>purrr::map2</code> to apply our user-defined function to two arguments in a row-wise manner: the `data` column and the `power` column. `label` uses <code class='func'>purrr</code>'s handy name shortcut<a href="#references">[4]</a> functionality to grab our respone variable, `Category`.
+<!-- Our dataframe now has three additional columns: 1, 2,& 3. `transformed_data` uses <code class='func'>purrr::map2</code> to apply our user-defined function to two arguments in a row-wise manner: the `data` column and the `power` column. `label` uses <code class='func'>purrr</code>'s handy name shortcut<a href="#references">[4]</a> functionality to grab our respone variable, `Category`. -->
 
+In the above code, we create three new columns for our data-frame: <i>power</i>, <i>trns_data</i>, and <i>label</i>. The <i>power</i> column is simply an atomic vector we define ourselves. We create <i>trns_data</i> by using <code class='func'>purrr::map2</code>, which allows us to map a function to two arguments. Note that we're feeding columns from the dataframe as arguments to the function. This ability to easily apply the same function to different rows of related data is what makes the nested workflow so powerful. The <i>label</i> column is created by taking advantage of <code class='func'>purrr</code>'s name selection capailities.
+</p>
 <hr>
 <h2> Machine Learning </h2>
-We'll add list-columns for ml algorithms along the same lines as earlier, using UDF's and <code class='func'>purrr</code>. To create our ml algorithms, we'll use <code class='func'>caret</code>, a package that wraps different ml packages in R with a uniform API.
+<p>
+We create list-columns for our machine-learning algorithms in a similar manner: combining functions, <code class='func'>purrr</code>, and <code class='func'>dplyr::mutate</code>.
+ <br><br>
+ To create our models, we'll use <code class='func'>caret</code>, a package that wraps different machine learning implementations in R with a uniform API.
 
-I take advantage of the consistent syntax provided by caret and create a function factory to output functions for each of our desired models:
-
-To easily create a function for each of our desired ml algorithms, I create a function factory. Thanks to the consistent syntax provided by <code class='func'>caret</code>, this is a breeze:
-
-Using this function factory, we create a list of our desired algorithms with ease:
+<!-- I take advantage of the consistent syntax provided by caret and create a function factory to output functions for each of our desired models: -->
+Rather than creating a separate function for each model, I'll write a function factory[reference] to produce the functions for us. Thanks to the consistent syntax provided by <code class='func'>caret</code>, this is a breeze:
+<br><br>
 </p>
 <pre><code class='block'>
 <span style='color:#969896'># machine learning model function factory</span>
@@ -176,7 +184,13 @@ mlFuncFact <- <span style='color:coral;'>function</span>(ml_method) {
   }
 }
 
-<span style='color:#969896'># create list of models</span>
+
+</pre></code>
+<p>
+Using this function factory, we create a list of our desired algorithms with ease.
+Note, because we want to enumerate each model + data-preprocessing combination, we'll first store our models into a separate data structure, and then combine them to our preprocessed data thereafter:
+</p>
+<pre><code class='block'>
 model_list <- list(
   decision_tree = mlFuncFact(<span style='color:coral;'>'rpart2'</span>),
   random_forest = mlFuncFact(<span style='color:coral;'>'ranger'</span>),
@@ -202,8 +216,8 @@ model_list
 </pre></code>
 
 <p>
-Next, we combine our models and our transformed data into a single data-frame. Recall we want to run each model + data-transformation combination. We can do this by creating a cartesian product (also known as a cross-join) of the two desired columns. Luckily for us, <code class='func'>tidyr</code> provides this functionality via the <code class='func'>crossing()</code> function:
-</p>
+ Recall that our goal is to run each model + data-transformation combination. We can do this by creating a cartesian product[add link] (also known as a cross-join) on our two dataframes. <code class='func'>tidyr</code> provides this functionality via the <code class='func'>crossing()</code> function:
+ </p>
 <pre><code class='block'>
 <span style='color:#969896'># cross-join original data with models</span>
 menu <- menu %>% 
@@ -226,6 +240,9 @@ menu
 10     2 &lt;tibble [260 x 22]&gt;   1   &lt;tibble [260 x 21]&gt; &lt;chr [260]&gt; knn             &lt;fn&gt;      
 # ... with 14 more row
 </pre></code>
+
+<p>
+  The output is a dataframe with nested columns corresponding to all of our possible data-preprocessing + machine learning combinations.
 
 
 	<h2>All Together Now</h2>
