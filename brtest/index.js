@@ -1,4 +1,4 @@
-const SIZE = 256, sampleNum = 7;
+const SIZE = 256, sampleNum = 11;
 let inputCanvas, outputContainer, statusMsg, transferBtn, sampleIndex = 0, modelReady = false, isTransfering = false;
 const inputImgs = [], outputImgs = [];
 
@@ -15,8 +15,8 @@ function setup() {
   transferBtn = select('#transferBtn').hide();
 
   // Display initial input image
-  loadImage('./images/painting351.png', inputImg => image(inputImg, 0, 0));
-
+  loadImage('./images/painting357.png', inputImg => image(inputImg, 0, 0));
+  
   // Display initial output image
   let out = createImg('./images/output.png');
   outputContainer.html('');
@@ -63,7 +63,7 @@ function transfer() {
     outputContainer.html('');
     // Create an image based result
     createImg(result.src).class('border-box').parent('output');
-    statusMsg.html('Done!');
+    statusMsg.html(' ');
     isTransfering = false;
   });
 }
