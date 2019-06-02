@@ -7,8 +7,6 @@
 	<title>Permutation Test: Visual Explanation</title>
 	<meta name="description" content="Permutation Test: Visual Explanation">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84472984-1"></script>
 	<script src=assets/d3.min.js></script>
 	<link rel="stylesheet" href="permutationTest.css">
 	<script src=assets/rough.min.js></script>
@@ -32,7 +30,7 @@
 			<span class='tooltip'>*<span class="tooltiptext">Proof that, yes, statistics is definitely very sexy</span></span>.
 
 			<br><br>
-			Unfortunately, a lot of statistical tests require complex assumptions and convoluted formulae. This is especially true of those methods taught in introductory courses, giving the false impression that experimental design is boring and unintuitive. 
+			Unfortunately, a lot of statistical tests require complex assumptions and convoluted formula. This is especially true of those methods taught in introductory courses, giving the false impression that experimental design is boring and unintuitive. 
 			But fret not, my valued reader - not all tests are so bad!
 			In what follows, I present a visual explanation for the <a href="#">permutation test</a>: an awesome nonparametric test that is light on assumptions, widely applicable, and very intuitive.
 		</p>
@@ -67,9 +65,9 @@
 			<div class='step' data-step='2'>
 				<h2 class='subheader'>Randomization</h2>
 				<p>As a first step, we randomly assign half of our sampled 	alpaca to the new shampoo, and half to the old. <br><br>
-				We say that the alpaca receiving the new shampoo belong to the <i>treatment</i> group, and the others to the <i>control</i> group. The assignment of an alpaca to a given shampoo is known as its <i>treatment assignment</i>.
+				We say that the alpaca receiving the new shampoo belong to the <i>treatment</i> group, and the others to the <i>control</i> group. The assignment of an alpaca to a given diet is known as its <i>treatment assignment</i>.
 				<br><br>
-				Randomization of treatment assignment is very important. It removes bias and confounding from our results, and provides the basis for the theory underpinning our statistical test.
+				Randomization of treatment assignment is very important. It removes bias and confunding from our results, and provides the basis for the theory underpinning our statistical test.
 				</p>
 			</div>
 			
@@ -81,7 +79,7 @@
 					In statistics jargon, every experimental unit has a <i>response</i> value. 
 					For us, each alpaca is an experimental unit, and its measure of wool quality after taking its shampoo is its response value. 
 					<br><br>
-					We can eyeball these values ourselves and get a feel for any perceived differences between the two shampoos. However, we'll need a more rigourous method to determine if the differences are <a href="https://www.statpac.com/surveys/statistical-significance.htm">statistically significant</a>.
+					We can eyeball these values ourselves and get a feel for any perceived differences between the two shampoos. However, , we'll need a more rigourous method to determine if the differences are <a href="https://www.statpac.com/surveys/statistical-significance.htm">statistically significant</a>.
 				 </p>
 			</div>
 			<div class='step' data-step='4'>
@@ -138,7 +136,7 @@
 				<p>
 					A p-value represents the probability of obtaining the observed values, assuming the null hypothesis is true. For us, it's the probability of obtaining the differences in wool quality we did, <i>assuming the new shampoo did not increase wool quality</i>. 
 					<br><br>
-					 To determine the outcome of our test, we compare our p-value to a <a href="https://statisticsbyjim.com/glossary/significance-level/">significance level</a>. This should be determined a priori, but we'll just say ours is 10%.
+					 To determine the outcome of our test, we compare our p-value to a <a href="https://statisticsbyjim.com/glossary/significance-level/">significance level</a>. This should be determined a prioir, but we'll just say ours is 10%.
 					 If the p-value is less than or equal to the significance level, we reject the null hypothesis; the outcome is said to be statistically significant.
 					 <br><br>
 					 For us, a low p-value signals that, assuming the null hypothesis is true, the probability of obtaining our initial differences in wool quality occurs with a low probability. A high p-value signals the opposite, such an outcome is likely under the null hypothesis.
@@ -229,6 +227,7 @@
 			var chartMargin = bodyWidth > 350 ? 32 : 10;
 			var textWidth = text.node().offsetWidth;
 			var chartWidth = graphic.node().offsetWidth - textWidth - chartMargin;
+			console.log('chartwidth:', chartWidth)
 			chart
 				.style('width', chartWidth + 'px')
 				.style('height', Math.floor(window.innerHeight / 1.2) + 'px');
@@ -243,44 +242,65 @@
 				return i === response.index;
 			})
 
+			// console.log('response index:' + response.index)
+
 			if (response.index == 0 & response.direction == 'down') {
+				console.log('0 down')
 				transitionZeroDown()
 			} else if (response.index == 0 & response.direction == 'up') {
+				console.log('0 up')
 				transitionZeroUp()
 			}else if (response.index == 1 & response.direction == 'down') {
+				console.log('1 down')
 				transitionOneDown()
 			} else if (response.index == 1 & response.direction == 'up') {
+				console.log('1 up')
 				transitionOneUp()
 			} else if (response.index == 2 & response.direction == 'up') {
+				console.log('2 up')
                 transitionTwoUp()
            } else if (response.index == 2 & response.direction == 'down') {
+           	    console.log('2 down')
                 transitionTwoDown()
 		   } else if (response.index == 3 & response.direction == 'up'){
+			   	console.log('3 up')
 			   	transitionThreeUp()
 			   	moveNodes()
 		   } else if (response.index == 3 & response.direction == 'down'){
+		   		console.log('3 down')
 		   		transitionThreeDown()
 		   } else if (response.index == 4 & response.direction == 'up'){
+			   	console.log('4 up')
 			   	transitionFourUp()
 		   } else if (response.index == 4 & response.direction == 'down'){
+			   	console.log('4 down')
 		   		transitionFourDown()
 		   } else if (response.index == 5 & response.direction == 'up'){
+			   	console.log('5 up')
 			   	transitionFiveUp()
 		   } else if (response.index == 5 & response.direction == 'down'){
+			   	console.log('5 down')
 			   	transitionFiveDown()
 		   } else if (response.index == 6 & response.direction == 'up'){
+			   	console.log('6 up')
 			   	transitionSixUp()
 		   } else if (response.index == 6 & response.direction == 'down'){
+			   	console.log('6 down')
 			   	transitionSixDown()
 		   } else if (response.index == 7 & response.direction == 'up'){
+			   	console.log('7 up')
 			   	transitionSevenUp()
 		   } else if (response.index == 7 & response.direction == 'down'){
+			   	console.log('7 down')
 			   	transitionSevenDown()
 		   } else if (response.index == 8 & response.direction == 'up'){
+			   	console.log('8 up')
 			   	transitionEightUp()
 		   } else if (response.index == 8 & response.direction == 'down'){
+			   	console.log('8 down')
 			   	transitionEightDown()
 		   } else {
+		   	console.log('else case, response index: ', response.index)
 		   }
 		 } 
 
@@ -291,6 +311,9 @@
 		function handleContainerExit(response) {
 			graphic.classed('is-fixed', false);
 			graphic.classed('is-bottom', response.direction === 'down');
+			if (response.direction === 'down') {
+				transitionExit()
+			}
 		}
 
 		function init() {
