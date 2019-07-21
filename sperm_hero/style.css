@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Gaegu');
+
+body {
+	font-family: 'Gaegu';
+	background-color: #ffdfe5;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 1.75rem;
+	letter-spacing: 10px;
+	text-transform: uppercase;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+p {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+canvas {
+  border: 2px solid pink;
+  border-radius: 15px;
+  padding: 0;
+  margin: auto;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#game-container {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  padding-right: 10px;
+  padding-top: 0;
+}
+
+.directions { 
+	max-width: 50%;
+}
+
+#directs {
+	text-align: left;
+	max-width: 75%;
+	margin-top: 0px;
+}
+
+.thanks {
+	font-size: .75rem;
+	font-weight: 10;
+}
+
+
+/*##################################################################*/
+/*ALERT BOX RULES*/
+/*##################################################################*/
+#modalContainer {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 10000;
+}
+
+#alertBox {
+    position: relative;
+    width: 40%;
+    min-height: 30%;
+    margin-top: 10%;
+    border: 1.5px solid #ffa7b6;
+    border-radius: 10px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 20px 30px;
+    text-align: center;
+}
+
+#modalContainer > #alertBox {
+    position:fixed;
+}
+
+#alertBox h1 {
+    margin: 0;
+    font: bold 2rem 'Gaegu',arial;
+    background-color: #ffc0cb;
+    color: #fff8f9;
+    padding: 2px 0 2px 5px;
+}
+
+#alertBox p {
+    font: .9rem 'Gaegu',arial;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#closeBtn {
+    display:block;
+    position:relative;
+    margin:5px auto;
+    padding: 7px;
+    border: 0 none;
+    width: 70px;
+    font: 1.5rem 'Gaegu',arial;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff8f9;
+    background-color: #ffc0cb;
+    border-radius: .5rem;
+    text-decoration: none;
+}
+
+#closeBtn:hover {
+	font-size: 1.6rem;
+	padding: 8px;
+	width: 75px;
+	font-weight: bold;
+}
+
+/*##################################################################*/
+/*END ALERT BOX RULES*/
+/*##################################################################*/
+
+.flex-container {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+
+#text-container {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  /*border: 2px dotted red;*/
+  max-height: 150px;
+  margin-bottom: 0;
+}
+
+.bottom-link {
+  font-size: 1rem;
+}
+
+button {
+    background:none!important;
+     border:none; 
+     font-size: 1rem;
+     padding:0!important;
+    /*optional*/
+    font-family: 'Gaegu';
+    text-transform: uppercase;
+    font-weight: bold; 
+   cursor:pointer;
+   text-decoration: underline;
+}
+button:hover{
+  font-size: 1.05rem;
+}
+
+#howto-text {
+  font-size: .95rem;
+  display: none;
+  max-width: 60%;
+}
