@@ -8,7 +8,7 @@ p, ul {
   color: black;
   opacity: .8;
   font-family: 'Comfortaa';
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: 100;
 }
 
@@ -43,7 +43,7 @@ a:hover {
 .func {
 	color: coral;
 	background-color: azure;
-	font-size: .85rem;
+	font-size: 1.1rem;
 	font-family: consolas;
 }
 code.block  {
@@ -52,6 +52,7 @@ code.block  {
     padding: 0.5em;
     color: #333333;
     overflow-x: auto;
+    font-size: 1rem;
 }
 
 ul {
@@ -59,7 +60,7 @@ ul {
 }
 
 img {
-	max-width: 500px;
+	max-width: 900px;
 	width: 100%;
 	height: auto;
 }
