@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="waffle.css">
+</head>
+<body>
+	<center ><h1 class="title">THE COLORS OF NATIONAL GEOGRAPHIC</h1>
+	<h4>By <a href="https://twitter.com/jdwlbr">Jared Wilber</a></h4>
+	<p>
+		The covers of National Geographic are always great.
+		This is no surprise - the magazine is renowned for its amazing photography, and each cover represents that month's <i>crème de la crème </i> of available photographs. Many elements contribute to this quality: Expert use of lighting. Consequential subject matter. Effective composition. The list goes on.
+		<br><br>
+		Chief among these factors is color, which is often used to drive the emotions and narrative of the cover. Below are the color palettes for each cover of National Geographic Magazine from 1965 to 2019. Hover over each palette to see the original photograph, and explore the change in colors over more than 50 years of excellent photography.
+
+		<br><br>
+	</p>
+	</center>
+	<div id="container"></div>
+
+	<script src="waffle.js"></script>
+	<center>
+		<br><br>
+	<h3>Data & Methodology</h3>
+	<p>
+		The covers were scraped and collected <a href="https://github.com/jwilber/National_Geographic_Covers/tree/master/data/images">here</a>. To extract color-palettes, I used <a href="https://ml5js.github.io/ml5-examples/d3/KMeans/KMeans_GaussianClusterDemo/">k-means</a>, a simple clustering algorithm,  on the rgb arrays of each cover.
+		 Because we care about the content of the cover, I removed the goldish border outlining each cover from every color palette. To do so, I mapped each cover's rgb array to its <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB</a> color space representation, and then used a nearest neighbors approach to remove the color closest to the CIELAB representation of <span style="color: gold;">rgb(254.8,210.7,4.2)</span>, the average rgb color extracted from the borders.
+		 <br><br>
+		 To avoid using SVG (which considerably slows the page load) the color palettes are represented as waffle charts composed entirely of div tags.
+		 Each waffle chart is a 10x10 grid of cells, with each cell representing one percentage point. Because not every color was extracted for each palette, no chart consists of exactly one-hundred cells.
+		 <br><br>
+		 This work does not exist in a vacuum! I was inspired by other cool color palette posts, such as 
+		 <a href="http://graphics.wsj.com/avengers/">this one for superheroes</a> and <a href="https://www.c82.net/work/?id=359">this one for the New Yorker</a>.
+	</p>
+	<p>
+		<br><br>
+		<i>Disclaimer: This project contains copyrighted material, the use of which has not been endorsed by National Geographic Magazine. I believe my  exploratory use meets the “fair use” prerequisite provided for in section 107 of the US Copyright Law. I do not claim ownership of any images and no images are for sale. The cover images shown are copyright by the original publisher.</i>
+		<br>
+		<br>
+	</p>
+
+</center>
+	<script>
+	      const months = [
+	      'January',
+	      'February',
+	      'March',
+	      'April',
+	      'May',
+	      'June',
+	      'July',
+	      'August',
+	      'September',
+	      'October',
+	      'November',
+	      'December'
+	      ];
+	    // add tooltip to document
+	    d3.select('body')
+	      .append('div')
+	      .attr('id', 'tooltip')
+	      .attr('style', 'position: absolute; opacity: 0;')
+	      
+	    
+	    d3.json("color_palettes.json").then(function(data){
+	          const years = Object.keys(data);
+	       years.reverse().map(year => {  
+	        // initialize DOM for data
+	        addYear(year);
+	        // get data for given year.
+	        months.map((curMonth, i) => {
+	          monthData = makeDataArray(data[year][curMonth])
+	          img_url = data[year][curMonth][0]['img_url']
+	          waffleChart(year, `.year${i+1}`, monthData, img_url, curMonth)
+	        })
+	       })
+	        });
+
+	</script>
+</body>
+</html>
