@@ -1,0 +1,24 @@
+{
+  "name": "jwilber.me",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "description": "My personal site.",
+  "author": "Jared Wilber",
+  "main": "dist/index.html",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist/ build/*",
+    "test": "echo \"Error: no test specified\" ",
+    "start": "parcel index.html",
+    "prebuild": "rm -rf dist",
+    "build": "parcel build index.html --public-url ./",
+    "release": "npm run build"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.35.1"
+  }
+}
