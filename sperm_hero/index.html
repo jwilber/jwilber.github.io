@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sperm Hero</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.3.1/dist/ml5.min.js"></script>
+    <script src="src/utils.js"></script>
+    <script src="src/sperm_hero.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+    <center><h1>Sperm Hero</h1></center>
+    <center><div class="directions">
+    <p>
+      <ul id="directs">
+        <li><u>Objective</u>: Be the last sperm-cell standing.</li>
+        <li>Move your head in the direction you want the sperm cell to move.</li>
+        <li>Dodge the various forms of birth control.</li>
+      </ul>
+ </p>
+    </div>
+  </center>
+  <div class='flex-container'>
+    <div id="game-container">
+      <div id="text-container"></div>
+    </div>
+    <div id="video-container"></div>
+  </div>
+    <p></p>
+  <center>
+    <div class="none">
+      <button class="bottom-link" onClick="revealHowTo()">How it works</button>
+      <div id="howto-text">
+        To track web cam movement, I used <a href="https://medium.com/tensorflow/real-time-human-pose-estimation-in-the-browser-with-tensorflow-js-7dd0bc881cd5">Pose Net</a>, a machine learning model that allows for Real-time Human Pose Estimation (shout out to <a href="https://ml5js.org/">ml5</a>). To control movement, I simply calculate directional deviations from your initial face placement, and move the sperm cell in the direction with the largest magnitude. Because everything is done in the browser, your web-cam data never leaves your computer, and is never stored anywhere. <br>
+        All the processing stuff was handled using <a href="https://p5js.org/">p5</a>.
+      </div>
+      <h2 class="thanks">Made with :) by <a href="https://twitter.com/jdwlbr">Jared Wilber</a></h2>
+    </div>
+
+  </center>
+
+  </body>
+</html>
