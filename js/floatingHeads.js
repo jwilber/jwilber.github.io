@@ -4,7 +4,7 @@ const me3 = "../images/me3.png";
 
 function jareds(p) {
   const numImgs = 5;
-  const spring = window.innerWidth < 900 ? 0.05 : 0.2;
+  const spring = window.innerWidth < 900 ? 1 : 0.2;
   let canvas;
   let jareds = [];
   let img1, img2, img3, img4, img5;
