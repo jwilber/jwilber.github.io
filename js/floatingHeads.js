@@ -1,8 +1,6 @@
 const me1 = "../images/me1.png";
 const me2 = "../images/me2.png";
 const me3 = "../images/me3.png";
-const me4 = "../images/me4.png";
-const me5 = "../images/me5.png";
 
 function jareds(p) {
   const numImgs = 5;
@@ -23,8 +21,6 @@ function jareds(p) {
     img1 = p.loadImage(me1);
     img2 = p.loadImage(me2);
     img3 = p.loadImage(me3);
-    img4 = p.loadImage(me4);
-    img5 = p.loadImage(me5);
   };
 
   p.setup = () => {
@@ -66,7 +62,7 @@ function jareds(p) {
       this.img = img;
       this.x = xIndex;
       this.y = yIndex;
-      this.xVelocity = window.innerWidth < 900 ? 1.5 : 4.5;
+      this.xVelocity = 4.5;
       this.yVelocity = 1.5;
       this.diameter = window.innerWidth < 1000 ? 150 : 220;
       this.id = idin;
