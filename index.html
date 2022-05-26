@@ -1,220 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.7/addons/p5.dom-min.js"
-    ></script> -->
-    <!-- <script type="module" src="js/floatingHeads.js"></script> -->
+	<head>
+		<meta charset="utf-8" />
+		<title>jared wilber</title>
+		<link rel="icon" href="./images/me.jpg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content="">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-ef820580.css">
+	<link rel="stylesheet" href="/_app/assets/global-7bb6027f.css">
+	<link rel="stylesheet" href="/_app/assets/pages/index.svelte-64524df6.css">
+	<link rel="modulepreload" href="/_app/start-6076cb80.js">
+	<link rel="modulepreload" href="/_app/chunks/index-89a54c6d.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-7dae5852.js">
+	<link rel="modulepreload" href="/_app/pages/index.svelte-8c3d95a1.js">
+	</head>
+	<body>
+		<div>
 
-    <title>jared</title>
-  </head>
-  <body>
-    <h1 id="name">jared wilber</h1>
-    <p id="about">
-      Thanks for visiting! I currently work at AWS AI. I'm interested in applied
-      statistics (experimentation & machine learning) and data visualization.
-      <br /><br />This page mostly for dataviz & JavaScript stuff I've made.
-      Feel free to reach out:
-    </p>
 
-    <div id="social-container">
-      <div id="icons">
-        <a href="https://twitter.com/jdwlbr"
-          ><img class="icon" src="icons8-twitter.svg" alt="link to twitter"
-        /></a>
-        <a href="https://github.com/jwilber"
-          ><img class="icon" src="icons8-github.svg" alt="link to github"
-        /></a>
-        <a href="https://www.linkedin.com/in/jared-wilber/"
-          ><img class="icon" src="icons8-linkedin.svg" alt="link to linkedin"
-        /></a>
-      </div>
-    </div>
-    <div id="static-content">
-      <h1 class="section-header">Talks</h1>
-      <p class="section-item">
-        <a href="https://visxai.io/"
-          >Visualization for AI Explainability at IEEE VIS 2021</a
-        >
-      </p>
-      <h1 class="section-header">software & interactive articles</h1>
-    </div>
-    <div id="content">
-      <div class="project-grid">
-        <li class="project-wrapper">
-          <a href="https://github.com/jwilber/roughViz"
-            ><div><img src="media/roughviz.png" /></div>
-            <h4 class="project-title">roughViz.js</h4>
-            <p class="project-description">
-              Reusable JavaScript library for creating sketchy/hand-drawn styled
-              charts in the browser, based on D3v5 &amp; roughjs.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="https://mlu-explain.github.io/decision-tree/"
-            ><div><img src="media/ogimage-decision-tree.png" /></div>
-            <h4 class="project-title">Decision Trees</h4>
-            <p class="project-description">
-              An explanation of the Decision Tree algorithm in machine learning:
-              how the tree makes its splits, the concepts of Entropy and
-              Information Gain, and why going too deep is problematic.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="https://pudding.cool/2018/06/skate-music/"
-            ><div><img src="media/skatemusic.jpg" /></div>
-            <h4 class="project-title">The Good, the Rad, and the Gnarly</h4>
-            <p class="project-description">
-              'An exploration into the music of skateboarding'. Visual essay I
-              created for <b>The Pudding</b>.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="https://mlu-explain.github.io/double-descent/"
-            ><div><img src="media/dd1ogimage.png" /></div>
-            <h4 class="project-title">Double Descent: A Visual Introduction</h4>
-            <p class="project-description">
-              An introduction to the double descent phenomenon in modern machine
-              learning: what it is, how it relates to the bias-variance
-              tradeoff, and a theory of what lies behind.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="https://mlu-explain.github.io/double-descent2/"
-            ><div><img src="media/dd2ogimage.png" /></div>
-            <h4 class="project-title">
-              Double Descent: A Mathematical Explanation
-            </h4>
-            <p class="project-description">
-              A mathematical explanation of the double descent phenomenon,
-              building on the cubic spline example introduced in the prior
-              article.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="https://mlu-explain.github.io/bias-variance/"
-            ><div><img src="media/bvogimage.png" /></div>
-            <h4 class="project-title">The Bias Variance Tradeoff</h4>
-            <p class="project-description">
-              Understand the tradeoff between under- and over-fitting models,
-              how it relates to bias and variance, and explore interactive
-              examples related to LOESS and KNN.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="./permutationtest"
-            ><div><img src="media/permtest.jpeg" /></div>
-            <h4 class="project-title">The Permutation Test</h4>
-            <p class="project-description">
-              A 'scrolly-telling' visual tutorial of statistical testing with
-              hand-drawn SVG aesthetics.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="http://4plymag.com/filmers/"
-            ><div><img src="media/filmers.png" /></div>
-            <h4 class="project-title">
-              The Networks of Skateboarding Filmmakers
-            </h4>
-            <p class="project-description">
-              A look into the networks (graphs) of skateboarding filmmakers and
-              the skateboarders they film.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="/datasets"
-            ><div><img src="media/pomo.jpg" /></div>
-            <h4 class="project-title">Cool Datasets</h4>
-            <p class="project-description">
-              A curated list of some datasets that I created.
-            </p></a
-          >
-        </li>
+<div id="nav" class="svelte-1a8xb2u"><h2><a href="./" class="svelte-1a8xb2u">About Me</a></h2>
+	<h2><a href="./projects" class="svelte-1a8xb2u">Projects</a></h2></div>
+<main class="svelte-14l3s6r"><div class="content-wrapper"><div class="column-left column"><div id="intro" class="svelte-14l3s6r"><h1 class="svelte-14l3s6r">Hey! I&#39;m Jared</h1>
+				<img src="./images/me.jpg" alt="my face spinning in circles" class="face svelte-14l3s6r"></div>
 
-        <li class="project-wrapper">
-          <a href="http://4plymag.com/fredgall/"
-            ><div><img src="media/gall.png" /></div>
-            <h4 class="project-title">4PLYMAG: All The Gall</h4>
-            <p class="project-description">
-              An analysis of Fred Gall's prolific skateboarding career.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="/nest"
-            ><div><img src="media/nest.png" /></div>
-            <h4 class="project-title">Nested Machine Learning Workflows</h4>
-            <p class="project-description">
-              An introduction to nested machine learning workflows in R with
-              <b>tidyr</b> &amp; <b>purrr</b>.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="http://4plymag.com/koston/"
-            ><div><img src="media/koston.png" /></div>
-            <h4 class="project-title">4PLYMAG: Eric Koston</h4>
-            <p class="project-description">
-              A look and analysis the professional skateboarding career of Eric
-              Koston.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="/sperm_hero"
-            ><div><img src="media/spermhero.png" /></div>
-            <h4 class="project-title">Sperm Hero</h4>
-            <p class="project-description">
-              A game where you control a sperm cell with your head and dodge
-              various forms of birth control.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a href="./natgeo_colors"
-            ><div><img src="media/natgeo.png" /></div>
-            <h4 class="project-title">The Colors of National Geographic</h4>
-            <p class="project-description">
-              Explore the color palettes of <b>National Geographic Magazine</b>.
-            </p></a
-          >
-        </li>
+			<p class="svelte-14l3s6r"><br>
+				I&#39;m a <span class="bold">developer/data scientist at AWS AI</span>, currently based in San
+				Diego, California 🌴.
+				<br><br>Online, I&#39;m the author of a library for
+				<a class="bold svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/roughViz">drawing hand-drawn charts in the browser
+				</a>
+				, create
+				<a class="bold svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/">interactive explanations of machine learning concepts for Amazon</a>
+				, maintain a few fun
+				<a class="bold svelte-14l3s6r" href="./datasets">open datasets</a>, and write data-driven
+				<a class="bold svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://pudding.cool/2018/06/skate-music/">articles about skateboarding</a>. (See <a class="bold svelte-14l3s6r" href="./projects">projects</a> for more).
+				<br><br>
+				Offline, I like to surf, skateboard, eat good food, and practice yoga (still
+				can&#39;t sit cross-legged, though).<br><br></p>
+			<p class="icon-links svelte-14l3s6r">Feel free to reach out:  
+				<a class="icon-a svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://twitter.com/jdwlbr"><img class="icon svelte-14l3s6r" src="icons/icons8-twitter.svg" alt="link to twitter"></a> 
+				<a class="icon-a svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber"><img class="icon svelte-14l3s6r" src="icons/icons8-github.svg" alt="link to github"></a> 
+				<a class="icon-a svelte-14l3s6r" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/jared-wilber/"><img class="icon svelte-14l3s6r" src="icons/icons8-linkedin.svg" alt="link to linkedin"></a></p></div></div>
+</main>
 
-        <li class="project-wrapper">
-          <a href="/berkeley_salary"
-            ><div><img src="media/berkeley.png" /></div>
-            <h4 class="project-title">U.C. Berkeley: Professor Salaries</h4>
-            <p class="project-description">
-              Interactively explore the salaries of U.C. Berkeley faculty.
-            </p></a
-          >
-        </li>
-        <li class="project-wrapper">
-          <a
-            href="http://www.jenkemmag.com/home/2019/07/31/statistical-analysis-every-jim-greco-clip/"
-            ><div><img src="media/jenkem.png" /></div>
-            <h4 class="project-title">Jenkem Mag</h4>
-            <p class="project-description">
-              Sometimes I do data-driven stuff for <b>Jenkem Mag</b>, a
-              skateboard magazine.
-            </p></a
-          >
-        </li>
-      </div>
-    </div>
-  </body>
+
+		<script type="module" data-sveltekit-hydrate="18otzk6">
+		import { start } from "/_app/start-6076cb80.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="18otzk6"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-7dae5852.js"),
+						import("/_app/pages/index.svelte-8c3d95a1.js")
+				],
+				params: {},
+				routeId: ""
+			}
+		});
+	</script></div>
+	</body>
 </html>
