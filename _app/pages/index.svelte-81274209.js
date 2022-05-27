@@ -1,4 +1,4 @@
-import{S as Rt,i as Bt,s as Dt,e as a,t as n,k as ut,c as s,a as c,h as o,d as i,m as dt,b as t,K as O,g as Gt,G as e,n as ft}from"../chunks/index-89a54c6d.js";/* empty css                       */function Mt(jt){let f,S,d,h,j,V,z,k,ht,C,r,H,P,R,q,F,J,N,W,v,K,L,g,Q,T,w,U,X,m,Y,Z,I,$,tt,et,rt,at,st,lt,nt,u,ot,p,A,vt,it,b,E,gt,ct,_,y,mt;return{c(){f=a("main"),S=a("div"),d=a("div"),h=a("div"),j=a("h1"),V=n("Hey! I'm Jared"),z=ut(),k=a("img"),C=ut(),r=a("p"),H=a("br"),P=n(`
+import{S as Rt,i as Bt,s as Dt,e as a,t as n,k as ut,c as s,a as c,h as o,d as i,m as dt,b as t,K as O,g as Gt,G as e,n as ft}from"../chunks/index-d5aaada3.js";/* empty css                       */function Mt(jt){let f,S,d,h,j,V,z,k,ht,C,r,H,P,R,q,F,J,N,W,v,K,L,g,Q,T,w,U,X,m,Y,Z,I,$,tt,et,rt,at,st,lt,nt,u,ot,p,A,vt,it,b,E,gt,ct,_,y,mt;return{c(){f=a("main"),S=a("div"),d=a("div"),h=a("div"),j=a("h1"),V=n("Hey! I'm Jared"),z=ut(),k=a("img"),C=ut(),r=a("p"),H=a("br"),P=n(`
 				I'm a `),R=a("span"),q=n("developer/data scientist at AWS AI"),F=n(`, currently based in San
 				Diego, California \u{1F334}.
 				`),J=a("br"),N=a("br"),W=n(`Online, I'm the author of a library for
