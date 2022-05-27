@@ -1,0 +1,538 @@
+/* Normalize */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td, legend {
+    margin: 0;
+    padding: 0;
+}
+h1 { font-family: "museo sans rounded", Arial, sans-serif; font-weight: 500; font-size: 100; color: #44505D;}
+h2 { font-family: "museo sans rounded", Arial, sans-serif; font-weight: 900; font-size: 500; color: #44505D;}
+
+h3,h4,h5,h6 { font-family: "museo sans rounded", Arial, sans-serif; font-weight: bold; font-size: 100%; color: #44505D;}
+address, caption, cite, code, dfn, th, var { font-style: normal; font-weight: normal; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset,img { border: 0; }
+caption,th { text-align: left; }
+/* @end Normalize */
+
+
+/* General */
+body {
+  font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: #44505D;
+  margin: auto;
+  position: relative;
+  width: 954px;
+}
+form {
+    font-size: 13.5px;
+}
+.clr { clear: both; }
+/* @end General */
+
+
+
+/* Filters */
+#filters {
+    height: 55px;
+}
+    #filters label {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    #filters #leftfilters {
+        float: left;
+        width: 160px;
+        border-right: 1px solid #e0e0e0;
+        height: 90px;
+        margin-right: 20px;
+    }
+        #filters #stateselect {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+    #filters #rightfilters {
+        width: 763px;
+        float: left;
+    }
+/* @end Filters */    
+
+
+
+/* Progress loader */
+#loadprogress {
+    position: relative;
+    top: -350px;
+    left: 470px;
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1.4em;
+}
+/* @end Progress loader */
+
+
+/* Treemap */
+
+.node {
+    border: solid 1px #999;
+    font-size: 10.5px;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.2em;
+    overflow: hidden;
+    position: absolute;
+    color: #44505D;
+    cursor: default;
+    background: #fff;
+}
+
+.parent.node {
+    border: 1px solid #999;
+    background: #999;
+}
+.node .childlabel {
+    padding: 2px 0px 0 4px;
+}
+.parentlabel {
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    background-color: #42C2F6;
+    pointer-events: none;
+    display: none;
+}
+
+
+#occundefined {
+    background: #999;
+}
+.node.highlight {
+    background: #50D1BF;
+/*    background: black;*/
+    color: white;
+}
+
+
+/* Highlights for each cause category */
+
+
+
+.node.healthcarehighlight {
+    background: #F77462;
+/*    background: black;*/
+    color: white;
+}
+
+.node.humanserviceshighlight {
+    background: #fdbf6f;
+/*    background: black;*/
+    color: white;
+}
+
+.node.humanserviceshighlight_par {
+    background: #fdbf6f;
+    position: absolute;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+
+}
+
+.node.educationhighlight {
+    background: #1f78b4;
+/*    background: black;*/
+    color: white;
+}
+
+.node.educationhighlight_par {
+    background: #1f78b4;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+
+}
+
+.node.communityhighlight {
+    background: #F77462;
+/*    background: black;*/
+    color: white;
+}
+
+.node.communityhighlight_par {
+    background: #F77462;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.religionhighlight {
+    background: #bebada ;
+/*    background: black;*/
+    color: white;
+}
+
+.node.religionhighlight_par {
+    background: #bebada ;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.humanrightshighlight {
+    background: #ccebc5;
+/*    background: black;*/
+    color: white;
+}
+
+.node.humanrightshighlight_par {
+    background: #ccebc5;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.povertyhighlight {
+    background: #ffed6f;
+/*    background: black;*/
+    color: white;
+}
+
+.node.povertyhighlight_par {
+    background: #ffed6f;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.interaidhighlight {
+    background: #ff7f00;
+    color: white;
+}
+
+
+.node.disasterhighlight {
+    background: #F77462;
+    color: white;
+}
+
+.node.disasterhighlight_par {
+    background: #F77462;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.environmenthighlight {
+    background: #e31a1c;
+/*    background: black;*/
+    color: white;
+}
+
+.node.environmenthighlight_par {
+    background: #e31a1c;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.animalshighlight {
+    background: #80b1d3;
+/*    background: black;*/
+    color: white;
+}
+
+.node.animalshighlight_par {
+    background: #80b1d3;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+.node.militaryhighlight {
+    background: #33a02c;
+/*    background: black;*/
+    color: white;
+}
+
+.node.militaryhighlight_par {
+    background: #33a02c;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+
+}
+
+
+.node.otherhighlight {
+    background: #b2df8a ;
+/*    background: black;*/
+    color: white;
+}
+
+.node.familyhighlight {
+    background: #1f78b4;
+/*    background: black;*/
+    color: white;
+}
+
+.node.politicalhighlight {
+    background: #a6cee3;
+/*    background: black;*/
+    color: white;
+}
+
+.node.politicalhighlight_par {
+    background: #a6cee3;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+
+}
+
+.node.healthcarehighlight {
+    background: #8dd3c7;
+
+/*    background: black;*/
+    color: white;
+}
+
+.node.healthcarehighlight_par {
+    background: #8dd3c7;
+    position: absolute;
+    text-transform: uppercase;
+    font-family: "museo sans rounded", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    overflow: hidden;
+    color: white;
+    pointer-events: none;
+    display: none;
+}
+
+/* End highlights for cause category */
+
+
+
+.node.highlight:hover, .node:hover {
+    background: #42c2f6;
+    color:white;
+    font-family: "museo sans rounded", Arial, sans-serif;
+}
+.node.selected {
+    background: #50D1BF;
+    color: #000;
+
+}
+.parent.node:hover {
+    background: #999;
+}
+/* @end Treemap */
+
+
+
+/* Slider */
+.axis {
+    font: 10px "museo sans rounded", sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.axis .domain {
+    fill: none;
+    stroke: #333;
+    stroke-opacity: .4;
+    stroke-width: 7.5px;
+    stroke-linecap: square;
+}
+
+.slider .highlighter {   /* this is the slide bar */
+    fill: #42C2F6;    /* line across bar */
+    stroke: #50D1BF;
+/*    fill: black;*/
+/*    stroke: black;*/
+}
+
+.axis .halo {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 6px;
+    stroke-linecap: square;
+}
+
+.slider .handle {
+    fill: #828B94;     
+    stroke: #000;
+    stroke-opacity: .5;
+    stroke-width: 1.25px;
+    pointer-events: none;
+}
+/* @end Slider */
+
+
+
+/* Tooltip */
+#tooltip {
+    position: absolute;
+    width: 200px;
+    line-height: 1.1em;
+    height: auto;
+    padding: 8px;
+    background-color: #fff;
+    pointer-events: none;
+    font-size: 12px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    border: 1px solid #ddd;
+}
+#tooltip.hidden {
+    display: none;
+}
+#tooltip #jobgroup {
+    font-size: 9px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+#tooltip #jobtitle {
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #44505D;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 7px;
+}
+#tooltip #jobemptot {
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #44505D;
+    text-align: center;
+}
+#tooltip #jobsalary {
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #44505D;
+    margin-bottom: 5px;
+    text-align: center;
+}
+/* @end Tooltip */
+
+#stateselect {
+    font-size: 12px; 
+    text-align: right;
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #44505D;
+}
+
+#showjobcats {
+    font-size: 30px; 
+    text-align: right;
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #44505D;
+}
+
+
+#statesmenu {
+    font-size: 12px; 
+    text-align: right;
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #44505D;
+}
+
+#credits { 
+    font-size: 10px; 
+    text-align: right;
+    font-family: "museo sans rounded", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #44505D;
+}
