@@ -53,7 +53,7 @@ h1.section-header {
 a {
   font-family: "Roboto";
   color: black;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -71,6 +71,7 @@ a:hover {
 
 a.project-link {
   background-image: none;
+  text-decoration: underline;
 }
 
 .project-grid {

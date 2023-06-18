@@ -157,6 +157,10 @@ h1 {
   font-family: "Roboto";
 }
 
+.strike-through {
+  text-decoration: line-through;
+}
+
 /* mobile */
 @media (max-width: 740px) {
   p {
