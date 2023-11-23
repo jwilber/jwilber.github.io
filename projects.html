@@ -26,6 +26,16 @@
 
       <div id="static-content">
         <h1 class="section-header">Talks</h1>
+        <p class="talk">
+          <a
+            class="project-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://visxai.io/"
+          >
+            IEEE VIS 2023: A Visual Introduction to Neural Networks</a
+          >
+        </p>
         <p class="talk">Amazon WebDevCon 2022: Why Interactive Articles?</p>
 
         <p class="talk">
@@ -35,25 +45,32 @@
             rel="noopener noreferrer"
             href="https://visxai.io/"
           >
-            IEEE VIS 2021: Visualization for AI Explainability</a
+            IEEE VIS 2021: A Mathematical Explanation of Double Descent</a
           >
+          
         </p>
         <p class="talk">PHX DataCon 2018: Tidy Machine Learning Workflows</p>
         <h1 class="section-header">press</h1>
-        <p class="'talk"><a
+        <p class="talk"><a
+          class="project-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.ycombinator.com/companies/cambioml"
+        >YCombinator: CambioML</a></p>
+        <p class="talk"><a
           class="project-link"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.amazon.science/working-at-amazon/mlu-data-scientist-jared-wilber"
         >Working At Amazon: Jared Wilber</a></p>
-        <p class="'talk"><a
+        <p class="talk"><a
           class="project-link"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.amazon.science/latest-news/amazon-machine-learning-university-new-courses-mlu-explains"
         >Amazon's Machine Learning University expands with MLU Explain</a></p>
 
-        <h1 class="section-header">software + interactive articles</h1>
+        <h1 class="section-header">open-source</h1>
       </div>
       <div id="content">
         <div class="project-grid">
@@ -62,8 +79,8 @@
               class="project-link"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/jwilber/roughViz"
-              ><div><img src="./media/roughviz.png" /></div>
+              href="./roughViz/"
+              ><div><img src="./media/rv1.png" /></div>
               <h4 class="project-title">roughViz.js</h4>
               <p class="project-description">
                 Reusable JavaScript library for creating sketchy/hand-drawn
@@ -71,16 +88,49 @@
               </p></a
             >
           </li>
+
           <li class="project-wrapper">
             <a
               class="project-link"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://mlu-explain.github.io/neural-networks/"
-              ><div><img src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-neural-networks.jpg" /></div>
-              <h4 class="project-title">Neural Networks</h4>
+              href="https://github.com/CambioML/pykoi"
+              ><div><img src="./media/pykoi.png" /></div>
+              <h4 class="project-title">pykoi</h4>
               <p class="project-description">
-                Learn about neural networks, the backbone of many popular algorithms today.
+              Python library for LLMs providing UI & code for data & feedback collection, finetuning (RLHF & RAG), and model comparisons.
+              </p></a
+            >
+          </li>
+
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mlu-explain.github.io/"
+              ><div><img src="./media/mlu1.png" /></div>
+              <h4 class="project-title">MLU-Explain</h4>
+              <p class="project-description">
+                Visual, interactive explanations of core machine learning concepts and algorithms.</p></a
+            >
+          </li>
+     
+   
+
+      
+       
+       
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.cambioml.com/gpuv/"
+              ><div><img src="./media/gpuv.png"  /></div>
+              <h4 class="project-title">gpuv</h4>
+              <p class="project-description">
+                A python library to visualize your gpu usage, and optionally, save it to a csv file.
               </p></a
             >
           </li>
@@ -89,12 +139,11 @@
               class="project-link"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://mlu-explain.github.io/linear-regression/"
-              ><div><img src="images/thumbnail-linear-regression.jpg" /></div>
-              <h4 class="project-title">Linear Regression</h4>
+              href="./datasets.html"
+              ><div><img src="./media/rv2.png" /></div>
+              <h4 class="project-title">svelte2jupyter</h4>
               <p class="project-description">
-                Interactively learn about linear regression models as they're
-                commonly used in the context of machine learning.
+                A python library to render Svelte components directly inside Jupyter Notebooks with one line of code, and turn them into dependency-free, reusable python classes.
               </p></a
             >
           </li>
@@ -103,15 +152,144 @@
               class="project-link"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://pudding.cool/2018/06/skate-music/"
-              ><div><img src="./media/skatemusic.jpg" /></div>
-              <h4 class="project-title">The Good, the Rad, and the Gnarly</h4>
+              href="./datasets.html"
+              ><div><img src="./media/pomo.jpg" /></div>
+              <h4 class="project-title">Datasets</h4>
               <p class="project-description">
-                'An exploration into the music of skateboarding'. Visual essay I
-                created for <b>The Pudding</b>.
+                A curated list of some cool datasets that I created. (Bob Ross paintings, National Geographic Covers, Pomological Watercolors, and skate video music).
               </p></a
             >
           </li>
+
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer external"
+              href="./sperm_hero"
+              ><div><img src="./media/spermhero.png" /></div>
+              <h4 class="project-title">Sperm Hero</h4>
+              <p class="project-description">
+                A game where you control a sperm cell with your head and dodge
+                various forms of birth control.
+              </p></a
+            >
+          </li>
+      
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://4plymag.com"
+              ><div><img src="./media/4plymag.png" /></div>
+              <h4 class="project-title">
+                4PLY MAGAZINE
+              </h4>
+              <p class="project-description">
+                An online, data-driven skateboard magazine. (Followed by Tony Hawk!)
+              </p></a
+            >
+          </li>
+
+  
+
+          </div>
+          </div>
+          
+
+          <h1 class="section-header">interactive articles</h1>
+          <div id="content">
+            <div class="project-grid">
+
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mlu-explain.github.io/neural-networks/"
+                  ><div><img src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-neural-networks.jpg" /></div>
+                  <h4 class="project-title">Neural Networks</h4>
+                  <p class="project-description">
+                    Learn about neural networks, the backbone of many popular algorithms today.
+                  </p></a
+                >
+              </li>
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="./permutationtest"
+                  ><div><img src="./media/permtest.jpeg" /></div>
+                  <h4 class="project-title">The Permutation Test</h4>
+                  <p class="project-description">
+                    A 'scrolly-telling' visual tutorial of statistical testing with
+                    hand-drawn SVG aesthetics.
+                  </p></a
+                >
+              </li>
+
+         
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://pudding.cool/2018/06/skate-music/"
+                  ><div><img src="./media/skatemusic.jpg" /></div>
+                  <h4 class="project-title">The Good, the Rad, and the Gnarly</h4>
+                  <p class="project-description">
+                    An exploration into the music of skateboarding. Visual essay for <b>The Pudding</b>.
+                  </p></a
+                >
+              </li>
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mlu-explain.github.io/linear-regression/"
+                  ><div><img src="images/thumbnail-linear-regression.jpg" /></div>
+                  <h4 class="project-title">Linear Regression</h4>
+                  <p class="project-description">
+                    Interactively learn about linear regression models as they're
+                    commonly used in the context of machine learning.
+                  </p></a
+                >
+              </li>
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mlu-explain.github.io/train-test-validation/"
+                  ><div><img src="images/train-test-validation.jpeg" /></div>
+                  <h4 class="project-title">Train, Test, And Validation Sets</h4>
+                  <p class="project-description">
+                    Learn why it is best practice to split your data into training,
+                    testing, and validation sets, and explore the utility of each
+                    with a live machine learning model.
+                  </p></a
+                >
+              </li>
+
+              <li class="project-wrapper">
+                <a
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer external"
+                  href="https://mlu-explain.github.io/equality-of-odds/"
+                  ><div><img src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-equality-of-odds.jpg" /></div>
+                  <h4 class="project-title">Equality Of Odds</h4>
+                  <p class="project-description">
+                    Explore equality of odds, a metric used to quantify unfairness and remove bias from machine learning models.
+                  </p></a
+                >
+              </li>
+              
+       
+    
           <li class="project-wrapper">
             <a
               class="project-link"
@@ -126,21 +304,6 @@
                 Learn how logistic regression can be used for binary
                 classification in machine learning through an interactive
                 example.
-              </p></a
-            >
-          </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://mlu-explain.github.io/train-test-validation/"
-              ><div><img src="images/train-test-validation.jpeg" /></div>
-              <h4 class="project-title">Train, Test, And Validation Sets</h4>
-              <p class="project-description">
-                Learn why it is best practice to split your data into training,
-                testing, and validation sets, and explore the utility of each
-                with a live machine learning model.
               </p></a
             >
           </li>
@@ -159,21 +322,8 @@
               </p></a
             >
           </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://mlu-explain.github.io/decision-tree/"
-              ><div><img src="./media/ogimage-decision-tree.png" /></div>
-              <h4 class="project-title">Decision Trees</h4>
-              <p class="project-description">
-                An explanation of the Decision Tree algorithm in machine
-                learning: how the tree makes its splits, the concepts of Entropy
-                and Information Gain, and why going too deep is problematic.
-              </p></a
-            >
-          </li>
+   
+         
           <li class="project-wrapper">
             <a
               class="project-link"
@@ -187,6 +337,37 @@
                 often a poor metric. This article covers two common
                 alternatives, Precision and Recall, as well as the F1-score and
                 Confusion Matrices.
+              </p></a
+            >
+          </li>
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mlu-explain.github.io/bias-variance/"
+              ><div><img src="./media/bvogimage.png" /></div>
+              <h4 class="project-title">The Bias Variance Tradeoff</h4>
+              <p class="project-description">
+                Understand the tradeoff between under- and over-fitting models,
+                how it relates to bias and variance, and explore interactive
+                examples related to LOESS and KNN.
+              </p></a
+            >
+          </li>
+   
+          <li class="project-wrapper">
+            <a
+              class="project-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mlu-explain.github.io/decision-tree/"
+              ><div><img src="./media/ogimage-decision-tree.png" /></div>
+              <h4 class="project-title">Decision Trees</h4>
+              <p class="project-description">
+                An explanation of the Decision Tree algorithm in machine
+                learning: how the tree makes its splits, the concepts of Entropy
+                and Information Gain, and why going too deep is problematic.
               </p></a
             >
           </li>
@@ -239,76 +420,10 @@
               </p></a
             >
           </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://mlu-explain.github.io/bias-variance/"
-              ><div><img src="./media/bvogimage.png" /></div>
-              <h4 class="project-title">The Bias Variance Tradeoff</h4>
-              <p class="project-description">
-                Understand the tradeoff between under- and over-fitting models,
-                how it relates to bias and variance, and explore interactive
-                examples related to LOESS and KNN.
-              </p></a
-            >
-          </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="./datasets.html"
-              ><div><img src="./media/pomo.jpg" /></div>
-              <h4 class="project-title">Datasets</h4>
-              <p class="project-description">
-                A curated list of some cool datasets that I created.
-              </p></a
-            >
-          </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="./permutationtest"
-              ><div><img src="./media/permtest.jpeg" /></div>
-              <h4 class="project-title">The Permutation Test</h4>
-              <p class="project-description">
-                A 'scrolly-telling' visual tutorial of statistical testing with
-                hand-drawn SVG aesthetics.
-              </p></a
-            >
-          </li>
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer external"
-              href="https://mlu-explain.github.io/equality-of-odds/"
-              ><div><img src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-equality-of-odds.jpg" /></div>
-              <h4 class="project-title">Equality Of Odds</h4>
-              <p class="project-description">
-                Explore equality of odds, a metric used to quantify unfairness and remove bias from machine learning models.
-              </p></a
-            >
-          </li>
+          
+        
 
-          <li class="project-wrapper">
-            <a
-              class="project-link"
-              target="_blank"
-              rel="noopener noreferrer external"
-              href="./sperm_hero"
-              ><div><img src="./media/spermhero.png" /></div>
-              <h4 class="project-title">Sperm Hero</h4>
-              <p class="project-description">
-                A game where you control a sperm cell with your head and dodge
-                various forms of birth control.
-              </p></a
-            >
-          </li>
+  
           <li class="project-wrapper">
             <a
               class="project-link"
@@ -328,17 +443,15 @@
               class="project-link"
               target="_blank"
               rel="noopener noreferrer"
-              href="http://4plymag.com/filmers/"
-              ><div><img src="./media/filmers.png" /></div>
-              <h4 class="project-title">
-                The Networks of Skateboarding Filmmakers
-              </h4>
+              href="./natgeo_colors/"
+              ><div><img src="./media/natgeo.png" /></div>
+              <h4 class="project-title">Colors: National Geographic Covers</h4>
               <p class="project-description">
-                A look into the networks (graphs) of skateboarding filmmakers
-                and the skateboarders they film.
+                The color-palettes of National Geographic covers, 1965-2018.
               </p></a
             >
           </li>
+     
 
           <li class="project-wrapper">
             <a
