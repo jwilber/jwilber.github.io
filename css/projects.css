@@ -35,13 +35,27 @@ p.talk {
 h1.section-header {
   font-family: "Roboto";
   font-weight: bold;
-  padding-top: 1.3rem;
+  padding-top: 1.1rem;
   margin-bottom: 0.5rem;
   padding-bottom: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-transform: lowercase;
   text-align: left;
   text-decoration: underline;
+}
+
+h1.interactive-header {
+  font-family: "Roboto";
+  font-weight: bold;
+  padding-top: 1.1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
+  font-size: 1.1rem;
+  text-transform: lowercase;
+  text-align: left;
+  text-decoration: underline;
+  margin: auto;
+  padding-left: 10%;
 }
 
 #content {
