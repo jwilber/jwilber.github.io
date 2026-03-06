@@ -2521,7 +2521,7 @@ function print() { __p += __j.call(arguments, '') }
                         AS INTEGER))
                    END AS "${cA.name}_bin"
             FROM features
-          `),KA.push({name:cA.name,type:"sequential",nUnique:li});d(KA),F.current=_le.crossfilter(),s({step:4,total:4,message:"Loading feature metadata..."});const hr=new URL("./feature_metadata.parquet",window.location.href).href,Io=new URL("https://github.com/jwilber/jwilber.github.io/releases/download/sae-data/feature_examples.parquet",window.location.href).href;await bs().exec(`
+          `),KA.push({name:cA.name,type:"sequential",nUnique:li});d(KA),F.current=_le.crossfilter(),s({step:4,total:4,message:"Loading feature metadata..."});const hr=new URL("./feature_metadata.parquet",window.location.href).href,Io=new URL("./feature_examples.parquet",window.location.href).href;await bs().exec(`
           CREATE TABLE IF NOT EXISTS feature_metadata AS
           SELECT * FROM read_parquet('${hr}')
         `),await bs().exec(`
