@@ -8,8 +8,9 @@
   <link rel="icon" href="./images/me.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/home.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN41L7PPRG"></script>
   <script>
@@ -23,6 +24,7 @@
   <main>
     <div id="nav">
       <h2><a href="./">About Me</a></h2>
+      <h2><a href="./work.html">Work</a></h2>
       <h2><a href="./projects.html">Projects</a></h2>
     </div>
     <div class="content-wrapper">
@@ -33,15 +35,13 @@
         </div>
         <p>
           <br />
-          I'm <span class='strike-through'><span class="bold">building a company (YCS23)</span></span>  a Senior Software Engineer at Nvidia and lecturer at UC San Diego. 
-          Previously, I was an Applied Scientist at Amazon.
-          </span>
+          I'm a Senior Engineer on NVIDIA's BioNeMo team.
+          Previously, I co-founded CambioML (YC S23) and was an Applied Scientist at Amazon.
           <br /><br />
-          Most of my career has been focused on data visualization, machine learning, and/or some combination thereof.
-          I also enjoy communicating complex topics via interactive articles. (See <a class="bold" href="./projects.html">projects</a> for
-          more).
+          My work/research is focused on data visualization, machine learning, and biology. See my <a class="bold" href="./work.html">selected work</a> for
+          more.
           <br /><br />
-          I live with my girlfriend and pug in San Diego, California 🌴. Outside of work I like to surf, skateboard, and practice
+          I live with my fiancé and pug in San Diego, California 🌴. Outside of work I like to surf, skateboard, and practice
           yoga (still can't sit cross-legged, though).<br /><br />
         </p>
         <p class="icon-links">
@@ -61,5 +61,228 @@
       </div>
     </div>
   </main>
+  <div class="home-sections">
+    <section class="home-section" id="research">
+      <h1 class="home-section-header">research</h1>
+      <ul class="card-grid">
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/bio-sae/">
+            <img class="card-thumb" src="./media/bio-sae.jpg" alt="Interpreting Bio-Foundation Models with Sparse Autoencoders" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/bio-sae/">Interpreting Bio-Foundation Models with Sparse Autoencoders</a></h4>
+          <p class="card-authors"><span class="me">Jared Wilber</span> and Tyler Shimko</p>
+          <p class="card-venue">VISxAI @ IEEE VIS 2026</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/bio-sae/">Article</a>
+            <a target="_blank" rel="noopener noreferrer" href="./sae/">Feature Atlas</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://ieeevis.org/year/2026/program/paper/0386cdf5-185f-438d-8db2-0c8042fde95e/">
+            <img class="card-thumb" src="./media/attentionradviz.jpg" alt="AttentionRadViz" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://ieeevis.org/year/2026/program/paper/0386cdf5-185f-438d-8db2-0c8042fde95e/">AttentionRadViz: Token-Anchored Attention Profile Visualization for Transformer Head Analysis</a></h4>
+          <p class="card-authors"><span class="me">Jared Wilber</span></p>
+          <p class="card-venue">IEEE VIS 2026 (Short Papers)</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://ieeevis.org/year/2026/program/paper/0386cdf5-185f-438d-8db2-0c8042fde95e/">Paper</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/AttentionRadViz">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://icml.cc/virtual/2026/poster/64812">
+            <img class="card-thumb thumb-top" src="./media/metagenomic-scaling.jpg" alt="Scaling Laws and Architectural Frontiers in Metagenomic Foundation Models poster" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://icml.cc/virtual/2026/poster/64812">Scaling Laws and Architectural Frontiers in Metagenomic Foundation Models</a></h4>
+          <p class="card-authors">Geraldene Munsamy, Gavin Ayres, Jérémie Dona, Carla Greco, <span class="more">…</span>, <span class="me">Jared Wilber</span>, <span class="more">and 20 more authors</span></p>
+          <p class="card-venue">ICML 2026</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://icml.cc/virtual/2026/poster/64812">Poster</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://openreview.net/forum?id=JWs8VUevwO">OpenReview</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes/tree/main/recipes/eden_megatron">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://developer.nvidia.com/blog/accelerating-end-to-end-co-folding-performance-with-nvidia-bionemo-agent-toolkit/">
+            <img class="card-thumb" src="./media/cofolding-blog.jpg" alt="Co-folding with the BioNeMo Agent Toolkit" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://developer.nvidia.com/blog/accelerating-end-to-end-co-folding-performance-with-nvidia-bionemo-agent-toolkit/">Accelerating End-to-End Co-Folding Performance with NVIDIA BioNeMo Agent Toolkit</a></h4>
+          <p class="card-authors">Kyle Tretina, Roy Tal, Zoey Zhang, Emine Kucukbenli, <span class="me">Jared Wilber</span>, and Mohammed AlQuraishi</p>
+          <p class="card-venue">NVIDIA Technical Blog, 2026</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://developer.nvidia.com/blog/accelerating-end-to-end-co-folding-performance-with-nvidia-bionemo-agent-toolkit/">Blog</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-agent-toolkit">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.biorxiv.org/content/10.64898/2026.01.12.699009v1">
+            <img class="card-thumb thumb-top" src="./media/eden.jpg" alt="EDEN-AI overview figure" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.biorxiv.org/content/10.64898/2026.01.12.699009v1">Designing AI-Programmable Therapeutics with the EDEN Family of Foundation Models</a></h4>
+          <p class="card-authors">Geraldene Munsamy, Gavin Ayres, Carla Greco, Keith Kam, <span class="more">…</span>, <span class="me">Jared Wilber</span>, <span class="more">and many more authors</span></p>
+          <p class="card-venue">bioRxiv, 2026</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.biorxiv.org/content/10.64898/2026.01.12.699009v1">Preprint</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/illustrated-evo2/">
+            <img class="card-thumb" src="./media/illustrated-evo2.jpg" alt="The Illustrated Evo 2" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/illustrated-evo2/">The Illustrated Evo 2</a></h4>
+          <p class="card-authors"><span class="me">Jared Wilber</span>, Farhad Ramezanghorbani, David Romero Guzman, Tyler Shimko, and John St. John</p>
+          <p class="card-venue">VISxAI @ IEEE VIS 2025</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/illustrated-evo2/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2411.10548">
+            <div class="card-thumb card-cover cover-framework" role="img" aria-label="BioNeMo Framework title card">BioNeMo<br />Framework</div>
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2411.10548">BioNeMo Framework: A Modular, High-Performance Library for AI Model Development in Drug Discovery</a></h4>
+          <p class="card-authors">Peter St. John, Dejun Lin, Polina Binder, Malcolm Greaves, <span class="more">…</span>, <span class="me">Jared Wilber</span>, <span class="more">and many more authors</span></p>
+          <p class="card-venue">arXiv, 2024</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2411.10548">arXiv</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA/bionemo-framework">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.nature.com/articles/s41586-026-10176-5">
+            <div class="card-thumb card-cover cover-evo-paper" role="img" aria-label="Evo 2 title card">Evo 2</div>
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.nature.com/articles/s41586-026-10176-5">Genome Modeling and Design Across All Domains of Life with Evo 2</a></h4>
+          <p class="card-authors">Garyk Brixi, Matthew G. Durrant, Jerome Ku, Michael Poli, <span class="more">and many more authors</span></p>
+          <p class="card-venue">Nature, 2026</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.nature.com/articles/s41586-026-10176-5">Paper</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.biorxiv.org/content/10.1101/2025.02.18.638918v1">Preprint</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/ArcInstitute/evo2">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">
+            <img class="card-thumb" src="./media/dd1ogimage.png" alt="Hand-drawn double descent curve" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">A Mathematical Explanation of Double Descent</a></h4>
+          <p class="card-authors"><span class="me">Jared Wilber</span> and Brent Werness</p>
+          <p class="card-venue">VISxAI @ IEEE VIS 2021</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">Part 1</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent2/">Part 2</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="home-section" id="software">
+      <h1 class="home-section-header">software</h1>
+      <ul class="card-grid">
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">
+            <img class="card-thumb" src="./media/rv1.png" alt="A roughViz hand-drawn bar chart" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">roughViz.js</a><span class="card-stat">7K+ GitHub stars</span></h4>
+          <p class="card-desc">Reusable JavaScript library for creating sketchy, hand-drawn styled charts in the browser.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">Website</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/roughViz">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">
+            <img class="card-thumb" src="./media/pykoi.png" alt="pykoi" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">pykoi</a></h4>
+          <p class="card-desc">Active learning for LLMs in one unified interface: collect feedback, compare models, and fine-tune.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/tri-cli">
+            <img class="card-thumb" src="./media/tri-cli.gif" alt="tri-cli interactive treemap demo" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/tri-cli">tri-cli</a></h4>
+          <p class="card-desc">A tree CLI utility, but interactive and with treemaps.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/tri-cli">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/svelte2jupyter/">
+            <img class="card-thumb" src="./media/s2j.png" alt="svelte2jupyter" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/svelte2jupyter/">svelte2jupyter</a></h4>
+          <p class="card-desc">Render Svelte components directly inside Jupyter notebooks.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/svelte2jupyter/">Website</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/svelte2jupyter">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/duckdive">
+            <img class="card-thumb" src="./media/duckdive.jpg" alt="duckdive" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/duckdive">duckdive</a></h4>
+          <p class="card-desc">Query Surfline data from your CLI, and optionally store it with pandas or DuckDB.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/duckdive">Code</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="home-section" id="teaching">
+      <h1 class="home-section-header">teaching / edtech</h1>
+      <ul class="card-grid">
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://dsc106.github.io/">
+            <div class="card-thumb card-cover cover-dsc" role="img" aria-label="DSC 106 title card">DSC 106</div>
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://dsc106.github.io/">Data Visualization @ UC San Diego</a></h4>
+          <p class="card-desc">DSC 106, an undergraduate course on designing and building data visualizations for the web.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://dsc106.github.io/">Course Site</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlprep.io/">
+            <div class="card-thumb card-cover cover-mlprep" role="img" aria-label="MLPrep title card">MLPrep</div>
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlprep.io/">MLPrep</a></h4>
+          <p class="card-desc">Interactive preparation for machine learning concept, coding, and system design interviews.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlprep.io/">Website</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">
+            <div class="card-thumb card-cover cover-classbuzz" role="img" aria-label="Class Buzz title card">Class Buzz</div>
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">Class Buzz</a></h4>
+          <p class="card-desc">A classroom engagement tool that makes participation more active and social.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">Website</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
 </body>
 </html>

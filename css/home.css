@@ -1,0 +1,211 @@
+/* Home page sections: research, software, teaching */
+
+.home-sections {
+  max-width: 1000px;
+  margin: 3rem auto 4rem;
+  padding: 0 1.25rem;
+  font-family: "Roboto";
+}
+
+.home-section {
+  margin-bottom: 3.5rem;
+}
+
+.home-section-header {
+  margin: 0 0 1.1rem;
+  font-family: "Roboto";
+  font-size: 1.9rem;
+  font-weight: 300;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+.card-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.75 / 1;
+  object-fit: cover;
+  max-height: none;
+  margin-bottom: 0.7rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  background: #fafafa;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover .card-thumb {
+  transform: scale(1.015);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.thumb-top {
+  object-position: top center;
+}
+
+a.card-thumb-link {
+  background-image: none;
+}
+
+/* text title-cards for items without a screenshot */
+.card-cover {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  font-weight: 900;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-align: left;
+}
+
+.cover-dsc {
+  color: white;
+  background: #176ca5;
+}
+.cover-mlprep {
+  color: #e9fff9;
+  background: #17333b;
+}
+.cover-classbuzz {
+  color: #492044;
+  background: #f2b7d4;
+}
+.cover-eden {
+  color: white;
+  background: #49347b;
+}
+.cover-scaling {
+  color: #172634;
+  background: #bde8ee;
+}
+.cover-framework {
+  color: #1f3514;
+  background: #cce8ae;
+}
+.cover-evo-paper {
+  color: #dfffbc;
+  background: #182418;
+}
+
+.card-title {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: black;
+}
+
+.card-title a {
+  background-image: none;
+  font-weight: 700;
+}
+
+.card-title a:hover {
+  background-image: linear-gradient(120deg, #98ff98 0%, #98ff98 100%);
+}
+
+.card-authors,
+.card-venue,
+.card-desc {
+  margin: 0 0 0.2rem;
+  max-width: none;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #222;
+}
+
+.card-authors .me {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 400;
+}
+
+.card-authors .more {
+  color: #888;
+}
+
+.card-venue {
+  font-style: italic;
+  color: #444;
+}
+
+.card-desc {
+  color: #333;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
+
+.card-links a {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid #222;
+  border-radius: 3px;
+  background-image: none;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
+
+.card-links a:hover {
+  background-color: #98ff98;
+}
+
+.card-stat {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #eaffea;
+  color: #205b20;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+@media (max-width: 1050px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 740px) {
+  .home-sections {
+    padding: 0 1rem;
+  }
+
+  .home-section-header {
+    font-size: 1.6rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .card-cover {
+    font-size: 1.7rem;
+  }
+}
