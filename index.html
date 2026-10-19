@@ -22,11 +22,13 @@
 </head>
 <body>
   <main>
+    <!-- nav hidden for now
     <div id="nav">
       <h2><a href="./">About Me</a></h2>
       <h2><a href="./work.html">Work</a></h2>
       <h2><a href="./projects.html">Projects</a></h2>
     </div>
+    -->
     <div class="content-wrapper">
       <div class="column-left column">
         <div id="intro">
@@ -36,10 +38,10 @@
         <p>
           <br />
           I'm a Senior Engineer on NVIDIA's BioNeMo team.
-          Previously, I co-founded CambioML (YC S23) and was an Applied Scientist at Amazon.
+          Previously, I co-founded a company (YC S23) and was an Applied Scientist at AWS.
           <br /><br />
-          My work/research is focused on data visualization, machine learning, and biology. See my <a class="bold" href="./work.html">selected work</a> for
-          more.
+          My work/research is focused on machine learning and data visualization. After going through open-heart surgery in my mid-twenties,
+          I pivoted that work towards biology.
           <br /><br />
           I live with my fiancé and pug in San Diego, California 🌴. Outside of work I like to surf, skateboard, and practice
           yoga (still can't sit cross-legged, though).<br /><br />
@@ -62,8 +64,8 @@
     </div>
   </main>
   <div class="home-sections">
-    <section class="home-section" id="research">
-      <h1 class="home-section-header">research</h1>
+    <section class="home-section" id="publications">
+      <h1 class="home-section-header">selected publications</h1>
       <ul class="card-grid">
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://research.nvidia.com/labs/dbr/blog/bio-sae/">
@@ -80,7 +82,7 @@
 
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://ieeevis.org/year/2026/program/paper/0386cdf5-185f-438d-8db2-0c8042fde95e/">
-            <img class="card-thumb" src="./media/attentionradviz.jpg" alt="AttentionRadViz" loading="lazy" />
+            <img class="card-thumb thumb-top" src="./media/attentionradviz-figure.jpg" alt="The AttentionRadViz interface" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://ieeevis.org/year/2026/program/paper/0386cdf5-185f-438d-8db2-0c8042fde95e/">AttentionRadViz: Token-Anchored Attention Profile Visualization for Transformer Head Analysis</a></h4>
           <p class="card-authors"><span class="me">Jared Wilber</span></p>
@@ -144,7 +146,7 @@
 
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2411.10548">
-            <div class="card-thumb card-cover cover-framework" role="img" aria-label="BioNeMo Framework title card">BioNeMo<br />Framework</div>
+            <img class="card-thumb thumb-contain" src="./media/esm2-benchmarks.svg" alt="ESM-2 training benchmarks in BioNeMo Framework" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2411.10548">BioNeMo Framework: A Modular, High-Performance Library for AI Model Development in Drug Discovery</a></h4>
           <p class="card-authors">Peter St. John, Dejun Lin, Polina Binder, Malcolm Greaves, <span class="more">…</span>, <span class="me">Jared Wilber</span>, <span class="more">and many more authors</span></p>
@@ -157,7 +159,7 @@
 
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.nature.com/articles/s41586-026-10176-5">
-            <div class="card-thumb card-cover cover-evo-paper" role="img" aria-label="Evo 2 title card">Evo 2</div>
+            <img class="card-thumb" src="./media/evo2.jpg" alt="Evo 2 illustration" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.nature.com/articles/s41586-026-10176-5">Genome Modeling and Design Across All Domains of Life with Evo 2</a></h4>
           <p class="card-authors">Garyk Brixi, Matthew G. Durrant, Jerome Ku, Michael Poli, <span class="more">and many more authors</span></p>
@@ -168,30 +170,17 @@
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/ArcInstitute/evo2">Code</a>
           </div>
         </li>
-
-        <li class="card">
-          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">
-            <img class="card-thumb" src="./media/dd1ogimage.png" alt="Hand-drawn double descent curve" loading="lazy" />
-          </a>
-          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">A Mathematical Explanation of Double Descent</a></h4>
-          <p class="card-authors"><span class="me">Jared Wilber</span> and Brent Werness</p>
-          <p class="card-venue">VISxAI @ IEEE VIS 2021</p>
-          <div class="card-links">
-            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">Part 1</a>
-            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent2/">Part 2</a>
-          </div>
-        </li>
       </ul>
     </section>
 
-    <section class="home-section" id="software">
-      <h1 class="home-section-header">software</h1>
+    <section class="home-section" id="open-source">
+      <h1 class="home-section-header">open-source</h1>
       <ul class="card-grid">
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">
             <img class="card-thumb" src="./media/rv1.png" alt="A roughViz hand-drawn bar chart" loading="lazy" />
           </a>
-          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">roughViz.js</a><span class="card-stat">7K+ GitHub stars</span></h4>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">roughViz.js</a><span class="card-stat">★ 7.2K</span></h4>
           <p class="card-desc">Reusable JavaScript library for creating sketchy, hand-drawn styled charts in the browser.</p>
           <div class="card-links">
             <a target="_blank" rel="noopener noreferrer" href="https://www.jwilber.me/roughviz/">Website</a>
@@ -200,10 +189,44 @@
         </li>
 
         <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes">
+            <img class="card-thumb thumb-contain" src="./media/esm2-benchmarks.svg" alt="ESM-2 training benchmarks from BioNeMo Recipes" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes">BioNeMo Recipes</a><span class="card-stat">★ 871</span></h4>
+          <p class="card-desc">Recipes for building and adapting AI models in drug discovery at scale.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/">
+            <img class="card-thumb" src="./media/mluexplain-homepage-ogimage.png" alt="MLU Explain homepage" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/">MLU Explain</a><span class="card-stat">★ 944</span></h4>
+          <p class="card-desc">Visual, interactive explanations of core machine learning concepts.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/">Website</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/aws-samples/aws-mlu-explain">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-agent-toolkit">
+            <img class="card-thumb thumb-top" src="./media/bionemo-agent-toolkit.jpg" alt="BioNeMo Agent Toolkit" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-agent-toolkit">BioNeMo Agent Toolkit</a><span class="card-stat">★ 484</span></h4>
+          <p class="card-desc">Turn any coding agent into a life science expert with NVIDIA BioNeMo skills.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA-BioNeMo/bionemo-agent-toolkit">Code</a>
+          </div>
+        </li>
+
+        <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">
             <img class="card-thumb" src="./media/pykoi.png" alt="pykoi" loading="lazy" />
           </a>
-          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">pykoi</a></h4>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">pykoi</a><span class="card-stat">★ 410</span></h4>
           <p class="card-desc">Active learning for LLMs in one unified interface: collect feedback, compare models, and fine-tune.</p>
           <div class="card-links">
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/CambioML/pykoi">Code</a>
@@ -251,7 +274,7 @@
       <ul class="card-grid">
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://dsc106.github.io/">
-            <div class="card-thumb card-cover cover-dsc" role="img" aria-label="DSC 106 title card">DSC 106</div>
+            <img class="card-thumb thumb-top" src="./media/dsc106-landing.jpg" alt="DSC 106 course website" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://dsc106.github.io/">Data Visualization @ UC San Diego</a></h4>
           <p class="card-desc">DSC 106, an undergraduate course on designing and building data visualizations for the web.</p>
@@ -262,7 +285,7 @@
 
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlprep.io/">
-            <div class="card-thumb card-cover cover-mlprep" role="img" aria-label="MLPrep title card">MLPrep</div>
+            <img class="card-thumb thumb-top" src="./media/mlprep-landing.jpg" alt="MLPrep landing page" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlprep.io/">MLPrep</a></h4>
           <p class="card-desc">Interactive preparation for machine learning concept, coding, and system design interviews.</p>
@@ -273,12 +296,319 @@
 
         <li class="card">
           <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">
-            <div class="card-thumb card-cover cover-classbuzz" role="img" aria-label="Class Buzz title card">Class Buzz</div>
+            <img class="card-thumb thumb-top" src="./media/classbuzz-landing.jpg" alt="Class Buzz landing page" loading="lazy" />
           </a>
           <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">Class Buzz</a></h4>
           <p class="card-desc">A classroom engagement tool that makes participation more active and social.</p>
           <div class="card-links">
             <a target="_blank" rel="noopener noreferrer" href="https://tryclassbuzz.com/">Website</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="home-section" id="articles">
+      <h1 class="home-section-header">interactive articles</h1>
+      <ul class="card-grid">
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="./permutationtest/">
+            <img class="card-thumb" src="./media/permtest.jpeg" alt="Hand-drawn figures comparing two groups" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="./permutationtest/">The Permutation Test</a></h4>
+          <p class="card-desc">A scrollytelling visual tutorial on statistical testing with hand-drawn aesthetics.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="./permutationtest/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://pudding.cool/2018/06/skate-music/">
+            <img class="card-thumb" src="./media/skatemusic.jpg" alt="Skateboarder and music collage" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://pudding.cool/2018/06/skate-music/">The Good, the Rad, and the Gnarly</a></h4>
+          <p class="card-desc">An exploration of the music of skateboarding. A visual essay for The Pudding.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://pudding.cool/2018/06/skate-music/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/neural-networks/">
+            <img class="card-thumb" src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-neural-networks.jpg" alt="Neural networks illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/neural-networks/">Neural Networks</a></h4>
+          <p class="card-desc">Learn about neural networks, the backbone of many popular algorithms today.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/neural-networks/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/linear-regression/">
+            <img class="card-thumb" src="./images/thumbnail-linear-regression.jpg" alt="Illustrated linear regression chart" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/linear-regression/">Linear Regression</a></h4>
+          <p class="card-desc">Interactively learn how linear regression models work in machine learning.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/linear-regression/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/logistic-regression/">
+            <img class="card-thumb" src="./images/thumbnail-logistic-regression.jpeg" alt="Illustrated logistic regression curve" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/logistic-regression/">Logistic Regression</a></h4>
+          <p class="card-desc">How logistic regression is used for binary classification, through an interactive example.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/logistic-regression/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/train-test-validation/">
+            <img class="card-thumb" src="./images/train-test-validation.jpeg" alt="Train, test, and validation split illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/train-test-validation/">Train, Test, and Validation Sets</a></h4>
+          <p class="card-desc">Why you split data into training, testing, and validation sets, with a live model.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/train-test-validation/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/roc-auc/">
+            <img class="card-thumb" src="./images/roc-auc.png" alt="ROC curve illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/roc-auc/">ROC &amp; AUC</a></h4>
+          <p class="card-desc">A visual, interactive explanation of ROC curves and area under the curve.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/roc-auc/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/precision-recall/">
+            <img class="card-thumb" src="./images/precision-recall.jpeg" alt="Precision and recall illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/precision-recall/">Precision &amp; Recall</a></h4>
+          <p class="card-desc">Two alternatives to accuracy for classification, plus the F1-score and confusion matrices.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/precision-recall/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/bias-variance/">
+            <img class="card-thumb" src="./media/bvogimage.png" alt="Bias variance tradeoff illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/bias-variance/">The Bias Variance Tradeoff</a></h4>
+          <p class="card-desc">The tradeoff between under- and over-fitting, with interactive LOESS and KNN examples.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/bias-variance/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/decision-tree/">
+            <img class="card-thumb" src="./media/ogimage-decision-tree.png" alt="Decision tree illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/decision-tree/">Decision Trees</a></h4>
+          <p class="card-desc">How a decision tree makes its splits, entropy and information gain, and why going too deep hurts.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/decision-tree/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/random-forest/">
+            <img class="card-thumb" src="./images/random-forest.jpeg" alt="Random forest illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/random-forest/">Random Forest</a></h4>
+          <p class="card-desc">How majority votes and well-placed randomness extend decision trees into random forests.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/random-forest/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/reinforcement-learning/">
+            <img class="card-thumb" src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-reinforcement-learning.jpg" alt="Reinforcement learning illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/reinforcement-learning/">Reinforcement Learning</a></h4>
+          <p class="card-desc">Reinforcement learning and the exploration-exploitation dilemma, interactively.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/reinforcement-learning/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/equality-of-odds/">
+            <img class="card-thumb" src="https://mlu-explain.github.io/assets/thumbnails/thumbnail-equality-of-odds.jpg" alt="Equality of odds illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/equality-of-odds/">Equality of Odds</a></h4>
+          <p class="card-desc">A metric used to quantify unfairness and remove bias from machine learning models.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/equality-of-odds/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="./natgeo_colors/">
+            <img class="card-thumb" src="./media/natgeo.png" alt="National Geographic cover color palettes" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="./natgeo_colors/">Colors: National Geographic Covers</a></h4>
+          <p class="card-desc">The color palettes of National Geographic covers, 1965 to 2018.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="./natgeo_colors/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="./berkeley_salary/">
+            <img class="card-thumb" src="./images/berkeley.png" alt="Berkeley faculty salary chart" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="./berkeley_salary/">U.C. Berkeley: Faculty Salaries</a></h4>
+          <p class="card-desc">Interactively explore the salaries of U.C. Berkeley faculty.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="./berkeley_salary/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="http://4plymag.com/fredgall/">
+            <img class="card-thumb" src="./media/gall.png" alt="Fred Gall skateboarding" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="http://4plymag.com/fredgall/">4PLYMAG: All The Gall</a></h4>
+          <p class="card-desc">An analysis of Fred Gall's prolific skateboarding career.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="http://4plymag.com/fredgall/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="http://4plymag.com/koston/">
+            <img class="card-thumb" src="./media/koston.png" alt="Eric Koston skateboarding" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="http://4plymag.com/koston/">4PLYMAG: Eric Koston</a></h4>
+          <p class="card-desc">A look at the professional skateboarding career of Eric Koston.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="http://4plymag.com/koston/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="http://www.jenkemmag.com/home/2019/07/31/statistical-analysis-every-jim-greco-clip/">
+            <img class="card-thumb" src="./media/jenkem.png" alt="Jenkem Mag article" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="http://www.jenkemmag.com/home/2019/07/31/statistical-analysis-every-jim-greco-clip/">Jenkem Mag: Every Jim Greco Clip</a></h4>
+          <p class="card-desc">A statistical analysis of every Jim Greco clip, for Jenkem skateboard magazine.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="http://www.jenkemmag.com/home/2019/07/31/statistical-analysis-every-jim-greco-clip/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="./nest/">
+            <img class="card-thumb" src="./media/nest.png" alt="Nested workflows diagram" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="./nest/">Nested Machine Learning Workflows</a></h4>
+          <p class="card-desc">An introduction to nested machine learning workflows in R with tidyr and purrr.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="./nest/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">
+            <img class="card-thumb" src="./media/dd1ogimage.png" alt="Hand-drawn double descent curve" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">Double Descent: A Visual Introduction</a></h4>
+          <p class="card-desc">An introduction to double descent in modern machine learning and how it relates to the bias-variance tradeoff.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent2/">
+            <img class="card-thumb" src="./media/dd2ogimage.png" alt="Double descent math illustration" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent2/">Double Descent: A Mathematical Explanation</a></h4>
+          <p class="card-desc">A mathematical explanation of double descent, building on the cubic spline example from the first article.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://mlu-explain.github.io/double-descent2/">Article</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="http://4plymag.com">
+            <img class="card-thumb" src="./media/4plymag.png" alt="4PLY skateboard magazine" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="http://4plymag.com">4PLY Magazine</a></h4>
+          <p class="card-desc">An online, data-driven skateboard magazine. Followed by Tony Hawk!</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="http://4plymag.com">Website</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="./sperm_hero/">
+            <img class="card-thumb" src="./media/spermhero.png" alt="Sperm Hero game" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="./sperm_hero/">Sperm Hero</a></h4>
+          <p class="card-desc">A game where you control a sperm cell with your head and dodge various forms of birth control.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="./sperm_hero/">Play</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="home-section" id="datasets">
+      <h1 class="home-section-header">open datasets</h1>
+      <ul class="card-grid">
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/Bob_Ross_Paintings">
+            <img class="card-thumb" src="./images/bobross.png" alt="A grid of Bob Ross paintings" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/Bob_Ross_Paintings">Bob Ross Paintings</a></h4>
+          <p class="card-desc">Every painting featured in <em>The Joy of Painting</em>, with subjects, colors, and episode metadata.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/Bob_Ross_Paintings">Dataset</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/the-pudding/data/tree/master/skate-music">
+            <img class="card-thumb" src="./images/skate.png" alt="Skateboarder over a collage of album art" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/the-pudding/data/tree/master/skate-music">Skate Video Music</a></h4>
+          <p class="card-desc">Music credits from nearly three decades of skate videos, 1989 to 2018.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/the-pudding/data/tree/master/skate-music">Dataset</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/National_Geographic_Covers">
+            <img class="card-thumb" src="./images/natgeo.jpg" alt="National Geographic magazine covers" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/National_Geographic_Covers">National Geographic Magazine Covers</a></h4>
+          <p class="card-desc">Every National Geographic cover from 1960 to 2018, with a script to scrape recent years.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/National_Geographic_Covers">Dataset</a>
+          </div>
+        </li>
+
+        <li class="card">
+          <a class="card-thumb-link" target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/USDA_Pomological_Watercolors">
+            <img class="card-thumb" src="./images/usda.jpg" alt="USDA pomological watercolor of fruit" loading="lazy" />
+          </a>
+          <h4 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/USDA_Pomological_Watercolors">U.S.D.A. Pomological Watercolors</a></h4>
+          <p class="card-desc">Watercolors documenting fruit and nut varieties developed around the turn of the 20th century.</p>
+          <div class="card-links">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/jwilber/USDA_Pomological_Watercolors">Dataset</a>
           </div>
         </li>
       </ul>
