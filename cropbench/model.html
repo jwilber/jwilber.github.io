@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CropBench · Model</title>
+<meta name="description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<!-- Social cards: OG_IMAGE_URL placeholder. Scrapers need an absolute og:image URL; replace the relative
+     og-image.png below with https://YOUR-HOST/cropbench/og-image.png when the site is hosted. -->
+<meta property="og:title" content="CropBench · Model">
+<meta property="og:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CropBench · Model">
+<meta name="twitter:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta name="twitter:image" content="og-image.png">
+<meta name="theme-color" content="#e9e2c9">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="index.html"><canvas id="logo" width="16" height="16" aria-hidden="true"></canvas>CropBench</a>
+    <nav class="nav">
+      <a href="index.html#leaderboard">Leaderboard</a>
+      <a href="index.html#scenarios">Scenarios</a>
+      <a href="steps.html">Steps</a>
+      <a href="replay.html">Replay</a>
+      <button id="units-btn" class="btn units" type="button" aria-label="Switch display units">°F / USD</button>
+    </nav>
+  </header>
+
+  <section class="model-head px" id="head"></section>
+
+  <section class="px view">
+    <div class="sec-head"><h2>Per scenario</h2><span class="muted small">SP score per scenario (bars = mean of attempts, dots = attempts, line = standard practice at 1.0). Click a bar to open the replay.</span></div>
+    <div class="chart-wrap" id="scn-chart"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="px view">
+      <div class="sec-head"><h2>Strategy fingerprint</h2><span class="muted small">all attempts</span></div>
+      <div id="fp"></div>
+    </section>
+    <section class="px view">
+      <div class="sec-head"><h2>Crop mix</h2><span class="muted small">field-seasons by crop, tier 2/3 scenarios</span></div>
+      <div id="cropmix"></div>
+      <div class="sec-head" style="margin-top:16px"><h2>Input profile</h2></div>
+      <div class="kpis" id="kpis"></div>
+    </section>
+  </div>
+
+  <div class="two-col">
+    <section class="px view runnote" id="best"></section>
+    <section class="px view runnote" id="worst"></section>
+  </div>
+
+  <section class="px view">
+    <div class="sec-head"><h2>All attempts</h2><span class="muted small" id="attempts-note"></span></div>
+    <div class="table-wrap"><table class="lb attempts" id="attempts"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <footer>SP score = (agent − do nothing) / (standard practice − do nothing). Uncertainty is the standard deviation of the overall metric recomputed per attempt index (attempt 1 only, 2 only, 3 only). Inputs and notes are derived client-side from the exported traces and ledgers. <span data-rate-note></span></footer>
+</div>
+<div id="tip" class="tip" hidden></div>
+<script src="data/index.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/steps-core.js"></script>
+<script src="js/model.js"></script>
+</body>
+</html>

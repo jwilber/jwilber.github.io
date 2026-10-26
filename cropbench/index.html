@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CropBench</title>
+<meta name="description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<!-- Social cards: OG_IMAGE_URL placeholder. Scrapers need an absolute og:image URL; replace the relative
+     og-image.png below with https://YOUR-HOST/cropbench/og-image.png when the site is hosted. -->
+<meta property="og:title" content="CropBench">
+<meta property="og:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CropBench">
+<meta name="twitter:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta name="twitter:image" content="og-image.png">
+<meta name="theme-color" content="#e9e2c9">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="index.html"><canvas id="logo" width="16" height="16" aria-hidden="true"></canvas>CropBench</a>
+    <nav class="nav">
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#scenarios">Scenarios</a>
+      <a href="steps.html">Steps</a>
+      <a href="replay.html">Replay</a>
+      <button id="units-btn" class="btn units" type="button" aria-label="Switch display units">°F / USD</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="px">
+      <h1>Can a language model run a farm?</h1>
+      <p>CropBench drops a tool-calling agent onto one to three fields for one to three seasons inside a deterministic crop simulator (WOFOST 8.1 through PCSE). It plants, fertilizes, irrigates, tests soil, reads forecasts and harvests through JSON tools. The reward is verifiable: profit under fixed weather, reported in dollars per hectare-season and relative to a rule-of-thumb standard-practice farmer (SP score 1.0 = farms like the baseline).</p>
+      <p class="small muted">Scores are against a crop model, not real fields. The economics layer (prices, costs, rotation penalties, leaching proxy) is a benchmark construct.</p>
+      <p><a class="btn" id="hero-link" href="replay.html">▶ Watch a replay</a></p>
+    </div>
+    <div class="px hero-anim">
+      <div class="hero-canvas-wrap"><canvas id="hero-farm" aria-label="Animated pixel farm"></canvas></div>
+      <div id="hero-caption" class="small muted"></div>
+    </div>
+  </section>
+
+  <section id="leaderboard">
+    <div class="sec-head"><h2>Leaderboard</h2><span class="muted small" id="formula"></span></div>
+    <div class="px table-wrap"><table class="lb" id="lb-main"><thead></thead><tbody></tbody></table></div>
+    <p class="small muted" style="margin-top:8px">Ranked by mean profit per hectare-season (USD) over the scenarios each agent ran. Attempts are averaged per scenario. Baselines are scripted policies; the hindsight oracle is a diagnostic, not a contestant.</p>
+    <div class="sec-head" style="margin-top:18px"><h3>Per scenario</h3><span class="muted small">mean profit in USD (SP score); min – max and n when there are several attempts. Click a cell to replay that run against standard practice.</span></div>
+    <div class="px table-wrap"><table class="lb" id="lb-scn"><thead></thead><tbody></tbody></table></div>
+    <details class="diag" id="diagnostics" style="margin-top:18px">
+      <summary><h3 style="display:inline">Diagnostics: headroom</h3> <span class="muted small">not part of the ranking</span></summary>
+      <p class="small muted" style="margin:8px 0">The CMA-ES hindsight oracle searches a per-field, per-season schedule with the true weather; it is a lower bound on the optimum and agents can exceed it. Best known = max over the oracle and every run.</p>
+      <div class="px table-wrap"><table class="lb" id="lb-diag"><thead></thead><tbody></tbody></table></div>
+    </details>
+  </section>
+
+  <section id="scenarios">
+    <div class="sec-head"><h2>Scenarios</h2><span class="muted small">15 public scenarios in three tiers. Prices and costs in USD. Thumbnails show the oracle's farm at peak canopy.</span></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer>
+    Data exported from <code>results/runs</code> by <code>scripts/export_site_data.py</code> on <span id="generated"></span>. Weather: Wageningen 1976–1999 (shipped with PCSE). <span data-rate-note></span>
+  </footer>
+</div>
+<script src="data/index.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

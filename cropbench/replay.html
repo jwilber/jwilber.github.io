@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CropBench · Replay</title>
+<meta name="description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<!-- Social cards: OG_IMAGE_URL placeholder. Scrapers need an absolute og:image URL; replace the relative
+     og-image.png below with https://YOUR-HOST/cropbench/og-image.png when the site is hosted. -->
+<meta property="og:title" content="CropBench · Replay">
+<meta property="og:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CropBench · Replay">
+<meta name="twitter:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta name="twitter:image" content="og-image.png">
+<meta name="theme-color" content="#e9e2c9">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="index.html"><canvas id="logo" width="16" height="16" aria-hidden="true"></canvas>CropBench</a>
+    <nav class="nav">
+      <a href="index.html#leaderboard">Leaderboard</a>
+      <a href="index.html#scenarios">Scenarios</a>
+      <a href="replay.html" class="active">Replay</a>
+      <a href="steps.html" id="steps-link">Steps</a>
+      <button id="units-btn" class="btn units" type="button" aria-label="Switch display units">°F / USD</button>
+    </nav>
+  </header>
+
+  <h1 id="title">Replay</h1>
+  <p id="subtitle" class="muted"></p>
+
+  <div class="controls px">
+    <label>Scenario <select id="sel-scenario"></select></label>
+    <label>Agent A <select id="sel-a"></select></label>
+    <label>Compare with <select id="sel-b"></select></label>
+    <span class="spacer"></span>
+    <div class="transport">
+      <button id="btn-start" class="btn icon" type="button" title="Start">⏮</button>
+      <button id="btn-back" class="btn icon" type="button" title="Back 7 days">◀</button>
+      <button id="btn-play" class="btn icon" type="button" title="Play / pause">▶</button>
+      <button id="btn-fwd" class="btn icon" type="button" title="Forward 7 days">▶▶</button>
+      <span class="speed">
+        <button class="btn spd" data-spd="4" type="button">1×</button>
+        <button class="btn spd active" data-spd="12" type="button">3×</button>
+        <button class="btn spd" data-spd="40" type="button">10×</button>
+      </span>
+      <span id="date" class="date">—</span>
+    </div>
+  </div>
+
+  <div class="timeline px">
+    <div id="wx-text" class="wx" aria-live="polite">—</div>
+    <canvas id="weather" height="80" aria-label="Weather strip: daily rain (mm) and maximum temperature"></canvas>
+    <input id="scrub" type="range" min="0" max="0" value="0" step="1" aria-label="Day">
+    <div class="legend"><span><i class="sw" style="background:#1e7fe0"></i>rain (mm/day, left axis)</span><span><i class="sw" style="background:#e0782a"></i>max temperature (right axis)</span><span><i class="sw" style="background:#e3b341"></i>harvest</span><span>▪ other actions (agent A top row, B below)</span><span>▌ current day</span></div>
+  </div>
+
+  <div class="legend-box px">
+    <div class="legend-row"><span class="muted small">Field icons:</span><div id="legend-icons" class="legend-icons"></div></div>
+    <div class="legend-note muted small">Soil colour darkens with moisture and rain · canopy fills in with leaf area · gold = ripening · pale stalks = stubble after harvest.</div>
+  </div>
+
+  <div id="runs" class="runs"></div>
+
+  <footer>
+    Soil tint follows root-zone moisture between wilting point and field capacity; sprites follow crop, development stage (dvs) and leaf area (lai). Cash (USD) is the running ledger. SP = profit relative to the standard-practice farmer (0 = do nothing, 1 = standard practice). All data from the deterministic WOFOST 8.1 simulation. <span data-rate-note></span>
+  </footer>
+</div>
+<script src="data/index.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/steps-core.js"></script>
+<script src="js/replay.js"></script>
+</body>
+</html>

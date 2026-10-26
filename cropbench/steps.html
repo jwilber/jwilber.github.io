@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CropBench · How the model played</title>
+<meta name="description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<!-- Social cards: OG_IMAGE_URL placeholder. Scrapers need an absolute og:image URL; replace the relative
+     og-image.png below with https://YOUR-HOST/cropbench/og-image.png when the site is hosted. -->
+<meta property="og:title" content="CropBench · How the model played">
+<meta property="og:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CropBench · How the model played">
+<meta name="twitter:description" content="CropBench: a leaderboard benchmark where LLM agents run a farm inside the WOFOST crop simulator, scored on profit against a standard-practice farmer.">
+<meta name="twitter:image" content="og-image.png">
+<meta name="theme-color" content="#e9e2c9">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap wide">
+  <header class="topbar">
+    <a class="brand" href="index.html"><canvas id="logo" width="16" height="16" aria-hidden="true"></canvas>CropBench</a>
+    <nav class="nav">
+      <a href="index.html#leaderboard">Leaderboard</a>
+      <a href="index.html#scenarios">Scenarios</a>
+      <a href="replay.html">Replay</a>
+      <a href="steps.html" class="active">Steps</a>
+      <button id="units-btn" class="btn units" type="button" aria-label="Switch display units">°F / USD</button>
+    </nav>
+  </header>
+
+  <h1>How the model played</h1>
+  <p class="muted" id="subtitle">Every tool call an agent made, as decision steps in fixed classes so models can be compared by eye. Derived from the exported traces, ledgers and transcript tool calls.</p>
+
+  <div class="controls px" id="picker">
+    <label>Scenario <select id="sel-scenario"></select></label>
+    <label>Agent 1 <select class="sel-agent" data-slot="0"></select></label>
+    <label>Agent 2 <select class="sel-agent" data-slot="1"></select></label>
+    <label>Agent 3 <select class="sel-agent" data-slot="2"></select></label>
+    <label>Agent 4 <select class="sel-agent" data-slot="3"></select></label>
+    <label>Attempt <select id="sel-attempt">
+      <option value="calls">with tool calls</option><option value="latest">latest</option><option value="a1">a1</option><option value="a2">a2</option><option value="a3">a3</option><option value="median">median profit</option><option value="all">all (fingerprints)</option>
+    </select></label>
+    <label id="ref-label">Reference (view D) <select id="sel-ref">
+      <option value="standard_practice">standard practice</option><option value="oracle">oracle</option><option value="best">best-known run</option><option value="median">model's median attempt</option>
+    </select></label>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="btn tab" data-view="D" role="tab">D · Deviation DAG</button>
+    <button class="btn tab" data-view="A" role="tab">A · Swimlanes</button>
+    <button class="btn tab" data-view="B" role="tab">B · Decision DAG</button>
+    <button class="btn tab" data-view="C" role="tab">C · Fingerprints</button>
+  </div>
+
+  <div class="step-legend px" id="step-legend"></div>
+
+  <section id="view-D" class="view px" hidden>
+    <div class="sec-head"><h2>Deviation from a reference trajectory</h2><span class="muted small">Agent 1 in colour over the reference in grey. + taken but reference did not · − reference did, agent skipped · Δ same step, different amount or timing · forks = different crop until the two converge. Click a node to open the replay on that day.</span></div>
+    <div id="dev-summary" class="dev-summary"></div>
+    <div class="scroller"><div id="dev-host"></div></div>
+  </section>
+  <section id="view-A" class="view px" hidden>
+    <div class="sec-head"><h2>Swimlane timeline</h2><span class="muted small">x = simulated date. One lane per step class; behind them a band per field (crop colour, darker as the stage advances) and blue rain ticks. Stack agents to compare cadence.</span></div>
+    <div class="scroller"><canvas id="swim"></canvas></div>
+  </section>
+  <section id="view-B" class="view px" hidden>
+    <div class="sec-head"><h2>Decision DAG</h2><span class="muted small">Nodes = decision stops by date; within a stop the steps form a column ordered by class (sense on top, control at the bottom) in call order. Edges between stops are as long as the advance. Hover for arguments and results; click to open the replay on that day.</span></div>
+    <div class="scroller"><div id="dag-host"></div></div>
+  </section>
+  <section id="view-C" class="view px" hidden>
+    <div class="sec-head"><h2>Strategy fingerprints</h2><span class="muted small">Step classes on a fixed ring; edge thickness = how often one class follows another; node size = call count. Small multiples in leaderboard order, with the crop sequence per field below for rotation scenarios.</span></div>
+    <div id="fp-host" class="fp-grid"></div>
+  </section>
+
+  <footer>Steps come from the verified transcript tool calls when the exported attempt has them (⚙ in the picker), otherwise from the trace and ledger (field actions, soil tests, harvests, rejected calls; sensing and planning calls are then unknown and stops are inferred weekly). <span data-rate-note></span></footer>
+</div>
+<div id="tip" class="tip" hidden></div>
+<script src="data/index.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pixel.js"></script>
+<script src="js/steps-core.js"></script>
+<script src="js/steps.js"></script>
+</body>
+</html>
